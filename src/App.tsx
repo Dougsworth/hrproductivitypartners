@@ -9,14 +9,23 @@ import {
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Home } from "@/pages/Home";
-import { Services } from "@/pages/Services";
 import { Contact } from "@/pages/Contact";
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.slice(1));
+      if (el) {
+        const t = setTimeout(
+          () => el.scrollIntoView({ behavior: "smooth", block: "start" }),
+          80,
+        );
+        return () => clearTimeout(t);
+      }
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 };
 
@@ -29,7 +38,7 @@ export const App = () => {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
+            <Route path="/services" element={<Navigate to="/#services" replace />} />
             <Route path="/contacts" element={<Contact />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

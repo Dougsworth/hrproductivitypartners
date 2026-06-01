@@ -1,9 +1,13 @@
 const items = [
   "HR Strategy",
+  "AI in HR",
   "Talent Development",
+  "People Analytics",
   "Organizational Change",
+  "AI-Powered Recruiting",
   "Employee Engagement",
   "Performance Management",
+  "HR Automation",
   "Culture Design",
   "Leadership Coaching",
   "Change Management",

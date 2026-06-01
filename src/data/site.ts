@@ -8,19 +8,62 @@ export const site = {
   location: "Kingston, Jamaica",
   email: "info@hrproductivitypartner.com",
   phone: "+1 (876) 000-0000",
+  // TODO: replace with your real Calendly link
+  calendly: "https://calendly.com/hrppi/intro-call",
   logo: `${ASSETS}/d6387f063fe2b8fffcfe29490c918341_150x150.png`,
   // Branded banner — diverse team in office beneath the HRPPI wall logo
   heroImage: `${ASSETS}/hrppi-banner.png`,
-  introImage:
-    "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80",
+  introImage: `${ASSETS}/intro-meeting.png`,
   ctaImage:
     "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2400&q=80",
 };
 
 export const nav = [
   { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
+  { label: "Services", to: "/#services" },
   { label: "Contacts", to: "/contacts" },
+];
+
+export const testimonials = [
+  {
+    quote:
+      "HRPPI rebuilt our entire performance management approach. Within two quarters our managers were actually having the conversations that move the business.",
+    name: "Operations Director",
+    org: "Regional financial services firm",
+  },
+  {
+    quote:
+      "They didn't hand us a binder and leave — they embedded with our team and made the change stick. Our time-to-hire dropped noticeably.",
+    name: "Head of People",
+    org: "Growing logistics company",
+  },
+  {
+    quote:
+      "Practical, no jargon, and genuinely invested in our people. The culture work alone changed how our teams show up every day.",
+    name: "Managing Director",
+    org: "Professional services group",
+  },
+];
+
+export const caseStudies = [
+  {
+    tag: "Talent & Recruiting",
+    result: "30% faster time-to-hire",
+    title: "Rebuilding a structured, bias-aware hiring process",
+    body: "We redesigned the end-to-end recruiting workflow — from role scorecards to structured interviews — cutting time-to-hire while improving quality of hire.",
+  },
+  {
+    tag: "Organizational Change",
+    result: "90%+ adoption in 2 quarters",
+    title: "A company-wide HR system rollout that actually stuck",
+    body: "Sourcing, implementation and change management for a new HRMS — paired with leader enablement so the tools were adopted, not abandoned.",
+  },
+  {
+    tag: "Culture & Engagement",
+    result: "Measurable lift in engagement",
+    title: "Turning values on the wall into daily behaviour",
+    body: "We designed and entrenched a culture framework with feedback loops and manager coaching, moving culture from a poster to a practice.",
+  },
 ];
 
 export const stats = [
@@ -69,63 +112,94 @@ export const process = [
 ];
 
 export type Service = {
+  slug: string;
   title: string;
   blurb: string;
   details: string[];
   image: string;
+  icon: string;
+  /** tailwind bg + text classes for the playful icon tile */
+  tile: string;
 };
 
 export const services: Service[] = [
   {
-    title: "HR Systems Design, Sourcing & Implementation",
+    slug: "hr-systems",
+    title: "HR Systems Setup",
     blurb:
-      "Human resource management systems, learning management systems and performance management systems — selected and implemented for the way you work.",
+      "We pick and set up the software that runs your HR — so hiring, payroll, reviews and training all live in one place instead of scattered spreadsheets.",
     details: [
-      "Human resource management systems (HRMS)",
-      "Learning management systems (LMS)",
-      "Performance management systems",
+      "Choose the right HR software for your size and budget",
+      "Set up your employee records and onboarding system",
+      "Install a tool to run staff training online",
+      "Set up performance reviews and goal tracking",
     ],
-    image: `${ASSETS}/4cfb5c35398df23c99491f75f37c1c47_378x252.jpg`,
+    image:
+      "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80",
+    icon: "systems",
+    tile: "bg-[#144355] text-white",
   },
   {
-    title: "Learning & Talent Development",
+    slug: "learning-talent",
+    title: "Staff Training & Development",
     blurb:
-      "Learning, re-learning, upskilling, career pathing and performance management that grows your people and your leaders.",
+      "We train your people and grow your managers — so your team keeps getting better and you build leaders from within instead of always hiring out.",
     details: [
-      "Upskilling, re-learning and career pathing",
-      "People leader development & communication",
-      "Change leadership and leading through crisis",
-      "Building a successful leadership band",
+      "Training programs to upskill your staff",
+      "Clear career paths so people know how to grow",
+      "Manager and leadership coaching",
+      "Help leaders communicate and lead through change",
     ],
-    image: `${ASSETS}/2c555ad8375e98a3229a69057a87b7d4_378x252.jpg`,
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+    icon: "growth",
+    tile: "bg-[#f97316] text-white",
   },
   {
-    title: "Organizational Change",
+    slug: "organizational-change",
+    title: "Managing Big Changes",
     blurb:
-      "Change policy design and implementation, change management and sustainment that makes transitions stick.",
+      "Restructuring, new systems, new leadership? We guide your team through the change so it actually lands — and doesn't fall apart after week two.",
     details: [
-      "Change policy design & implementation",
-      "Change management",
-      "Change sustainment",
+      "A clear plan for rolling out the change",
+      "Communication so staff know what's happening and why",
+      "Support for managers leading their teams through it",
+      "Follow-up so the new way of working sticks",
     ],
-    image: `${ASSETS}/c563674674b60f43b50fe92173e4c7c9_392x261.jpg`,
+    image:
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80",
+    icon: "change",
+    tile: "bg-[#1b6b86] text-white",
   },
   {
-    title: "Employee Engagement",
+    slug: "employee-engagement",
+    title: "Keeping Staff Happy & Engaged",
     blurb:
-      "Conflict resolution, employment branding, and internal communication that keep your people connected and committed.",
+      "We help your people feel valued and stay — through fair conflict handling, a workplace people are proud of, and communication that keeps everyone in the loop.",
     details: [
-      "Employee conflict resolution & engagement",
-      "Employment branding events and activities",
-      "Internal communication policy & channel design",
+      "Fair, clear process for handling workplace conflict",
+      "Build a reputation that attracts and keeps good staff",
+      "Internal communication that actually reaches people",
+      "Events and activities that boost team morale",
     ],
-    image: `${ASSETS}/305fca0a91a3332e30d5d66832dd1957_392x261.jpg`,
+    image:
+      "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1600&q=80",
+    icon: "engagement",
+    tile: "bg-[#0d9488] text-white",
   },
   {
-    title: "Organizational Culture",
+    slug: "organizational-culture",
+    title: "Building Your Company Culture",
     blurb:
-      "Design, entrenchment and sustainment of a culture that reflects who you are and where you're going.",
-    details: ["Culture design", "Culture entrenchment", "Culture sustainment"],
-    image: `${ASSETS}/2a474ae2cafb1b462795c8138c8a50c4_392x261.jpg`,
+      "We help you define how your company actually works and feels — your values, your way of doing things — and make it real in everyday behaviour, not just a poster.",
+    details: [
+      "Define your company values and identity",
+      "Turn those values into day-to-day habits",
+      "Tools to keep the culture strong as you grow",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80",
+    icon: "culture",
+    tile: "bg-[#7c3aed] text-white",
   },
 ];

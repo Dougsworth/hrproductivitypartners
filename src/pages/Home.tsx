@@ -1,30 +1,71 @@
 import { Link } from "react-router-dom";
-import { services, site, stats, process, quote } from "@/data/site";
+import { site, stats, process } from "@/data/site";
 import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
+import Icon from "@/components/Icon";
+import { ServicesShowcase } from "@/components/ServicesShowcase";
 
 export const Home = () => {
   return (
     <>
-      {/* ============ HERO — full-bleed banner fit to viewport, copy bottom-left ============ */}
-      <section className="relative isolate flex h-[78vh] max-h-[760px] min-h-[440px] items-end overflow-hidden bg-brand-900">
-        {/* Banner fills the hero; anchored to keep the HRPPI logo/people in frame on every size */}
+      {/* ============ HERO ============ */}
+      {/* MOBILE: whole banner uncropped, copy on brand panel below */}
+      <section className="bg-brand-900 pt-[72px] sm:hidden">
+        <div className="relative">
+          <img
+            src={site.heroImage}
+            alt="The HRPPI team beneath the company logo in their Kingston office"
+            className="w-full object-contain"
+          />
+          {/* blend the photo's bottom edge into the brand panel */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-brand-900 to-transparent"
+            aria-hidden
+          />
+        </div>
+        <div className="px-6 pb-12 pt-4">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-accent" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent-soft">
+              HRPPI · {site.location}
+            </span>
+          </div>
+          <h1 className="mt-4 animate-fade-up font-display text-3xl font-bold leading-[1.12] text-white">
+            We make your{" "}
+            <span className="word-people italic">
+              <span className="text-white">people</span>
+            </span>{" "}
+            our business.
+          </h1>
+          <p className="mt-3 text-[15px] leading-relaxed text-white/70">
+            HR strategy, talent and change — built around your business.
+          </p>
+          <Link
+            to="/services"
+            className="group mt-6 inline-flex animate-fade-up items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand shadow-lg"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Our services
+            <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* DESKTOP/TABLET: full-bleed overlay hero */}
+      <section className="relative isolate hidden h-[78vh] max-h-[760px] min-h-[440px] items-end overflow-hidden bg-brand-900 sm:flex">
         <img
           src={site.heroImage}
           alt="The HRPPI team beneath the company logo in their Kingston office"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[35%_top] sm:object-[20%_top]"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[20%_top]"
         />
-        {/* Bottom scrim so the copy reads, rest of image stays clear */}
         <div
           className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-brand-900/95 via-brand-900/40 to-transparent"
           aria-hidden
         />
-
-        {/* Copy block in bottom-left */}
         <div className="w-full">
-          <div className="mx-auto w-full max-w-[1280px] px-6 pb-6 sm:pb-4 lg:pb-5">
+          <div className="mx-auto w-full max-w-[1280px] px-6 pb-4 lg:pb-5">
             <div className="max-w-2xl">
-              <h1 className="animate-fade-up font-display text-2xl font-bold leading-[1.15] text-white drop-shadow-lg sm:text-2xl lg:text-3xl">
+              <h1 className="animate-fade-up font-display text-2xl font-bold leading-[1.15] text-white drop-shadow-lg lg:text-3xl">
                 We make your{" "}
                 <span className="word-people italic">
                   <span className="text-white">people</span>
@@ -32,7 +73,7 @@ export const Home = () => {
                 our business.
               </h1>
               <div
-                className="mt-5 flex animate-fade-up flex-wrap items-center gap-3 sm:mt-6"
+                className="mt-6 flex animate-fade-up flex-wrap items-center gap-3"
                 style={{ animationDelay: "0.2s" }}
               >
                 <Link
@@ -51,128 +92,115 @@ export const Home = () => {
       {/* scrolling capability marquee */}
       <Marquee />
 
-      {/* ============ STATS + heading ============ */}
-      <section className="bg-white py-16 sm:py-20">
-        <Reveal className="mx-auto max-w-2xl px-6 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
-            Why HRPPI
-          </p>
-          <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-brand sm:text-5xl">
-            The partner your people deserve
-          </h2>
-        </Reveal>
+      {/* ============ STATS — proof points ============ */}
+      <section className="bg-white pb-12 pt-10 sm:pb-16 sm:pt-12">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
+              Why HRPPI
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-brand sm:text-5xl">
+              The partner your people deserve
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-slate-600">
+              Seasoned expertise and a hands-on, tailored approach — the numbers
+              behind the partnership.
+            </p>
+          </Reveal>
 
-        <div className="mx-auto mt-10 grid max-w-[1280px] grid-cols-2 gap-px overflow-hidden rounded-3xl border border-slate-100 bg-slate-100 px-px sm:mt-14 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 100} className="bg-white px-6 py-10 text-center">
-              <p className="font-display text-4xl font-bold text-brand sm:text-5xl">
-                {s.value}
-              </p>
-              <p className="mt-2 text-sm font-medium text-slate-500">{s.label}</p>
-            </Reveal>
-          ))}
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:mt-16 sm:gap-6 lg:grid-cols-4">
+            {stats.map((s, i) => (
+              <Reveal
+                key={s.label}
+                delay={i * 100}
+                className="rounded-2xl border border-slate-100 bg-slate-50 px-6 py-8 text-center transition-shadow hover:shadow-md"
+              >
+                <p className="font-display text-4xl font-bold text-brand sm:text-5xl">
+                  {s.value}
+                </p>
+                <p className="mt-2 text-sm font-medium text-slate-500">{s.label}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ============ INTRO ============ */}
+      {/* ============ INTRO — two-column, image shown whole ============ */}
       <section className="bg-slate-50 py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[1280px] items-center gap-10 px-6 sm:gap-16 lg:grid-cols-2">
-          <Reveal as="left" className="relative">
-            <div className="absolute -left-4 -top-4 h-full w-full rounded-4xl bg-brand-50" aria-hidden />
-            <img
-              src={site.introImage}
-              alt="HR consultant meeting with a client"
-              className="relative w-full rounded-4xl object-cover shadow-lg"
-            />
-          </Reveal>
-          <Reveal as="right" delay={120}>
+        <div className="mx-auto grid max-w-[1280px] items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
+          <Reveal as="left">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
               How strong is your workforce?
             </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-[1.1] text-brand sm:text-5xl">
-              We turn your people into real business value.
+            <h2 className="mt-5 font-display text-3xl font-bold leading-[1.08] text-brand sm:text-5xl">
+              Does your HR strategy build real business value?
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-slate-600">
-              Your workforce is your most valuable asset. We make sure it fits the
-              goals of your business — and your bottom line.
+              Does your human resource strategy build a workforce that is a
+              significant business value? Does it understand your business goals
+              and seamlessly contribute to a healthy bottom line?
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-slate-600">
+              At{" "}
+              <strong className="font-semibold text-brand">
+                Human Resource Productivity Partner, International
+              </strong>
+              , our job is to ensure that throughout your company, your human
+              resource fits the needs, goals, and aims of your business.
             </p>
             <Link
               to="/services"
-              className="group mt-8 inline-flex items-center gap-2 text-lg font-semibold text-brand transition-colors hover:text-brand-700"
+              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-white shadow-lg shadow-brand/15 transition-all hover:-translate-y-0.5 hover:bg-brand-700"
             >
               Explore our services
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </Reveal>
+
+          <Reveal as="right" delay={120}>
+            {/* image shown whole in a rounded card — never crops anyone */}
+            <img
+              src={site.introImage}
+              alt="HR professionals collaborating in a modern boardroom"
+              className="w-full rounded-3xl object-cover shadow-xl ring-1 ring-slate-200/60"
+            />
+            {/* feature icon row */}
+            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+              {[
+                { icon: "strategy", label: "HR Strategy" },
+                { icon: "talent", label: "Talent Development" },
+                { icon: "change", label: "Organizational Change" },
+                { icon: "performance", label: "Performance Management" },
+              ].map((f) => (
+                <div key={f.label}>
+                  <Icon name={f.icon} className="h-8 w-8 text-brand" />
+                  <p className="mt-3 text-sm font-semibold text-brand">{f.label}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ============ SERVICES ============ */}
-      <section className="bg-slate-50 py-16 sm:py-24">
+      {/* ============ SERVICES — tabbed showcase ============ */}
+      <section id="services" className="scroll-mt-24 bg-slate-50 py-16 sm:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
               What we do
             </p>
             <h2 className="mt-4 font-display text-3xl font-bold text-brand sm:text-4xl">
-              Services built around your people
+              What we can do for you
             </h2>
+            <p className="mt-4 text-lg text-slate-600">
+              Pick a service to see exactly what it includes and what you get.
+            </p>
           </Reveal>
-          <div className="mt-10 grid gap-6 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <Reveal key={s.title} delay={(i % 3) * 120} className="h-full">
-                <Link
-                  to="/services"
-                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-200 hover:shadow-lg"
-                >
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={s.image}
-                      alt={s.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <span className="font-display text-sm font-bold text-accent">0{i + 1}</span>
-                    <h3 className="mt-1 font-display text-xl font-bold text-brand">{s.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-slate-600">{s.blurb}</p>
-                    <span className="mt-4 text-sm font-semibold text-brand opacity-0 transition-opacity group-hover:opacity-100">
-                      Learn more →
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <Link
-              to="/services"
-              className="rounded-full border border-slate-300 px-8 py-3.5 font-semibold text-brand transition-colors hover:border-brand hover:bg-white"
-            >
-              View all services
-            </Link>
-          </div>
+
+          <ServicesShowcase />
         </div>
       </section>
 
-      {/* ============ QUOTE — professional touch ============ */}
-      <section className="relative overflow-hidden bg-white py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <Reveal>
-            <span className="font-display text-6xl leading-none text-brand-100 sm:text-7xl">“</span>
-            <blockquote className="-mt-5 font-display text-xl font-medium leading-relaxed text-brand sm:-mt-6 sm:text-3xl">
-              {quote.text}
-            </blockquote>
-            <div className="mt-8 flex items-center justify-center gap-3">
-              <span className="h-px w-8 bg-accent" />
-              <cite className="text-sm font-semibold uppercase not-italic tracking-[0.2em] text-slate-500">
-                {quote.attribution}
-              </cite>
-              <span className="h-px w-8 bg-accent" />
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {/* ============ PROCESS — connected timeline ============ */}
       <section className="bg-white py-16 sm:py-24">

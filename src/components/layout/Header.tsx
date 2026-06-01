@@ -19,7 +19,7 @@ export const Header = () => {
   }, [pathname]);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-brand after:transition-all ${
+    `relative text-sm font-medium outline-none transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-brand after:transition-all focus-visible:after:w-full ${
       isActive
         ? "text-brand after:w-full"
         : "text-slate-600 hover:text-brand after:w-0 hover:after:w-full"
@@ -31,7 +31,7 @@ export const Header = () => {
         scrolled ? "border-b border-slate-200 shadow-sm" : "border-b border-slate-100"
       }`}
     >
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-6 py-3.5">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-6 py-3.5 lg:px-10">
         <Link to="/" className="flex items-center gap-3">
           <span className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-slate-200">
             <img
@@ -41,10 +41,14 @@ export const Header = () => {
             />
           </span>
           <span className="leading-tight">
-            <span className="block font-display text-[15px] font-semibold text-brand sm:text-base">
+            {/* Compact wordmark on mobile, full name from sm up */}
+            <span className="block font-display text-lg font-bold text-brand sm:hidden">
+              HRPPI
+            </span>
+            <span className="hidden font-display text-[15px] font-semibold text-brand sm:block sm:text-base">
               Human Resource Productivity Partner
             </span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-400">
+            <span className="block text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-400 sm:text-[10px] sm:tracking-[0.32em]">
               International
             </span>
           </span>

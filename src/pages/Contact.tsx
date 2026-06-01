@@ -24,7 +24,7 @@ export const Contact = () => {
   return (
     <>
       {/* Page header (padded to clear fixed nav) */}
-      <section className="relative overflow-hidden border-b border-slate-100 bg-white pb-16 pt-36">
+      <section className="relative overflow-hidden border-b border-slate-100 bg-white pb-12 pt-32 sm:pb-16 sm:pt-36">
         <div
           className="pointer-events-none absolute -right-32 -top-16 h-96 w-96 rounded-full bg-brand-50"
           aria-hidden
@@ -33,7 +33,7 @@ export const Contact = () => {
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
             Get in touch
           </p>
-          <h1 className="mt-4 font-display text-5xl font-bold leading-[1.05] text-brand sm:text-6xl">
+          <h1 className="mt-4 font-display text-4xl font-bold leading-[1.05] text-brand sm:text-6xl">
             Let's start the conversation.
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-slate-600">
@@ -43,8 +43,8 @@ export const Contact = () => {
         </div>
       </section>
 
-      <section className="bg-white py-24">
-        <div className="mx-auto grid max-w-[1280px] gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="bg-white py-16 sm:py-24">
+        <div className="mx-auto grid max-w-[1280px] gap-10 px-6 sm:gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Info */}
           <div>
             <h2 className="font-display text-3xl font-semibold text-brand">Let's talk</h2>
