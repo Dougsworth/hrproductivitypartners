@@ -32,18 +32,23 @@ export const stats = [
 
 export const whyUs = [
   {
-    title: "Strategy that fits your business",
-    body: "We start with your goals and build a people strategy that contributes directly to a healthy bottom line — never a generic template.",
+    title: "Strategy that fits",
+    body: "Built around your goals — never a generic template.",
   },
   {
-    title: "A true partner, not a vendor",
-    body: "Your HRP Partner works alongside your team, focused on the capacity of your workforce to increase real business value.",
+    title: "A partner, not a vendor",
+    body: "We embed with your team, not just hand over a binder.",
   },
   {
     title: "End-to-end people solutions",
-    body: "From systems and learning to change and culture, we cover the full employee journey under one roof.",
+    body: "Systems, learning, change and culture — all under one roof.",
   },
 ];
+
+export const quote = {
+  text: "Your human resource is your most valuable business asset. Our role is to make sure it fits the needs, goals, and aims of your business — and contributes directly to your bottom line.",
+  attribution: "Human Resource Productivity Partner, International",
+};
 
 export const process = [
   {

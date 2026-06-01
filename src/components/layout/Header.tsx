@@ -87,28 +87,7 @@ export const Header = () => {
           open ? "max-h-72" : "max-h-0"
         }`}
       >
-        <nav className="space-y-1 px-6 py-4">
-          {nav.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === "/"}
-              className={({ isActive }) =>
-                `block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                  isActive ? "bg-brand-50 text-brand" : "text-slate-600 hover:bg-slate-50"
-                }`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-          <Link
-            to="/contacts"
-            className="mt-2 block rounded-full bg-brand px-5 py-2.5 text-center text-sm font-semibold text-white"
-          >
-            Get in touch
-          </Link>
-        </nav>
+        
       </div>
     </header>
   );
