@@ -20,8 +20,53 @@ export const site = {
 
 export const nav = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/#about" },
+  { label: "Resources", to: "/resources" },
   { label: "Contacts", to: "/contacts" },
+];
+
+export const resources = [
+  {
+    icon: "strategy",
+    tag: "Free assessment",
+    title: "HR Health Check",
+    body: "A quick self-assessment to see where your people practices are strong — and where the gaps are costing you.",
+    cta: "Request the assessment",
+  },
+  {
+    icon: "talent",
+    tag: "Checklist",
+    title: "New-Hire Onboarding Checklist",
+    body: "Everything a great first 30 days should include, so new people get productive faster and stay longer.",
+    cta: "Get the checklist",
+  },
+  {
+    icon: "change",
+    tag: "Guide",
+    title: "Manager's Guide to Tough Conversations",
+    body: "A practical framework for feedback, conflict and performance chats your managers will actually use.",
+    cta: "Get the guide",
+  },
+  {
+    icon: "performance",
+    tag: "Template",
+    title: "Performance Review Template",
+    body: "A clean, fair review template that ties individual goals to business outcomes — no jargon.",
+    cta: "Get the template",
+  },
+  {
+    icon: "engagement",
+    tag: "Checklist",
+    title: "Employee Engagement Starter Kit",
+    body: "Simple, low-cost ways to lift morale and keep your best people — things you can start this week.",
+    cta: "Get the starter kit",
+  },
+  {
+    icon: "culture",
+    tag: "Worksheet",
+    title: "Define Your Company Values",
+    body: "A guided worksheet to turn vague ideals into clear values your team can actually live by.",
+    cta: "Get the worksheet",
+  },
 ];
 
 export const testimonials = [

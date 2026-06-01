@@ -56,16 +56,17 @@ export const Home = () => {
         <img
           src={site.heroImage}
           alt="The HRPPI team beneath the company logo in their Kingston office"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[20%_top]"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[30%_top]"
         />
+        {/* gradient only along the very bottom so the logo/wall text up top stay clear */}
         <div
-          className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-brand-900/95 via-brand-900/40 to-transparent"
+          className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-2/5 bg-gradient-to-t from-brand-900 via-brand-900/70 to-transparent"
           aria-hidden
         />
         <div className="w-full">
-          <div className="mx-auto w-full max-w-[1280px] px-6 pb-4 lg:pb-5">
+          <div className="mx-auto w-full max-w-[1280px] px-6 pb-3 lg:pb-4">
             <div className="max-w-2xl">
-              <h1 className="animate-fade-up font-display text-2xl font-bold leading-[1.15] text-white drop-shadow-lg lg:text-3xl">
+              <h1 className="animate-fade-up font-display text-xl font-bold leading-[1.15] text-white drop-shadow-lg lg:text-2xl">
                 We make your{" "}
                 <span className="word-people italic">
                   <span className="text-white">people</span>
@@ -73,7 +74,7 @@ export const Home = () => {
                 our business.
               </h1>
               <div
-                className="mt-6 flex animate-fade-up flex-wrap items-center gap-3"
+                className="mt-3 flex animate-fade-up flex-wrap items-center gap-3"
                 style={{ animationDelay: "0.2s" }}
               >
                 <Link

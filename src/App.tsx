@@ -9,6 +9,7 @@ import {
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Home } from "@/pages/Home";
+import { Resources } from "@/pages/Resources";
 import { Contact } from "@/pages/Contact";
 
 const ScrollToTop = () => {
@@ -38,6 +39,7 @@ export const App = () => {
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/resources" element={<Resources />} />
             <Route path="/services" element={<Navigate to="/#services" replace />} />
             <Route path="/contacts" element={<Contact />} />
             <Route path="*" element={<Navigate to="/" replace />} />
