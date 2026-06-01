@@ -12,7 +12,7 @@ export const site = {
   calendly: "https://calendly.com/hrppi/intro-call",
   logo: `${ASSETS}/d6387f063fe2b8fffcfe29490c918341_150x150.png`,
   // Branded banner — diverse team in office beneath the HRPPI wall logo
-  heroImage: `${ASSETS}/hrppi-banner.png`,
+  heroImage: `${ASSETS}/hrppi-banner-v2.png`,
   introImage: `${ASSETS}/intro-meeting.png`,
   ctaImage:
     "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2400&q=80",
