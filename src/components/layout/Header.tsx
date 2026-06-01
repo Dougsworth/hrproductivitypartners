@@ -46,7 +46,7 @@ export const Header = () => {
               HRPPI
             </span>
             <span className="hidden font-display text-[15px] font-semibold text-brand sm:block sm:text-base">
-              Human Resource Productivity Partner
+              Human Resource Productivity Partners
             </span>
             <span className="block text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-400 sm:text-[10px] sm:tracking-[0.32em]">
               International

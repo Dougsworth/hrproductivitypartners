@@ -19,7 +19,7 @@ export const Footer = () => {
               />
             </span>
             <span className="font-display text-lg font-semibold leading-tight">
-              Human Resource Productivity Partner,{" "}
+              Human Resource Productivity Partners,{" "}
               <span className="text-white/70">International</span>
             </span>
           </div>

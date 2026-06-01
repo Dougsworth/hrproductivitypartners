@@ -143,18 +143,20 @@ export const Home = () => {
             <p className="mt-4 text-lg leading-relaxed text-slate-600">
               At{" "}
               <strong className="font-semibold text-brand">
-                Human Resource Productivity Partner, International
+                Human Resource Productivity Partners, International
               </strong>
               , our job is to ensure that throughout your company, your human
               resource fits the needs, goals, and aims of your business.
             </p>
-            <Link
-              to="/services"
+            <a
+              href={site.calendly}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-white shadow-lg shadow-brand/15 transition-all hover:-translate-y-0.5 hover:bg-brand-700"
             >
-              Explore our services
+              Book a free intro call
               <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
+            </a>
           </Reveal>
 
           <Reveal as="right" delay={120}>
@@ -164,17 +166,34 @@ export const Home = () => {
               alt="HR professionals collaborating in a modern boardroom"
               className="w-full rounded-3xl object-cover shadow-xl ring-1 ring-slate-200/60"
             />
-            {/* feature icon row */}
-            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+            {/* why-us value points (not a service teaser — services are right below) */}
+            <div className="mt-10 grid gap-5 sm:grid-cols-3">
               {[
-                { icon: "strategy", label: "HR Strategy" },
-                { icon: "talent", label: "Talent Development" },
-                { icon: "change", label: "Organizational Change" },
-                { icon: "performance", label: "Performance Management" },
-              ].map((f) => (
-                <div key={f.label}>
-                  <Icon name={f.icon} className="h-8 w-8 text-brand" />
-                  <p className="mt-3 text-sm font-semibold text-brand">{f.label}</p>
+                {
+                  icon: "strategy",
+                  title: "Built around you",
+                  body: "No templates — everything fits your goals.",
+                },
+                {
+                  icon: "talent",
+                  title: "A real partner",
+                  body: "We embed with your team, not hand over a binder.",
+                },
+                {
+                  icon: "performance",
+                  title: "Made to last",
+                  body: "We make sure the change actually sticks.",
+                },
+              ].map((f, i) => (
+                <div key={f.title} className="group">
+                  <div
+                    className="grid h-11 w-11 animate-float-sm place-items-center rounded-xl bg-brand-50 text-brand transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-white"
+                    style={{ animationDelay: `${i * 0.6}s` }}
+                  >
+                    <Icon name={f.icon} className="h-6 w-6" />
+                  </div>
+                  <p className="mt-3 font-display font-bold text-brand">{f.title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">{f.body}</p>
                 </div>
               ))}
             </div>
@@ -239,7 +258,7 @@ export const Home = () => {
       </section>
 
       {/* ============ ABOUT / CTA — branded panel ============ */}
-      <section className="relative overflow-hidden bg-brand py-16 sm:py-28">
+      <section id="about" className="relative scroll-mt-24 overflow-hidden bg-brand py-16 sm:py-28">
         {/* concentric ring motif echoing the globe logo */}
         <div
           className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full border border-white/10"

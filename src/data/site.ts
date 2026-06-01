@@ -1,7 +1,7 @@
 export const ASSETS = "/assets";
 
 export const site = {
-  name: "Human Resource Productivity Partner, International",
+  name: "Human Resource Productivity Partners, International",
   shortName: "HRPPI",
   brand: "#144355",
   tagline: "We make your people our business.",
@@ -20,7 +20,7 @@ export const site = {
 
 export const nav = [
   { label: "Home", to: "/" },
-  { label: "Services", to: "/#services" },
+  { label: "About", to: "/#about" },
   { label: "Contacts", to: "/contacts" },
 ];
 
@@ -90,7 +90,7 @@ export const whyUs = [
 
 export const quote = {
   text: "Your human resource is your most valuable business asset. Our role is to make sure it fits the needs, goals, and aims of your business — and contributes directly to your bottom line.",
-  attribution: "Human Resource Productivity Partner, International",
+  attribution: "Human Resource Productivity Partners, International",
 };
 
 export const process = [
