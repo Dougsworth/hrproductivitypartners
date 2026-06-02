@@ -33,59 +33,44 @@ export const Resources = () => {
         </div>
       </section>
 
-      {/* ===== Resource grid ===== */}
-      <section className="bg-white py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[1280px] gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3">
-          {resources.map((r, i) => {
-            const accents = [
-              "bg-[#144355]",
-              "bg-[#f97316]",
-              "bg-[#1b6b86]",
-              "bg-[#0d9488]",
-              "bg-[#7c3aed]",
-              "bg-[#144355]",
-            ];
-            const accent = accents[i % accents.length];
-            return (
-              <Reveal
-                key={r.title}
-                delay={(i % 3) * 110}
-                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
-              >
-                {/* colored top accent bar */}
-                <span className={`block h-1.5 w-full ${accent}`} aria-hidden />
+      {/* ===== Resource index — editorial list ===== */}
+      <section className="bg-white py-12 sm:py-20">
+        <div className="mx-auto max-w-[1080px] px-6">
+          <div className="border-t border-slate-200">
+            {resources.map((r, i) => (
+              <Reveal key={r.title} delay={(i % 3) * 80}>
+                <a
+                  href={r.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 border-b border-slate-200 py-8 transition-colors hover:bg-slate-50/70 sm:gap-8 sm:py-10"
+                >
+                  {/* index number */}
+                  <span className="font-display text-3xl font-bold text-slate-200 transition-colors group-hover:text-accent sm:text-5xl">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
 
-                <div className="flex flex-1 flex-col p-7">
-                  <div className="flex items-start justify-between">
-                    <div
-                      className={`grid h-12 w-12 place-items-center rounded-2xl text-white shadow-sm transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110 ${accent}`}
-                    >
-                      <Icon name={r.icon} className="h-6 w-6" />
+                  {/* title + meta */}
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-3">
+                      <Icon name={r.icon} className="hidden h-5 w-5 text-brand sm:block" />
+                      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                        {r.tag} · PDF
+                      </span>
                     </div>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                      PDF · Free
-                    </span>
+                    <h3 className="mt-2 font-display text-xl font-bold text-brand transition-colors group-hover:text-brand-700 sm:text-2xl">
+                      {r.title}
+                    </h3>
+                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
+                      {r.body}
+                    </p>
                   </div>
 
-                  <span className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                    {r.tag}
-                  </span>
-                  <h3 className="mt-1 font-display text-xl font-bold text-brand">
-                    {r.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
-                    {r.body}
-                  </p>
-
-                  <a
-                    href={r.file}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    download
-                    className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-brand transition-all group-hover:border-brand group-hover:bg-brand group-hover:text-white"
-                  >
+                  {/* download affordance */}
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-slate-200 text-brand transition-all group-hover:border-brand group-hover:bg-brand group-hover:text-white sm:h-14 sm:w-14">
                     <svg
-                      className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
+                      className="h-5 w-5 transition-transform group-hover:translate-y-0.5"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -96,12 +81,11 @@ export const Resources = () => {
                     >
                       <path d="M12 3v12M7 11l5 4 5-4M5 21h14" />
                     </svg>
-                    {r.cta}
-                  </a>
-                </div>
+                  </span>
+                </a>
               </Reveal>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
 
