@@ -36,47 +36,72 @@ export const Resources = () => {
       {/* ===== Resource grid ===== */}
       <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto grid max-w-[1280px] gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3">
-          {resources.map((r, i) => (
-            <Reveal
-              key={r.title}
-              delay={(i % 3) * 110}
-              className="group flex h-full flex-col rounded-3xl border border-slate-100 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand transition-colors group-hover:bg-brand group-hover:text-white">
-                <Icon name={r.icon} className="h-6 w-6" />
-              </div>
-              <span className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                {r.tag}
-              </span>
-              <h3 className="mt-1 font-display text-xl font-bold text-brand">
-                {r.title}
-              </h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
-                {r.body}
-              </p>
-              <a
-                href={r.file}
-                target="_blank"
-                rel="noopener noreferrer"
-                download
-                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand transition-colors hover:text-brand-700"
+          {resources.map((r, i) => {
+            const accents = [
+              "bg-[#144355]",
+              "bg-[#f97316]",
+              "bg-[#1b6b86]",
+              "bg-[#0d9488]",
+              "bg-[#7c3aed]",
+              "bg-[#144355]",
+            ];
+            const accent = accents[i % accents.length];
+            return (
+              <Reveal
+                key={r.title}
+                delay={(i % 3) * 110}
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
               >
-                <svg
-                  className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M12 3v12M7 11l5 4 5-4M5 21h14" />
-                </svg>
-                {r.cta}
-              </a>
-            </Reveal>
-          ))}
+                {/* colored top accent bar */}
+                <span className={`block h-1.5 w-full ${accent}`} aria-hidden />
+
+                <div className="flex flex-1 flex-col p-7">
+                  <div className="flex items-start justify-between">
+                    <div
+                      className={`grid h-12 w-12 place-items-center rounded-2xl text-white shadow-sm transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110 ${accent}`}
+                    >
+                      <Icon name={r.icon} className="h-6 w-6" />
+                    </div>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                      PDF · Free
+                    </span>
+                  </div>
+
+                  <span className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                    {r.tag}
+                  </span>
+                  <h3 className="mt-1 font-display text-xl font-bold text-brand">
+                    {r.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
+                    {r.body}
+                  </p>
+
+                  <a
+                    href={r.file}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-brand transition-all group-hover:border-brand group-hover:bg-brand group-hover:text-white"
+                  >
+                    <svg
+                      className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 3v12M7 11l5 4 5-4M5 21h14" />
+                    </svg>
+                    {r.cta}
+                  </a>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 

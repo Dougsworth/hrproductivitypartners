@@ -8,11 +8,14 @@ from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, ListFlowable, ListItem, Table, TableStyle, HRFlowable
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.utils import ImageReader
 
 BRAND = colors.HexColor("#144355")
 ACCENT = colors.HexColor("#1b6b86")
 GREY = colors.HexColor("#475569")
-OUT = os.path.join(os.path.dirname(__file__), "..", "static", "assets", "resources")
+ASSETS = os.path.join(os.path.dirname(__file__), "..", "static", "assets")
+LOGO = os.path.join(ASSETS, "1175_imgLanding_1_compamy-logo-ts1645560781.png")
+OUT = os.path.join(ASSETS, "resources")
 os.makedirs(OUT, exist_ok=True)
 
 styles = getSampleStyleSheet()
@@ -25,16 +28,48 @@ FOOT = ParagraphStyle("Foot", parent=styles["Normal"], textColor=colors.HexColor
 
 
 def header(title, eyebrow):
+    # small logo + brand line side by side
+    logo = ImageReader(LOGO)
+    brand_line = Paragraph(
+        "<b>HRPPI</b> &nbsp;·&nbsp; Human Resource Productivity Partners, International",
+        EYEBROW,
+    )
+    from reportlab.platypus import Image as RLImage
+    head_tbl = Table(
+        [[RLImage(LOGO, width=34, height=34), brand_line]],
+        colWidths=[44, None],
+    )
+    head_tbl.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+        ("TOPPADDING", (0, 0), (-1, -1), 0),
+    ]))
     return [
-        Paragraph("HRPPI &nbsp;·&nbsp; Human Resource Productivity Partners, International", EYEBROW),
-        Spacer(1, 10),
+        head_tbl,
+        Spacer(1, 14),
         Paragraph(eyebrow.upper(), EYEBROW),
         Paragraph(title, H1),
         HRFlowable(width="100%", thickness=2, color=BRAND, spaceBefore=8, spaceAfter=14),
     ]
 
 
-def footer_note(canvas, doc):
+def page_decorations(canvas, doc):
+    # faint centered logo watermark
+    canvas.saveState()
+    try:
+        img = ImageReader(LOGO)
+        w, h = LETTER
+        size = 4.2 * inch
+        canvas.setFillAlpha(0.05)
+        canvas.drawImage(
+            img, (w - size) / 2, (h - size) / 2,
+            width=size, height=size, mask="auto", preserveAspectRatio=True,
+        )
+    except Exception:
+        pass
+    canvas.restoreState()
+    # footer
     canvas.saveState()
     canvas.setFont("Helvetica", 8)
     canvas.setFillColor(colors.HexColor("#94a3b8"))
@@ -63,7 +98,7 @@ def build(filename, title, eyebrow, blocks):
                             leftMargin=0.9 * inch, rightMargin=0.9 * inch,
                             title=title, author="HRPPI")
     story = header(title, eyebrow) + blocks
-    doc.build(story, onFirstPage=footer_note, onLaterPages=footer_note)
+    doc.build(story, onFirstPage=page_decorations, onLaterPages=page_decorations)
     print("wrote", filename)
 
 
