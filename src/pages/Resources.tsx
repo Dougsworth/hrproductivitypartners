@@ -55,13 +55,25 @@ export const Resources = () => {
                 {r.body}
               </p>
               <a
-                href={`mailto:${site.email}?subject=${encodeURIComponent(
-                  "Resource request: " + r.title,
-                )}`}
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors hover:text-brand-700"
+                href={r.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand transition-colors hover:text-brand-700"
               >
+                <svg
+                  className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3v12M7 11l5 4 5-4M5 21h14" />
+                </svg>
                 {r.cta}
-                <span className="transition-transform group-hover:translate-x-1">→</span>
               </a>
             </Reveal>
           ))}
