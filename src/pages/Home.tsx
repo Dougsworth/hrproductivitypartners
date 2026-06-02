@@ -61,7 +61,7 @@ export const Home = () => {
           aria-hidden
         />
         <div className="w-full">
-          <div className="mx-auto w-full max-w-[1280px] px-6 pb-5 lg:pb-7">
+          <div className="mx-auto w-full max-w-[1280px] px-6 pb-2 lg:pb-3">
             <div className="max-w-xl">
               <h1 className="font-display text-2xl font-bold leading-[1.15] text-white drop-shadow-lg lg:text-3xl">
                 We make your <PeopleWord /> our business.
