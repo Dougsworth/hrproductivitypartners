@@ -24,7 +24,7 @@ export const Footer = () => {
             </span>
           </div>
           <p className="mt-5 max-w-sm leading-relaxed text-white/60">
-            {site.name} — a registered human resource consulting service.
+            {site.name} is a registered human resource consulting service.
             Strengthening your people capacity is our business.
           </p>
         </div>
@@ -61,7 +61,7 @@ export const Footer = () => {
 
       <div className="border-t border-white/10">
         <p className="mx-auto max-w-[1280px] px-6 py-6 text-xs text-white/40">
-          © {new Date().getFullYear()} hrproductivitypartner.com — All rights reserved.
+          © {new Date().getFullYear()} hrproductivitypartners.com. All rights reserved.
         </p>
       </div>
     </footer>

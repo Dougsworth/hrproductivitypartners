@@ -77,14 +77,14 @@ export const ResourceGate = ({
           ) : (
             <>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                Free download
+                Download
               </p>
               <h3 className="mt-2 font-display text-2xl font-bold text-brand">
                 {resource.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                Tell us where to send it and you'll get instant access — plus
-                the occasional practical HR tip. No spam, unsubscribe anytime.
+                Tell us where to send it and you'll get instant access, plus
+                the occasional practical HR tip. No spam, and you can unsubscribe anytime.
               </p>
               <form onSubmit={submit} className="mt-6 space-y-3">
                 <input

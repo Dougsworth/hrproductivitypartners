@@ -24,15 +24,15 @@ export const Resources = () => {
           <div className="flex items-center gap-3">
             <span className="h-px w-10 bg-accent-soft" />
             <span className="text-xs font-semibold uppercase tracking-[0.28em] text-accent-soft">
-              Free resources
+              Resources
             </span>
           </div>
           <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.05] text-white sm:text-6xl">
-            Practical HR tools — free to use.
+            Practical HR tools you can put to work.
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/75">
-            Templates, checklists and guides you can put to work today. Want one?
-            Reach out and we'll send it over — no strings attached.
+            Templates, checklists and guides built from real client work. Download
+            the ones you need, and reach out anytime if you'd like a hand applying them.
           </p>
         </div>
       </section>

@@ -51,7 +51,7 @@ export const Contact = () => {
             <p className="mt-4 leading-relaxed text-slate-600">
               {site.name} is a registered human resource consulting service
               operating out of {site.location}. Whether you're rethinking your HR
-              systems, building leaders, or driving change — we'd love to help.
+              systems, building leaders, or driving change, we'd love to help.
             </p>
 
             <div className="mt-10 space-y-4">

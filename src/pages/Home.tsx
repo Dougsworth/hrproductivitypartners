@@ -35,7 +35,7 @@ export const Home = () => {
             We make your <PeopleWord /> our business.
           </h1>
           <p className="mt-3 text-[15px] leading-relaxed text-white/70">
-            HR strategy, talent and change — built around your business.
+            HR strategy, talent and change, built around your business.
           </p>
           <Link
             to="/services"
@@ -97,8 +97,8 @@ export const Home = () => {
               The partner your people deserve
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-600">
-              Seasoned expertise and a hands-on, tailored approach — the numbers
-              behind the partnership.
+              Seasoned expertise and a hands-on, tailored approach. Here are the
+              numbers behind the partnership.
             </p>
           </Reveal>
 
@@ -166,7 +166,7 @@ export const Home = () => {
                 {
                   icon: "strategy",
                   title: "Built around you",
-                  body: "No templates — everything fits your goals.",
+                  body: "No templates. Everything fits your goals.",
                 },
                 {
                   icon: "talent",
@@ -229,7 +229,7 @@ export const Home = () => {
             </div>
             <p className="max-w-sm text-slate-600">
               A clear path from understanding your business to embedding lasting
-              change — no guesswork, no jargon.
+              change, with no guesswork and no jargon.
             </p>
           </div>
 
