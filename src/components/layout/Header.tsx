@@ -88,10 +88,33 @@ export const Header = () => {
       {/* Mobile nav */}
       <div
         className={`overflow-hidden border-t border-slate-100 transition-[max-height] duration-300 md:hidden ${
-          open ? "max-h-72" : "max-h-0"
+          open ? "max-h-80" : "max-h-0"
         }`}
       >
-        
+        <nav className="space-y-1 px-6 py-4">
+          {nav.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === "/"}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `block rounded-lg px-3 py-3 text-base font-medium transition-colors ${
+                  isActive ? "bg-brand-50 text-brand" : "text-slate-600 hover:bg-slate-50 hover:text-brand"
+                }`
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+          <Link
+            to="/contacts"
+            onClick={() => setOpen(false)}
+            className="mt-2 block rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-white"
+          >
+            Get in touch
+          </Link>
+        </nav>
       </div>
     </header>
   );

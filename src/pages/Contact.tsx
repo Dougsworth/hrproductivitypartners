@@ -56,9 +56,10 @@ export const Contact = () => {
 
             <div className="mt-10 space-y-4">
               {[
+                { label: "Director", value: site.director },
                 { label: "Location", value: site.location },
                 { label: "Email", value: site.email, href: `mailto:${site.email}` },
-                { label: "Phone", value: site.phone },
+                { label: "Phone", value: site.phone, href: `tel:+18768187102` },
               ].map((item) => (
                 <div
                   key={item.label}

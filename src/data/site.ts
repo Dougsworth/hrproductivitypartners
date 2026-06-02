@@ -6,8 +6,9 @@ export const site = {
   brand: "#144355",
   tagline: "We make your people our business.",
   location: "Kingston, Jamaica",
-  email: "info@hrproductivitypartner.com",
-  phone: "+1 (876) 000-0000",
+  director: "Ms Shirley Bartley",
+  email: "Hrproductivitypartner@gmail.com",
+  phone: "+1 (876) 818-7102",
   // TODO: replace with your real Calendly link
   calendly: "https://calendly.com/hrppi/intro-call",
   logo: `${ASSETS}/d6387f063fe2b8fffcfe29490c918341_150x150.png`,
