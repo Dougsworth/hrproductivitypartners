@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { resources, site } from "@/data/site";
 import Icon from "@/components/Icon";
 import { Reveal } from "@/components/Reveal";
+import { ResourceGate } from "@/components/ResourceGate";
 
 export const Resources = () => {
+  const [gated, setGated] = useState<{ title: string; file: string } | null>(null);
   return (
     <>
+      {gated && <ResourceGate resource={gated} onClose={() => setGated(null)} />}
+
       {/* ===== Hero ===== */}
       <section className="relative overflow-hidden bg-brand-900 pb-16 pt-32 sm:pb-20 sm:pt-40">
         <div
@@ -37,54 +41,70 @@ export const Resources = () => {
       <section className="bg-white py-12 sm:py-20">
         <div className="mx-auto max-w-[1080px] px-6">
           <div className="border-t border-slate-200">
-            {resources.map((r, i) => (
-              <Reveal key={r.title} delay={(i % 3) * 80}>
-                <a
-                  href={r.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 border-b border-slate-200 py-8 transition-colors hover:bg-slate-50/70 sm:gap-8 sm:py-10"
-                >
-                  {/* index number */}
-                  <span className="font-display text-3xl font-bold text-slate-200 transition-colors group-hover:text-accent sm:text-5xl">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+            {resources.map((r, i) => {
+              const open = () => {
+                if (r.gated) {
+                  setGated({ title: r.title, file: r.file });
+                } else {
+                  window.open(r.file, "_blank", "noopener,noreferrer");
+                }
+              };
+              return (
+                <Reveal key={r.title} delay={(i % 3) * 80}>
+                  <button
+                    onClick={open}
+                    className="group grid w-full grid-cols-[auto_1fr_auto] items-center gap-5 border-b border-slate-200 py-8 text-left transition-colors hover:bg-slate-50/70 sm:gap-8 sm:py-10"
+                  >
+                    {/* index number */}
+                    <span className="font-display text-3xl font-bold text-slate-200 transition-colors group-hover:text-accent sm:text-5xl">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
 
-                  {/* title + meta */}
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-3">
-                      <Icon name={r.icon} className="hidden h-5 w-5 text-brand sm:block" />
-                      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                        {r.tag} · PDF
-                      </span>
+                    {/* title + meta */}
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <Icon name={r.icon} className="hidden h-5 w-5 text-brand sm:block" />
+                        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                          {r.tag}
+                        </span>
+                        <span className="text-xs font-medium text-slate-400">
+                          {r.meta}
+                        </span>
+                        {r.gated && (
+                          <span className="inline-flex items-center gap-1 rounded-full bg-brand-50 px-2.5 py-0.5 text-[11px] font-semibold text-brand">
+                            <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <rect x="5" y="11" width="14" height="9" rx="2" />
+                              <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                            </svg>
+                            Email required
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="mt-2 font-display text-xl font-bold text-brand transition-colors group-hover:text-brand-700 sm:text-2xl">
+                        {r.title}
+                      </h3>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
+                        {r.body}
+                      </p>
                     </div>
-                    <h3 className="mt-2 font-display text-xl font-bold text-brand transition-colors group-hover:text-brand-700 sm:text-2xl">
-                      {r.title}
-                    </h3>
-                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
-                      {r.body}
-                    </p>
-                  </div>
 
-                  {/* download affordance */}
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-slate-200 text-brand transition-all group-hover:border-brand group-hover:bg-brand group-hover:text-white sm:h-14 sm:w-14">
-                    <svg
-                      className="h-5 w-5 transition-transform group-hover:translate-y-0.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 3v12M7 11l5 4 5-4M5 21h14" />
-                    </svg>
-                  </span>
-                </a>
-              </Reveal>
-            ))}
+                    {/* action affordance */}
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-slate-200 text-brand transition-all group-hover:border-brand group-hover:bg-brand group-hover:text-white sm:h-14 sm:w-14">
+                      {r.gated ? (
+                        <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <rect x="5" y="11" width="14" height="9" rx="2" />
+                          <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                        </svg>
+                      ) : (
+                        <svg className="h-5 w-5 transition-transform group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M12 3v12M7 11l5 4 5-4M5 21h14" />
+                        </svg>
+                      )}
+                    </span>
+                  </button>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
