@@ -59,7 +59,6 @@ export const Contact = () => {
                 { label: "Director", value: site.director },
                 { label: "Location", value: site.location },
                 { label: "Email", value: site.email, href: `mailto:${site.email}` },
-                { label: "Phone", value: site.phone, href: `tel:+18768187102` },
               ].map((item) => (
                 <div
                   key={item.label}
