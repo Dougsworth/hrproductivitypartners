@@ -52,7 +52,7 @@ export const ServicesShowcase = () => {
         className="animate-fade-up overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm"
       >
         <div className="aspect-[16/9] w-full overflow-hidden">
-          <img src={s.image} alt={s.title} className="h-full w-full object-cover" />
+          <img src={s.image} alt={s.imageAlt} className="h-full w-full object-cover" />
         </div>
         <div className="p-8">
           <span className="font-display text-sm font-bold text-accent">

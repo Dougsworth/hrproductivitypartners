@@ -6,7 +6,9 @@ export const site = {
   brand: "#144355",
   tagline: "We make your people our business.",
   location: "Kingston, Jamaica",
-  director: "Ms Shirley Bartley",
+  director: "Shirley Bartley-Byfield",
+  // TODO: switch to a professional domain email (e.g. hello@hrproductivitypartners.com)
+  // once the mailbox is set up — see the "get contracts" plan.
   email: "Hrproductivitypartner@gmail.com",
   // TODO: replace with your real Calendly link
   calendly: "https://calendly.com/hrppi/intro-call",
@@ -82,11 +84,29 @@ export const resources = [
 ];
 
 export const stats = [
-  { value: "15+", label: "Years of HR expertise" },
-  { value: "5", label: "Core service areas" },
-  { value: "100%", label: "Tailored to your business" },
-  { value: "1", label: "Dedicated partner per client" },
+  { value: "15+", label: "Years of HR expertise", icon: "performance", accent: "text-brand" },
+  { value: "5", label: "Core service areas", icon: "strategy", accent: "text-accent" },
+  { value: "100%", label: "Tailored to your business", icon: "culture", accent: "text-brand" },
+  { value: "1", label: "Dedicated partner per client", icon: "talent", accent: "text-accent" },
 ];
+
+/**
+ * Director profile — E-E-A-T / credibility signals.
+ * All credentials below are on the public record; add or refine as needed.
+ */
+export const director = {
+  name: "Shirley Bartley-Byfield",
+  role: "Director",
+  summary:
+    "Shirley leads every HRPPI engagement personally. She is an Accredited Business Communicator (ABC) — an international designation awarded by the International Association of Business Communicators (IABC) — and holds an MBA in Business Management. A graduate of CARIMAC at the University of the West Indies and a trained teacher, she built her career in senior corporate and government communications, including senior internal communications at Scotiabank and a decade as Director of Public Relations at Jamaica's Ministry of National Security and Justice.",
+  credentials: [
+    "Accredited Business Communicator (ABC), IABC — among the first Jamaicans to earn the designation",
+    "MBA, Business Management",
+    "Graduate of CARIMAC, University of the West Indies",
+    "Former senior internal communications manager, Scotiabank (BNS)",
+    "10 years as Director of Public Relations, Ministry of National Security & Justice",
+  ],
+};
 
 export const process = [
   {
@@ -112,6 +132,8 @@ export type Service = {
   blurb: string;
   details: string[];
   image: string;
+  /** Descriptive, keyword-rich alt text for the service image (SEO/AEO) */
+  imageAlt: string;
   icon: string;
   /** tailwind bg + text classes for the playful icon tile */
   tile: string;
@@ -131,6 +153,8 @@ export const services: Service[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1600&q=80",
+    imageAlt:
+      "Consultant reviewing a cloud-based HR software dashboard used for payroll, onboarding and performance tracking in Kingston, Jamaica",
     icon: "systems",
     tile: "bg-[#144355] text-white",
   },
@@ -147,6 +171,8 @@ export const services: Service[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+    imageAlt:
+      "Team taking part in a staff training and leadership development workshop led by an HR consultant",
     icon: "growth",
     tile: "bg-[#f97316] text-white",
   },
@@ -163,6 +189,8 @@ export const services: Service[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80",
+    imageAlt:
+      "Managers planning an organizational change and restructuring rollout around a boardroom table",
     icon: "change",
     tile: "bg-[#1b6b86] text-white",
   },
@@ -179,6 +207,8 @@ export const services: Service[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1600&q=80",
+    imageAlt:
+      "Happy, engaged employees collaborating in a positive workplace culture built on clear communication",
     icon: "engagement",
     tile: "bg-[#0d9488] text-white",
   },
@@ -194,6 +224,8 @@ export const services: Service[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80",
+    imageAlt:
+      "Team workshop defining company values and organizational culture on a whiteboard",
     icon: "culture",
     tile: "bg-[#7c3aed] text-white",
   },

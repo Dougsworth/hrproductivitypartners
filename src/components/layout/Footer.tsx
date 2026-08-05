@@ -60,9 +60,14 @@ export const Footer = () => {
       </div>
 
       <div className="border-t border-white/10">
-        <p className="mx-auto max-w-[1280px] px-6 py-6 text-xs text-white/40">
-          © {new Date().getFullYear()} hrproductivitypartners.com. All rights reserved.
-        </p>
+        <div className="mx-auto flex max-w-[1280px] flex-col gap-1 px-6 py-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} Human Resource Productivity Partners,
+            International (HRPPI). All rights reserved.
+          </p>
+          {/* Freshness signal for search & AI engines — bump when content changes */}
+          <p>Page updated August 2026</p>
+        </div>
       </div>
     </footer>
   );

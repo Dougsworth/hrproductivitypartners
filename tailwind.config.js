@@ -47,7 +47,8 @@ module.exports = {
         "fade-up": "fade-up 0.8s cubic-bezier(0.22,1,0.36,1) both",
         float: "float 6s ease-in-out infinite",
         "float-sm": "float-sm 4s ease-in-out infinite",
-        marquee: "marquee 28s linear infinite",
+        // slowed from 28s so each service is readable as it passes (audit: reduce cognitive load)
+        marquee: "marquee 45s linear infinite",
       },
     },
     container: { center: true, padding: "1.5rem", screens: { "2xl": "1280px" } },

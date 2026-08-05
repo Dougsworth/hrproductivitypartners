@@ -27,8 +27,10 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-white transition-all duration-300 ${
-        scrolled ? "border-b border-slate-200 shadow-sm" : "border-b border-slate-100"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-slate-200 bg-white/95 shadow-md shadow-slate-900/5 backdrop-blur"
+          : "border-b border-slate-100 bg-white"
       }`}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-6 py-3.5 lg:px-10">
@@ -63,7 +65,7 @@ export const Header = () => {
           ))}
           <Link
             to="/contacts"
-            className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-700"
+            className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-lg hover:shadow-brand/30"
           >
             Get in touch
           </Link>

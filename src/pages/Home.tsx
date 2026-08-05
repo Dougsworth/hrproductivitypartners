@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { site, stats, process } from "@/data/site";
+import { site, stats, process, director } from "@/data/site";
 import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
 import Icon from "@/components/Icon";
@@ -55,9 +55,10 @@ export const Home = () => {
           alt="The HRPPI team beneath the company logo in their Kingston office"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[30%_top]"
         />
-        {/* gradient along the bottom so copy reads, wall logo/text up top stay clear */}
+        {/* gradient along the bottom so copy reads, wall logo/text up top stay clear
+            (strengthened for WCAG-friendly contrast over the photo's light areas) */}
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-t from-brand-900 via-brand-900/65 to-transparent"
+          className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[60%] bg-gradient-to-t from-brand-900 via-brand-900/80 to-transparent"
           aria-hidden
         />
         <div className="w-full">
@@ -66,6 +67,13 @@ export const Home = () => {
               <h1 className="font-display text-2xl font-bold leading-[1.15] text-white drop-shadow-lg lg:text-3xl">
                 We make your <PeopleWord /> our business.
               </h1>
+              <p
+                className="mt-3 animate-fade-up text-[15px] leading-relaxed text-white/90 [text-shadow:0_1px_8px_rgba(9,31,41,0.8)]"
+                style={{ animationDelay: "0.8s" }}
+              >
+                HR strategy, talent and change — built around your business, in
+                Kingston and across the Caribbean.
+              </p>
               <div
                 className="mt-4 flex animate-fade-up flex-wrap items-center gap-3"
                 style={{ animationDelay: "1.6s" }}
@@ -109,10 +117,18 @@ export const Home = () => {
                 delay={i * 100}
                 className="rounded-2xl border border-slate-100 bg-slate-50 px-6 py-8 text-center transition-shadow hover:shadow-md"
               >
-                <p className="font-display text-4xl font-bold text-brand sm:text-5xl">
+                <span
+                  className={`mx-auto grid h-10 w-10 place-items-center rounded-xl bg-white shadow-sm ring-1 ring-slate-100 ${s.accent}`}
+                  aria-hidden
+                >
+                  <Icon name={s.icon} className="h-5 w-5" />
+                </span>
+                <p className={`mt-4 font-display text-4xl font-bold sm:text-5xl ${s.accent}`}>
                   {s.value}
                 </p>
-                <p className="mt-2 text-sm font-medium text-slate-500">{s.label}</p>
+                <p className="mt-2 text-sm font-medium uppercase tracking-wide text-slate-500">
+                  {s.label}
+                </p>
               </Reveal>
             ))}
           </div>
@@ -279,6 +295,51 @@ export const Home = () => {
               operating out of {site.location}. Our mandate is to partner with our
               clients to build your human resource and improve your business value.
             </p>
+
+            {/* Director credentials — E-E-A-T signal for clients and search/AI engines */}
+            <div className="mt-10 max-w-xl rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/50">
+                Led by
+              </p>
+              <p className="mt-2 font-display text-xl font-bold text-white">
+                {director.name}
+                <span className="ml-2 text-sm font-medium text-white/60">
+                  {director.role}
+                </span>
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-white/75">
+                {director.summary}
+              </p>
+              <ul className="mt-4 space-y-2">
+                {director.credentials.map((c) => (
+                  <li key={c} className="flex items-start gap-2.5 text-sm text-white/80">
+                    <span
+                      className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-soft"
+                      aria-hidden
+                    />
+                    <span>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/*
+              TODO — RESULTS SECTION (from the site audit):
+              When you have real, client-approved numbers, add a "Results" block here.
+              AI answer engines cite concrete stats. Template:
+
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl bg-white/10 p-5">
+                  <p className="font-display text-3xl font-bold text-white">20%</p>
+                  <p className="mt-1 text-sm text-white/70">
+                    Reduction in hiring time for a Kingston logistics firm
+                  </p>
+                </div>
+                ...one card per real result...
+              </div>
+
+              Do NOT publish numbers that can't be backed up.
+            */}
           </Reveal>
           <Reveal as="right" delay={150} className="w-full lg:justify-self-end">
             <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-8">
@@ -290,7 +351,7 @@ export const Home = () => {
               </p>
               <Link
                 to="/contacts"
-                className="mt-6 inline-block w-full rounded-full bg-white px-8 py-3.5 text-center font-semibold text-brand transition-all hover:-translate-y-0.5 hover:bg-slate-100"
+                className="mt-6 inline-block w-full rounded-full bg-white px-8 py-3.5 text-center font-semibold text-brand transition-all hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-xl hover:shadow-black/20"
               >
                 Get in touch
               </Link>
