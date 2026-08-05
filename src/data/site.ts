@@ -83,11 +83,32 @@ export const resources = [
   },
 ];
 
-export const stats = [
-  { value: "15+", label: "Years of HR expertise", icon: "performance", accent: "text-brand" },
-  { value: "5", label: "Core service areas", icon: "strategy", accent: "text-accent" },
-  { value: "100%", label: "Tailored to your business", icon: "culture", accent: "text-brand" },
-  { value: "1", label: "Dedicated partner per client", icon: "talent", accent: "text-accent" },
+/**
+ * Why-HRPPI pillars. Framed as strengths, not raw counts —
+ * small numbers ("5 services", "1 partner") read as weaknesses when
+ * displayed as big stats, so only genuinely impressive figures stay numeric.
+ */
+export const pillars = [
+  {
+    icon: "performance",
+    title: "15+ years",
+    body: "of senior HR expertise behind every engagement",
+  },
+  {
+    icon: "talent",
+    title: "Director-led",
+    body: "You work directly with the principal — never a junior team",
+  },
+  {
+    icon: "strategy",
+    title: "End-to-end",
+    body: "From HR systems and training to culture and change",
+  },
+  {
+    icon: "culture",
+    title: "Zero templates",
+    body: "Every solution is built around your business, not a binder",
+  },
 ];
 
 /**
@@ -98,7 +119,7 @@ export const director = {
   name: "Shirley Bartley-Byfield",
   role: "Director",
   summary:
-    "Shirley leads every HRPPI engagement personally. She is an Accredited Business Communicator (ABC) — an international designation awarded by the International Association of Business Communicators (IABC) — and holds an MBA in Business Management. A graduate of CARIMAC at the University of the West Indies and a trained teacher, she built her career in senior corporate and government communications, including senior internal communications at Scotiabank and a decade as Director of Public Relations at Jamaica's Ministry of National Security and Justice.",
+    "Shirley leads every HRPPI engagement personally, bringing internationally accredited expertise and decades of senior corporate and government experience to your organization.",
   credentials: [
     "Accredited Business Communicator (ABC), IABC — among the first Jamaicans to earn the designation",
     "MBA, Business Management",

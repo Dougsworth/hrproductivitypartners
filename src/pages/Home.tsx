@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { site, stats, process, director } from "@/data/site";
+import { site, pillars, process, director } from "@/data/site";
 import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
 import Icon from "@/components/Icon";
@@ -94,7 +94,7 @@ export const Home = () => {
       {/* scrolling capability marquee */}
       <Marquee />
 
-      {/* ============ STATS — proof points ============ */}
+      {/* ============ WHY HRPPI — strength pillars ============ */}
       <section className="bg-white pb-12 pt-10 sm:pb-16 sm:pt-12">
         <div className="mx-auto max-w-[1280px] px-6">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -105,30 +105,28 @@ export const Home = () => {
               The partner your people deserve
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-600">
-              Seasoned expertise and a hands-on, tailored approach. Here are the
-              numbers behind the partnership.
+              Seasoned expertise and a hands-on, tailored approach — here's what
+              working with us means.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:mt-16 sm:gap-6 lg:grid-cols-4">
-            {stats.map((s, i) => (
+          <div className="mt-12 grid gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+            {pillars.map((p, i) => (
               <Reveal
-                key={s.label}
+                key={p.title}
                 delay={i * 100}
-                className="rounded-2xl border border-slate-100 bg-slate-50 px-6 py-8 text-center transition-shadow hover:shadow-md"
+                className="group rounded-2xl border border-slate-100 bg-slate-50 p-6 transition-all hover:-translate-y-1 hover:border-slate-200 hover:shadow-lg hover:shadow-slate-200/60"
               >
                 <span
-                  className={`mx-auto grid h-10 w-10 place-items-center rounded-xl bg-white shadow-sm ring-1 ring-slate-100 ${s.accent}`}
+                  className="grid h-11 w-11 place-items-center rounded-xl bg-brand text-white transition-transform group-hover:scale-105"
                   aria-hidden
                 >
-                  <Icon name={s.icon} className="h-5 w-5" />
+                  <Icon name={p.icon} className="h-5 w-5" />
                 </span>
-                <p className={`mt-4 font-display text-4xl font-bold sm:text-5xl ${s.accent}`}>
-                  {s.value}
+                <p className="mt-5 font-display text-2xl font-bold text-brand">
+                  {p.title}
                 </p>
-                <p className="mt-2 text-sm font-medium uppercase tracking-wide text-slate-500">
-                  {s.label}
-                </p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{p.body}</p>
               </Reveal>
             ))}
           </div>
@@ -282,8 +280,9 @@ export const Home = () => {
           className="pointer-events-none absolute -bottom-32 -left-20 h-96 w-96 rounded-full border border-white/10"
           aria-hidden
         />
-        <div className="relative mx-auto grid max-w-[1280px] items-center gap-10 px-6 sm:gap-12 lg:grid-cols-[1.4fr_1fr]">
-          <Reveal as="left">
+        <div className="relative mx-auto grid max-w-[1280px] items-stretch gap-10 px-6 sm:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          {/* Left: about copy + CTA card (keeps the column heights balanced) */}
+          <Reveal as="left" className="flex flex-col">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/60">
               About us
             </p>
@@ -296,23 +295,42 @@ export const Home = () => {
               clients to build your human resource and improve your business value.
             </p>
 
-            {/* Director credentials — E-E-A-T signal for clients and search/AI engines */}
-            <div className="mt-10 max-w-xl rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/50">
-                Led by
+            <div className="mt-10 rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-8 lg:mt-auto">
+              <p className="font-display text-2xl font-bold text-white">
+                Ready to partner with us?
               </p>
-              <p className="mt-2 font-display text-xl font-bold text-white">
-                {director.name}
-                <span className="ml-2 text-sm font-medium text-white/60">
+              <p className="mt-2 text-white/70">
+                Let's talk about the workforce you want to build.
+              </p>
+              <Link
+                to="/contacts"
+                className="mt-6 inline-block w-full rounded-full bg-white px-8 py-3.5 text-center font-semibold text-brand transition-all hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-xl hover:shadow-black/20 sm:w-auto"
+              >
+                Get in touch
+              </Link>
+            </div>
+          </Reveal>
+
+          {/* Right: director credentials — E-E-A-T signal for clients and search/AI engines */}
+          <Reveal as="right" delay={150} className="w-full">
+            <div className="flex h-full flex-col rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-8">
+              <div className="flex items-center justify-between gap-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/50">
+                  Led by
+                </p>
+                <span className="rounded-full border border-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent-soft">
                   {director.role}
                 </span>
+              </div>
+              <p className="mt-3 font-display text-2xl font-bold text-white">
+                {director.name}
               </p>
               <p className="mt-3 text-sm leading-relaxed text-white/75">
                 {director.summary}
               </p>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-5 space-y-2.5 border-t border-white/10 pt-5">
                 {director.credentials.map((c) => (
-                  <li key={c} className="flex items-start gap-2.5 text-sm text-white/80">
+                  <li key={c} className="flex items-start gap-2.5 text-sm leading-snug text-white/80">
                     <span
                       className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-soft"
                       aria-hidden
@@ -322,41 +340,25 @@ export const Home = () => {
                 ))}
               </ul>
             </div>
+          </Reveal>
 
-            {/*
-              TODO — RESULTS SECTION (from the site audit):
-              When you have real, client-approved numbers, add a "Results" block here.
-              AI answer engines cite concrete stats. Template:
+          {/*
+            TODO — RESULTS SECTION (from the site audit):
+            When you have real, client-approved numbers, add a "Results" block here.
+            AI answer engines cite concrete stats. Template:
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl bg-white/10 p-5">
-                  <p className="font-display text-3xl font-bold text-white">20%</p>
-                  <p className="mt-1 text-sm text-white/70">
-                    Reduction in hiring time for a Kingston logistics firm
-                  </p>
-                </div>
-                ...one card per real result...
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl bg-white/10 p-5">
+                <p className="font-display text-3xl font-bold text-white">20%</p>
+                <p className="mt-1 text-sm text-white/70">
+                  Reduction in hiring time for a Kingston logistics firm
+                </p>
               </div>
-
-              Do NOT publish numbers that can't be backed up.
-            */}
-          </Reveal>
-          <Reveal as="right" delay={150} className="w-full lg:justify-self-end">
-            <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-8">
-              <p className="font-display text-2xl font-bold text-white">
-                Ready to partner with us?
-              </p>
-              <p className="mt-2 text-white/70">
-                Let's talk about the workforce you want to build.
-              </p>
-              <Link
-                to="/contacts"
-                className="mt-6 inline-block w-full rounded-full bg-white px-8 py-3.5 text-center font-semibold text-brand transition-all hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-xl hover:shadow-black/20"
-              >
-                Get in touch
-              </Link>
+              ...one card per real result...
             </div>
-          </Reveal>
+
+            Do NOT publish numbers that can't be backed up.
+          */}
         </div>
       </section>
     </>
