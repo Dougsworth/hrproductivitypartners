@@ -164,3 +164,59 @@
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   View swapping. The header, footer and paper ground stay put; only
+   the contents of <main> change. The outgoing view lifts a little and
+   clears quickly, the incoming one settles in from below — the same
+   easing the section reveals use, so navigation feels like part of the
+   page rather than a browser event.
+   ------------------------------------------------------------------ */
+.view-enter {
+  animation: view-in 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.view-leave {
+  animation: view-out 190ms cubic-bezier(0.4, 0, 1, 1) both;
+  /* No pointer events while it's on its way out, so a fast second click
+     can't land on a link that is already half gone. */
+  pointer-events: none;
+}
+
+@keyframes view-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes view-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-enter,
+  .view-leave {
+    animation: none;
+  }
+}
+
+/* The band under the header shares one surface across every view, so the
+   eye holds its place while the words inside change. */
+.shell-hero {
+  background-image: radial-gradient(
+      120% 120% at 82% 0%,
+      rgba(7, 93, 118, 0.07) 0%,
+      rgba(7, 93, 118, 0) 55%
+    );
+}

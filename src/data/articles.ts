@@ -25,7 +25,7 @@ export const articles: Article[] = [
     standfirst:
       "Jamaica's outsourcing sector shed roughly 12,000 jobs in two years, and the industry's own leadership points at productivity rather than automation. That diagnosis should change how Caribbean employers plan their workforce.",
     image: `${ASSETS}/084932ea58bb34c01f9084a3e2a27d08.jpg`,
-    imageAlt: "Palm trees against a Caribbean sky at dusk",
+    imageAlt: "A Jamaican professional standing in a modern open-plan office",
     body: [
       {
         paras: [

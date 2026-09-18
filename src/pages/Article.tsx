@@ -6,60 +6,66 @@ export const Article = () => {
   const { slug } = useParams();
   const article = getArticle(slug);
 
-  if (!article) return <Navigate to="/resources" replace />;
+  if (!article) return <Navigate to="/insights" replace />;
 
   const others = articles.filter((a) => a.slug !== article.slug);
 
   return (
     <article className="bg-sand">
-      {/* ---------- header ---------- */}
-      <header className="mx-auto max-w-shell px-6 pb-10 pt-[calc(72px+clamp(3rem,2rem+4vw,5rem))] lg:px-10">
-        <div className="mx-auto max-w-3xl">
-          <Link
-            to="/resources"
-            className="group inline-flex min-h-[44px] items-center gap-2 text-fluid-sm font-semibold text-ink/75 transition-colors hover:text-deep"
-          >
-            <span className="text-ember-ink transition-transform group-hover:-translate-x-1">←</span>
-            All insights
-          </Link>
+      {/* ---------- header ----------
+           Same band, same geometry as every other view: the words change,
+           the frame does not. The article's own photograph simply steps
+           into the slot the home page keeps for its hero image. */}
+      <header className="shell-hero relative bg-sand pt-[72px]">
+        <div className="grid items-stretch lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+          <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:py-14 lg:pl-[max(1.5rem,calc((100vw-82.5rem)/2+2.5rem))] lg:pr-16">
+            <Reveal>
+              <Link
+                to="/insights"
+                className="group inline-flex min-h-[44px] items-center gap-2 text-fluid-sm font-semibold text-ink/75 transition-colors hover:text-deep"
+              >
+                <span className="text-ember-ink transition-transform group-hover:-translate-x-1">←</span>
+                All insights
+              </Link>
 
-          <div className="mt-6 flex items-center gap-3">
-            <span className="h-px w-8 shrink-0 bg-ember" aria-hidden />
-            <time
-              dateTime={article.iso}
-              className="text-eyebrow font-semibold uppercase text-ink/75"
-            >
-              {article.date}
-            </time>
-            <span className="text-ink/40" aria-hidden>·</span>
-            <span className="text-eyebrow font-semibold uppercase text-ink/75">
-              {article.readingTime}
-            </span>
+              <div className="mt-5 flex items-center gap-3">
+                <span className="h-px w-8 shrink-0 bg-ember" aria-hidden />
+                <time
+                  dateTime={article.iso}
+                  className="text-eyebrow font-semibold uppercase text-ink/75"
+                >
+                  {article.date}
+                </time>
+                <span className="text-ink/40" aria-hidden>·</span>
+                <span className="text-eyebrow font-semibold uppercase text-ink/75">
+                  {article.readingTime}
+                </span>
+              </div>
+
+              <h1 className="mt-5 font-display text-fluid-h1 font-bold tracking-tight text-deep">
+                {article.title}
+              </h1>
+              <p className="mt-6 max-w-prose text-fluid-lead text-ink/75">
+                {article.standfirst}
+              </p>
+            </Reveal>
           </div>
 
-          <h1 className="mt-5 font-display text-fluid-h1 font-bold text-deep">
-            {article.title}
-          </h1>
-          <p className="mt-6 max-w-prose text-fluid-lead text-ink/75">
-            {article.standfirst}
-          </p>
+          <div className="edge-fade-l relative min-h-[240px] lg:min-h-[440px]">
+            <img
+              src={article.image}
+              alt={article.imageAlt}
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
         </div>
       </header>
 
-      {/* ---------- hero image ---------- */}
-      <div className="mx-auto max-w-shell px-6 lg:px-10">
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl">
-          <img
-            src={article.image}
-            alt={article.imageAlt}
-            className="aspect-[16/7] w-full object-cover"
-          />
-        </div>
-      </div>
-
       {/* ---------- body ---------- */}
-      <div className="mx-auto max-w-shell px-6 pb-section pt-12 lg:px-10">
-        <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-shell px-6 pb-section pt-14 lg:px-10">
+        {/* Left-aligned to the same column the headline sits in — centring
+            the measure made the body look like a different page. */}
+        <div className="max-w-3xl">
           {article.body.map((block, i) => (
             <Reveal key={i} delay={Math.min(i, 4) * 60} className="mt-10 first:mt-0">
               {block.heading && (
@@ -131,7 +137,7 @@ export const Article = () => {
       {/* ---------- keep reading ---------- */}
       <div className="border-t border-ink/10 bg-sand-200/40">
         <div className="mx-auto max-w-shell px-6 py-section lg:px-10">
-          <div className="mx-auto max-w-4xl">
+          <div className="max-w-4xl">
             <h2 className="text-eyebrow font-semibold uppercase text-ink/75">Keep reading</h2>
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               {others.map((a, i) => (

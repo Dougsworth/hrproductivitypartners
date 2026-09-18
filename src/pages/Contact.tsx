@@ -1,150 +1,242 @@
 import { useState } from "react";
-import { site } from "@/data/site";
+import { site, services, director } from "@/data/site";
+import { Reveal } from "@/components/Reveal";
+import { ShellHero } from "@/components/ShellHero";
+import { ScriptLine } from "@/components/ScriptLine";
 
 export const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    organisation: "",
+    interest: "",
+    message: "",
+  });
 
   const update =
     (key: keyof typeof form) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >,
+    ) =>
       setForm((f) => ({ ...f, [key]: e.target.value }));
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Website enquiry from ${form.name || "a visitor"}`);
+    const subject = encodeURIComponent(
+      `Website enquiry${form.interest ? ` — ${form.interest}` : ""} from ${
+        form.name || "a visitor"
+      }`,
+    );
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
+      [
+        `Name: ${form.name}`,
+        `Email: ${form.email}`,
+        form.organisation ? `Organisation: ${form.organisation}` : "",
+        form.interest ? `Interested in: ${form.interest}` : "",
+        "",
+        form.message,
+      ]
+        .filter(Boolean)
+        .join("\n"),
     );
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
   };
 
+  const label = "mb-1.5 block text-fluid-sm font-semibold text-deep";
   const field =
-    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10";
+    "w-full rounded-xl border border-deep/15 bg-white px-4 py-3 text-fluid-base text-ink outline-none transition focus:border-deep/40 focus:ring-4 focus:ring-deep/10";
+
+  const details = [
+    { label: "Director", value: director.name, note: director.role },
+    { label: "Location", value: site.location, note: "Serving the Caribbean" },
+    {
+      label: "Email",
+      value: site.email,
+      href: `mailto:${site.email}`,
+      note: "We reply within one business day",
+    },
+  ];
 
   return (
-    <>
-      {/* Page header (padded to clear fixed nav) */}
-      <section className="relative overflow-hidden border-b border-slate-100 bg-white pb-12 pt-32 sm:pb-16 sm:pt-36">
-        <div
-          className="pointer-events-none absolute -right-32 -top-16 h-96 w-96 rounded-full bg-brand-50"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-[1280px] px-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
-            Get in touch
-          </p>
-          <h1 className="mt-4 font-display text-4xl font-bold leading-[1.05] text-brand sm:text-6xl">
-            Let's start the conversation.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-slate-600">
-            Strengthening your people capacity is our business. Reach out and
-            we'll get right back to you.
-          </p>
-        </div>
-      </section>
+    <div className="bg-sand">
+      <ShellHero
+        eyebrow="Get in touch"
+        titleLead="Let's start the"
+        titleAccent="conversation"
+        blurb="Tell us what you're trying to move — a team, a system, a culture — and we'll tell you honestly whether we're the right help."
+        image="/assets/1af8af7a40d7bb692ce8c1235b93a211.jpg"
+        imageAlt="Two people shaking hands across a meeting table"
+      >
+        <ScriptLine className="mb-4 mt-10" delay={800}>
+          We make your people our business.
+        </ScriptLine>
+      </ShellHero>
 
-      <section className="bg-white py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[1280px] gap-10 px-6 sm:gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-          {/* Info */}
-          <div>
-            <h2 className="font-display text-3xl font-semibold text-brand">Let's talk</h2>
-            <p className="mt-4 leading-relaxed text-slate-600">
-              {site.name} is a registered human resource consulting service
-              operating out of {site.location}. Whether you're rethinking your HR
-              systems, building leaders, or driving change, we'd love to help.
+      <section className="py-section">
+        <div className="mx-auto grid max-w-shell gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:px-10">
+          {/* Who you're reaching */}
+          <Reveal as="left">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 shrink-0 bg-ember" aria-hidden />
+              <span className="text-eyebrow font-semibold uppercase text-ink/75">
+                Who you're reaching
+              </span>
+            </div>
+            <h2 className="mt-5 font-display text-fluid-h2 font-bold text-deep">
+              A direct line, not a queue.
+            </h2>
+            <p className="mt-5 max-w-prose text-fluid-base text-ink/75">
+              {site.name} is a registered human resource consulting practice
+              operating out of {site.location}. Every enquiry is read by the
+              person who would do the work.
             </p>
 
-            <div className="mt-10 space-y-4">
-              {[
-                { label: "Director", value: site.director },
-                { label: "Location", value: site.location },
-                { label: "Email", value: site.email, href: `mailto:${site.email}` },
-              ].map((item) => (
+            <dl className="mt-10 space-y-3">
+              {details.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-4 rounded-2xl border border-slate-100 bg-brand-50/50 p-5"
+                  className="flex items-start gap-4 rounded-2xl bg-white p-5 ring-1 ring-deep/5"
                 >
                   <span
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand text-white"
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-deep font-display text-lg font-bold text-white"
                     aria-hidden
                   >
                     {item.label[0]}
                   </span>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <div className="min-w-0">
+                    <dt className="text-eyebrow font-semibold uppercase text-ink/70">
                       {item.label}
-                    </p>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="font-medium text-brand hover:underline"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="font-medium text-slate-700">{item.value}</p>
-                    )}
+                    </dt>
+                    <dd className="mt-1 break-words font-medium text-deep">
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="underline decoration-ember/40 underline-offset-4 transition-colors hover:decoration-ember"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        item.value
+                      )}
+                    </dd>
+                    <dd className="mt-0.5 text-fluid-sm text-ink/70">{item.note}</dd>
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
+            </dl>
+          </Reveal>
 
           {/* Form */}
-          <form
-            onSubmit={onSubmit}
-            className="rounded-4xl bg-brand-50/60 p-8 ring-1 ring-brand/5 sm:p-10"
-          >
-            <div className="space-y-5">
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-slate-700">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={update("name")}
-                  className={field}
-                  placeholder="Your name"
-                />
+          <Reveal as="right">
+            <form
+              onSubmit={onSubmit}
+              className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-deep/5 sm:p-10"
+            >
+              <p className="font-display text-fluid-h3 font-bold text-deep">
+                Send us a note
+              </p>
+              <p className="mt-2 text-fluid-sm text-ink/75">
+                Four fields. No forms behind the form.
+              </p>
+
+              <div className="mt-8 space-y-5">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="c-name" className={label}>
+                      Name
+                    </label>
+                    <input
+                      id="c-name"
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={update("name")}
+                      className={field}
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="c-org" className={label}>
+                      Organisation
+                    </label>
+                    <input
+                      id="c-org"
+                      type="text"
+                      value={form.organisation}
+                      onChange={update("organisation")}
+                      className={field}
+                      placeholder="Where you work"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="c-email" className={label}>
+                    Email
+                  </label>
+                  <input
+                    id="c-email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={update("email")}
+                    className={field}
+                    placeholder="you@company.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="c-interest" className={label}>
+                    What's this about?
+                  </label>
+                  <select
+                    id="c-interest"
+                    value={form.interest}
+                    onChange={update("interest")}
+                    className={field}
+                  >
+                    <option value="">Not sure yet</option>
+                    {services.map((s) => (
+                      <option key={s.title} value={s.title}>
+                        {s.title}
+                      </option>
+                    ))}
+                    <option value="Something else">Something else</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="c-message" className={label}>
+                    Message
+                  </label>
+                  <textarea
+                    id="c-message"
+                    required
+                    rows={5}
+                    value={form.message}
+                    onChange={update("message")}
+                    className={field}
+                    placeholder="What are you trying to change?"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="group inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-ember px-6 py-3.5 text-fluid-sm font-bold text-ink shadow-lg shadow-ember/25 transition-all hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white"
+                >
+                  Send message
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </button>
+                <p className="text-center text-fluid-sm text-ink/70">
+                  This opens your email app with the message ready to send.
+                </p>
               </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-slate-700">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={update("email")}
-                  className={field}
-                  placeholder="you@company.com"
-                />
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-slate-700">
-                  Message
-                </label>
-                <textarea
-                  required
-                  rows={5}
-                  value={form.message}
-                  onChange={update("message")}
-                  className={field}
-                  placeholder="How can we help?"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full rounded-full bg-brand px-6 py-3.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-700"
-              >
-                Send message
-              </button>
-            </div>
-          </form>
+            </form>
+          </Reveal>
         </div>
       </section>
-    </>
+    </div>
   );
 };
