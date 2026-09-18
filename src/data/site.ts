@@ -1,4 +1,6 @@
 export const ASSETS = "/assets";
+export const HRPPI_ICONS = `${ASSETS}/hrppi/icons`;
+export const HRPPI_ART = `${ASSETS}/hrppi/graphics`;
 
 export const site = {
   name: "Human Resource Productivity Partners, International",
@@ -6,7 +8,7 @@ export const site = {
   brand: "#144355",
   tagline: "We make your people our business.",
   location: "Kingston, Jamaica",
-  director: "Shirley Bartley-Byfield",
+  director: "Shirley Bartley",
   // TODO: switch to a professional domain email (e.g. hello@hrproductivitypartners.com)
   // once the mailbox is set up — see the "get contracts" plan.
   email: "Hrproductivitypartner@gmail.com",
@@ -22,8 +24,10 @@ export const site = {
 
 export const nav = [
   { label: "Home", to: "/" },
-  { label: "Resources", to: "/resources" },
-  { label: "Contacts", to: "/contacts" },
+  { label: "About", to: "/#about" },
+  { label: "Services", to: "/#services" },
+  { label: "Insights", to: "/insights" },
+  { label: "Contact", to: "/contacts" },
 ];
 
 export const resources = [
@@ -116,8 +120,11 @@ export const pillars = [
  * All credentials below are on the public record; add or refine as needed.
  */
 export const director = {
-  name: "Shirley Bartley-Byfield",
-  role: "Director",
+  name: "Shirley Bartley",
+  role: "CEO",
+  photo: `${ASSETS}/hrppi/shirley-bartley.jpg`,
+  photoAlt:
+    "Shirley Bartley, CEO of Human Resource Productivity Partners International, Kingston, Jamaica",
   summary:
     "Shirley leads every HRPPI engagement personally, bringing internationally accredited expertise and decades of senior corporate and government experience to your organization.",
   credentials: [
@@ -149,6 +156,8 @@ export const process = [
 
 export type Service = {
   slug: string;
+  /** Custom HRPPI vector icon from the brand asset pack. */
+  art: string;
   title: string;
   blurb: string;
   details: string[];
@@ -163,6 +172,7 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "hr-systems",
+    art: `${HRPPI_ICONS}/hr-automation.svg`,
     title: "HR Systems Setup",
     blurb:
       "We pick and set up the software that runs your HR, so hiring, payroll, reviews and training all live in one place instead of scattered spreadsheets.",
@@ -181,6 +191,7 @@ export const services: Service[] = [
   },
   {
     slug: "learning-talent",
+    art: `${HRPPI_ICONS}/recruitment-talent.svg`,
     title: "Staff Training & Development",
     blurb:
       "We train your people and grow your managers, so your team keeps getting better and you build leaders from within instead of always hiring out.",
@@ -199,6 +210,7 @@ export const services: Service[] = [
   },
   {
     slug: "organizational-change",
+    art: `${HRPPI_ICONS}/leadership-change.svg`,
     title: "Managing Big Changes",
     blurb:
       "Restructuring, new systems, new leadership? We guide your team through the change so it actually lands and holds, instead of falling apart after week two.",
@@ -217,6 +229,7 @@ export const services: Service[] = [
   },
   {
     slug: "employee-engagement",
+    art: `${HRPPI_ICONS}/employee-engagement.svg`,
     title: "Keeping Staff Happy & Engaged",
     blurb:
       "We help your people feel valued and stay, through fair conflict handling, a workplace people are proud of, and communication that keeps everyone in the loop.",
@@ -235,6 +248,7 @@ export const services: Service[] = [
   },
   {
     slug: "organizational-culture",
+    art: `${HRPPI_ICONS}/culture-design.svg`,
     title: "Building Your Company Culture",
     blurb:
       "We help you define how your company actually works and feels, your values and your way of doing things, then make it real in everyday behaviour rather than a poster on the wall.",
@@ -251,3 +265,124 @@ export const services: Service[] = [
     tile: "bg-[#7c3aed] text-white",
   },
 ];
+
+/* ============================================================
+   2026 REFRESH — content for the redesigned home page.
+   Everything below drives Home.tsx. Edit copy here, not in JSX.
+   ============================================================ */
+
+export const hero = {
+  eyebrow: "People. Strategy. Progress.",
+  /** The word set in italic ember inside the headline. */
+  titleLead: "Build a workplace people",
+  titleAccent: "thrive in",
+  subtitle:
+    "HR strategy, talent, technology and transformation for organizations across the Caribbean.",
+  primaryCta: { label: "Book a Consultation", to: "/contacts" },
+  secondaryCta: { label: "Explore Our Services", to: "/#services" },
+  script: "Stronger People. Brighter Caribbean.",
+  /** Named plainly, so a first-time visitor knows what is actually for sale. */
+  offers: [
+    "HR systems set up",
+    "Staff training",
+    "Change management",
+    "Engagement & retention",
+    "Culture design",
+  ],
+};
+
+/**
+ * Hero stat strip. These describe HRPPI itself — experience, reach and
+ * scope — so they are defensible without client sign-off.
+ */
+export const heroStats = [
+  { icon: "talent", value: "20+ Years", label: "Experience" },
+  { icon: "strategy", value: "Caribbean", label: "Expertise" },
+  { icon: "performance", value: "End-to-End", label: "HR Solutions" },
+];
+
+/** The three-up band on the deep teal panel. */
+export const approach = {
+  eyebrow: "Why HRPPI",
+  titleLead: "Caribbean organizations.",
+  titleAccent: "Global possibilities.",
+  points: [
+    {
+      icon: "strategy",
+      art: `${HRPPI_ICONS}/caribbean-focused.svg`,
+      title: "Caribbean Focused",
+      body: "Deep local understanding across the region.",
+    },
+    {
+      icon: "performance",
+      art: `${HRPPI_ICONS}/globally-informed.svg`,
+      title: "Globally Informed",
+      body: "Best practices from around the world.",
+    },
+    {
+      icon: "talent",
+      art: `${HRPPI_ICONS}/people-centered.svg`,
+      title: "People Centered",
+      body: "Real solutions for real people.",
+    },
+  ],
+};
+
+/**
+ * ⚠️ RESULTS — PLACEHOLDER FIGURES.
+ * These are the numbers from the design comp, NOT measured HRPPI outcomes.
+ * Replace each one with a real, client-approved figure before this page is
+ * published, or set `results.show = false` to hide the section entirely.
+ * Publishing unverifiable performance claims on a registered consultancy's
+ * site is a real liability — see the same warning in the old About block.
+ */
+export const results = {
+  show: true,
+  verified: false, // flip to true only when every stat below is real
+  eyebrow: "Real Results",
+  title: "Stronger people. Stronger businesses.",
+  quote: "Investing in people is the smartest business move of all.",
+  stats: [
+    { value: "40%", label: "Faster hiring time" },
+    { value: "60+", label: "Hours saved monthly" },
+    { value: "95%", label: "Client satisfaction" },
+  ],
+};
+
+export const insights = {
+  eyebrow: "Insights",
+  titleLead: "Ideas for a",
+  titleRest: "stronger tomorrow.",
+  body:
+    "Practical insights, trends and perspectives on people, work and the future of HR in the Caribbean.",
+  posts: [
+    {
+      date: "Aug 28, 2026",
+      title: "The Future of Work in the Caribbean",
+      to: "/insights/future-of-work-caribbean",
+      image: `${ASSETS}/084932ea58bb34c01f9084a3e2a27d08.jpg`,
+      imageAlt: "Palm trees against a Caribbean sky",
+    },
+    {
+      date: "Aug 16, 2026",
+      title: "5 Ways to Boost Employee Engagement",
+      to: "/insights/boost-employee-engagement",
+      image: `${ASSETS}/intro-meeting.png`,
+      imageAlt: "Colleagues collaborating around a laptop in an office",
+    },
+    {
+      date: "Aug 02, 2026",
+      title: "HR Automation: A Practical Guide for SMBs",
+      to: "/insights/hr-automation-guide-smbs",
+      image: `${ASSETS}/1af8af7a40d7bb692ce8c1235b93a211.jpg`,
+      imageAlt: "A tidy desk with a laptop and plants",
+    },
+  ],
+};
+
+export const closingCta = {
+  eyebrow: "Let's build what's next",
+  title: "Your next workplace transformation starts with a conversation.",
+  cta: { label: "Let's Talk", to: "/contacts" },
+  script: "People. Progress. Possibilities.",
+};

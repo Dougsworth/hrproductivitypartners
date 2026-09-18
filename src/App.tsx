@@ -11,6 +11,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Home } from "@/pages/Home";
 import { Resources } from "@/pages/Resources";
 import { Contact } from "@/pages/Contact";
+import { Article } from "@/pages/Article";
+import { Insights } from "@/pages/Insights";
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
@@ -40,6 +42,8 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:slug" element={<Article />} />
             <Route path="/services" element={<Navigate to="/#services" replace />} />
             <Route path="/contacts" element={<Contact />} />
             <Route path="*" element={<Navigate to="/" replace />} />

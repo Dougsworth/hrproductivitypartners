@@ -16,6 +16,14 @@ export const Reveal = ({ children, delay = 0, className = "", as = "up" }: Revea
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Honour the OS setting: show everything immediately, animate nothing.
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduced.matches) {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -23,25 +31,27 @@ export const Reveal = ({ children, delay = 0, className = "", as = "up" }: Revea
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+      { threshold: 0.1, rootMargin: "0px 0px -12% 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
+  // A little scale alongside the translate reads as "settling into place"
+  // rather than "sliding in", which is what makes it feel considered.
   const hidden =
     as === "left"
-      ? "opacity-0 -translate-x-6"
+      ? "opacity-0 -translate-x-8 scale-[0.99]"
       : as === "right"
-        ? "opacity-0 translate-x-6"
-        : "opacity-0 translate-y-6";
+        ? "opacity-0 translate-x-8 scale-[0.99]"
+        : "opacity-0 translate-y-8 scale-[0.99]";
 
   return (
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        visible ? "opacity-100 translate-x-0 translate-y-0" : hidden
+      className={`transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+        visible ? "opacity-100 translate-x-0 translate-y-0 scale-100" : hidden
       } ${className}`}
     >
       {children}

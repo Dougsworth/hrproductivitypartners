@@ -1,263 +1,362 @@
 import { Link } from "react-router-dom";
-import { site, pillars, process, director } from "@/data/site";
-import { Marquee } from "@/components/Marquee";
+import {
+  site,
+  hero,
+  heroStats,
+  approach,
+  results,
+  insights,
+  closingCta,
+  director,
+} from "@/data/site";
 import { Reveal } from "@/components/Reveal";
+import { AccentWord } from "@/components/AccentWord";
+import { ScriptLine } from "@/components/ScriptLine";
+import { ServicePicker } from "@/components/ServicePicker";
 import Icon from "@/components/Icon";
-import { ServicesShowcase } from "@/components/ServicesShowcase";
-import { PeopleWord } from "@/components/PeopleWord";
+
+/** Small ember rule + uppercase label used above every section heading. */
+const Eyebrow = ({ label, tone = "dark" }: { label: string; tone?: "dark" | "light" }) => (
+  <div className="flex items-center gap-3">
+    <span className="h-px w-8 shrink-0 bg-ember" aria-hidden />
+    <span
+      className={`text-eyebrow font-semibold uppercase ${
+        tone === "light" ? "text-white/70" : "text-ink/75"
+      }`}
+    >
+      {label}
+    </span>
+  </div>
+);
 
 export const Home = () => {
   return (
-    <>
-      {/* ============ HERO ============ */}
-      {/* MOBILE: whole banner uncropped, copy on brand panel below */}
-      <section className="bg-brand-900 pt-[72px] sm:hidden">
-        <div className="relative">
+    <div className="bg-sand">
+      {/* ==================== HERO ==================== */}
+      <section className="relative bg-sand pt-[72px]">
+        <div className="grid items-stretch lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+          {/* copy */}
+          <div className="flex flex-col justify-center px-6 py-12 sm:px-10 lg:py-16 lg:pl-[max(1.5rem,calc((100vw-82.5rem)/2+2.5rem))] lg:pr-16">
+            <Reveal>
+              <Eyebrow label={hero.eyebrow} />
+              <h1 className="mt-5 font-display text-fluid-h1 font-bold tracking-tight text-deep">
+                {hero.titleLead}{" "}
+                <AccentWord className="text-ember-ink" delay={550}>
+                  {hero.titleAccent}
+                </AccentWord>
+                .
+              </h1>
+              <p className="mt-6 max-w-prose text-fluid-lead text-ink/75">
+                {hero.subtitle}
+              </p>
+              {/* A visitor should be able to name what we sell within one
+                  screen. The headline sets the tone; this line does the work. */}
+              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+                {hero.offers.map((o) => (
+                  <li key={o} className="flex items-center gap-2 text-fluid-sm text-ink/75">
+                    <span className="h-1.5 w-1.5 rounded-full bg-ember" aria-hidden />
+                    {o}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  to={hero.primaryCta.to}
+                  className="group inline-flex min-h-[44px] items-center gap-2 rounded-full bg-ember px-7 py-3.5 text-fluid-sm font-bold text-ink shadow-lg shadow-ember/25 transition-all hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white"
+                >
+                  {hero.primaryCta.label}
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+                <a
+                  href="#services"
+                  className="inline-flex items-center rounded-full border border-deep/20 px-7 py-3.5 text-fluid-sm font-semibold text-deep transition-all hover:-translate-y-0.5 hover:border-deep/40 hover:bg-white"
+                >
+                  {hero.secondaryCta.label}
+                </a>
+              </div>
+
+              {/* stat strip */}
+              <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-6">
+                {heroStats.map((s) => (
+                  <div key={s.label} className="flex items-center gap-3">
+                    <Icon name={s.icon} className="h-6 w-6 shrink-0 text-deep" />
+                    <div className="leading-tight">
+                      <dt className="text-fluid-sm font-semibold text-deep">{s.value}</dt>
+                      <dd className="text-fluid-sm text-ink/75">{s.label}</dd>
+                    </div>
+                  </div>
+                ))}
+              </dl>
+
+              <ScriptLine className="mb-4 mt-12" delay={900}>
+                {hero.script}
+              </ScriptLine>
+            </Reveal>
+          </div>
+
+          {/* photo — left edge dissolves into the cream column so the two
+              halves read as one surface rather than two panels butted together */}
+          <div className="edge-fade-l relative min-h-[300px] lg:min-h-[620px]">
+            <img
+              src={site.heroImage}
+              alt="HR consultants working with a client team in a bright Kingston office"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== APPROACH BAND ==================== */}
+      <section className="grid lg:grid-cols-2">
+        {/* left: coastline + headline */}
+        <div className="relative isolate flex min-h-[260px] items-end overflow-hidden lg:min-h-[340px]">
           <img
-            src={site.heroImage}
-            alt="The HRPPI team beneath the company logo in their Kingston office"
-            className="w-full object-contain"
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80"
+            alt="Caribbean coastline with hills meeting the sea"
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
-          {/* blend the photo's bottom edge into the brand panel */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-brand-900 to-transparent"
+            className="absolute inset-0 -z-10 bg-gradient-to-t from-deep-900/85 via-deep-900/45 to-deep-900/10"
             aria-hidden
           />
-        </div>
-        <div className="px-6 pb-12 pt-4">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-accent" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent-soft">
-              HRPPI · {site.location}
-            </span>
-          </div>
-          <h1 className="mt-4 animate-fade-up font-display text-3xl font-bold leading-[1.12] text-white">
-            We make your <PeopleWord /> our business.
-          </h1>
-          <p className="mt-3 text-[15px] leading-relaxed text-white/70">
-            HR strategy, talent and change, built around your business.
-          </p>
-          <Link
-            to="/services"
-            className="group mt-6 inline-flex animate-fade-up items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand shadow-lg"
-            style={{ animationDelay: "0.2s" }}
-          >
-            Our services
-            <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* DESKTOP/TABLET: full-bleed overlay hero */}
-      <section className="relative isolate hidden h-[78vh] max-h-[760px] min-h-[440px] items-end overflow-hidden bg-brand-900 sm:flex">
-        <img
-          src={site.heroImage}
-          alt="The HRPPI team beneath the company logo in their Kingston office"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[30%_top]"
-        />
-        {/* gradient along the bottom so copy reads, wall logo/text up top stay clear
-            (strengthened for WCAG-friendly contrast over the photo's light areas) */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[60%] bg-gradient-to-t from-brand-900 via-brand-900/80 to-transparent"
-          aria-hidden
-        />
-        <div className="w-full">
-          <div className="mx-auto w-full max-w-[1280px] px-6 pb-2 lg:pb-3">
-            <div className="max-w-xl">
-              <h1 className="font-display text-2xl font-bold leading-[1.15] text-white drop-shadow-lg lg:text-3xl">
-                We make your <PeopleWord /> our business.
-              </h1>
-              <p
-                className="mt-3 animate-fade-up text-[15px] leading-relaxed text-white/90 [text-shadow:0_1px_8px_rgba(9,31,41,0.8)]"
-                style={{ animationDelay: "0.8s" }}
-              >
-                HR strategy, talent and change — built around your business, in
-                Kingston and across the Caribbean.
-              </p>
-              <div
-                className="mt-4 flex animate-fade-up flex-wrap items-center gap-3"
-                style={{ animationDelay: "1.6s" }}
-              >
-                <Link
-                  to="/services"
-                  className="group rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand shadow-lg transition-all hover:-translate-y-0.5 hover:bg-slate-100"
-                >
-                  Our services
-                  <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* scrolling capability marquee */}
-      <Marquee />
-
-      {/* ============ WHY HRPPI — strength pillars ============ */}
-      <section className="bg-white pb-12 pt-10 sm:pb-16 sm:pt-12">
-        <div className="mx-auto max-w-[1280px] px-6">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
-              Why HRPPI
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-brand sm:text-5xl">
-              The partner your people deserve
+          <Reveal as="left" className="p-8 sm:p-12">
+            <Eyebrow label={approach.eyebrow} tone="light" />
+            <h2 className="mt-4 font-display text-fluid-h2 font-bold text-white">
+              {approach.titleLead}
+              <br />
+              <AccentWord className="text-ember" delay={300}>
+                {approach.titleAccent}
+              </AccentWord>
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-slate-600">
-              Seasoned expertise and a hands-on, tailored approach — here's what
-              working with us means.
-            </p>
           </Reveal>
+        </div>
 
-          <div className="mt-12 grid gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-            {pillars.map((p, i) => (
+        {/* right: three pillars on deep teal */}
+        <div className="bg-deep px-8 py-12 sm:px-12 sm:py-16">
+          <div className="grid gap-10 sm:grid-cols-3 sm:gap-0">
+            {approach.points.map((p, i) => (
               <Reveal
                 key={p.title}
-                delay={i * 100}
-                className="group rounded-2xl border border-slate-100 bg-slate-50 p-6 transition-all hover:-translate-y-1 hover:border-slate-200 hover:shadow-lg hover:shadow-slate-200/60"
+                delay={i * 80}
+                className={`text-center sm:px-6 ${
+                  i > 0 ? "sm:border-l sm:border-white/15" : ""
+                }`}
               >
-                <span
-                  className="grid h-11 w-11 place-items-center rounded-xl bg-brand text-white transition-transform group-hover:scale-105"
+                <img
+                  src={p.art}
+                  alt=""
                   aria-hidden
-                >
-                  <Icon name={p.icon} className="h-5 w-5" />
-                </span>
-                <p className="mt-5 font-display text-2xl font-bold text-brand">
+                  className="mx-auto h-12 w-12 [filter:brightness(0)_invert(1)]"
+                />
+                <p className="mt-4 font-display text-fluid-h3 font-bold text-white">
                   {p.title}
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{p.body}</p>
+                <p className="mt-2 text-fluid-sm text-white/70">{p.body}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ============ INTRO — two-column, image shown whole ============ */}
-      <section className="bg-slate-50 py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[1280px] items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
-          <Reveal as="left">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
-              How strong is your workforce?
-            </p>
-            <h2 className="mt-5 font-display text-3xl font-bold leading-[1.08] text-brand sm:text-5xl">
-              Does your HR strategy build real business value?
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-slate-600">
-              Does your human resource strategy build a workforce that is a
-              significant business value? Does it understand your business goals
-              and seamlessly contribute to a healthy bottom line?
-            </p>
-            <p className="mt-4 text-lg leading-relaxed text-slate-600">
-              At{" "}
-              <strong className="font-semibold text-brand">
-                Human Resource Productivity Partners, International
-              </strong>
-              , our job is to ensure that throughout your company, your human
-              resource fits the needs, goals, and aims of your business.
-            </p>
-            <a
-              href={site.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-white shadow-lg shadow-brand/15 transition-all hover:-translate-y-0.5 hover:bg-brand-700"
-            >
-              Book a free intro call
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </a>
+      {/* ==================== SERVICES ==================== */}
+      <section id="services" className="scroll-mt-24 bg-sand py-section">
+        <div className="mx-auto max-w-shell px-6 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-12">
+            <Reveal className="min-w-0">
+              <Eyebrow label="Our services" />
+              <h2 className="mt-4 font-display text-fluid-h2 font-bold text-deep">
+                What can we help you solve?
+              </h2>
+              <p className="mt-5 max-w-xs text-fluid-sm text-ink/75">
+                Five ways we work with Caribbean organizations. Pick one to see
+                exactly what it includes.
+              </p>
+            </Reveal>
+
+            <ServicePicker />
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== RESULTS ==================== */}
+      {results.show && (
+        <section className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)_minmax(0,0.9fr)]">
+          {/* pull quote over portrait */}
+          <Reveal as="left" className="relative isolate flex min-h-[280px] items-center overflow-hidden lg:min-h-[380px]">
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80"
+              alt="An HR leader smiling during a client conversation"
+              className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 -z-10 bg-deep-900/70" aria-hidden />
+            <figure className="p-8 sm:p-10">
+              <span className="block h-px w-8 bg-ember" aria-hidden />
+              <blockquote className="mt-5 max-w-[15rem] font-display text-2xl font-bold leading-[1.25] text-white">
+                &ldquo;{results.quote}&rdquo;
+              </blockquote>
+              <span className="mt-5 block h-px w-8 bg-ember" aria-hidden />
+            </figure>
           </Reveal>
 
-          <Reveal as="right" delay={120}>
-            {/* image shown whole in a rounded card — never crops anyone */}
-            <img
-              src={site.introImage}
-              alt="HR professionals collaborating in a modern boardroom"
-              className="w-full rounded-3xl object-cover shadow-xl ring-1 ring-slate-200/60"
-            />
-            {/* why-us value points (not a service teaser — services are right below) */}
-            <div className="mt-10 grid gap-5 sm:grid-cols-3">
-              {[
-                {
-                  icon: "strategy",
-                  title: "Built around you",
-                  body: "No templates. Everything fits your goals.",
-                },
-                {
-                  icon: "talent",
-                  title: "A real partner",
-                  body: "We embed with your team, not hand over a binder.",
-                },
-                {
-                  icon: "performance",
-                  title: "Made to last",
-                  body: "We make sure the change actually sticks.",
-                },
-              ].map((f, i) => (
-                <div key={f.title} className="group">
-                  <div
-                    className="grid h-11 w-11 animate-float-sm place-items-center rounded-xl bg-brand-50 text-brand transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:bg-brand group-hover:text-white"
-                    style={{ animationDelay: `${i * 0.6}s` }}
-                  >
-                    <Icon name={f.icon} className="h-6 w-6" />
-                  </div>
-                  <p className="mt-3 font-display font-bold text-brand">{f.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-600">{f.body}</p>
+          {/* stats */}
+          <Reveal delay={80} className="bg-deep px-8 py-12 sm:px-12 sm:py-16">
+            <Eyebrow label={results.eyebrow} tone="light" />
+            <h2 className="mt-4 font-display text-fluid-h2 font-bold text-white">
+              Stronger people.
+              <br />
+              Stronger businesses.
+            </h2>
+            <dl className="mt-10 grid grid-cols-3 gap-0">
+              {results.stats.map((s, i) => (
+                <div
+                  key={s.label}
+                  className={`px-3 first:pl-0 ${i > 0 ? "border-l border-white/15" : ""}`}
+                >
+                  <dt className="font-display text-4xl font-bold leading-none text-white sm:text-5xl">
+                    {s.value}
+                  </dt>
+                  <dd className="mt-3 text-fluid-sm leading-snug text-white/70">{s.label}</dd>
                 </div>
               ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============ SERVICES — tabbed showcase ============ */}
-      <section id="services" className="scroll-mt-24 bg-slate-50 py-16 sm:py-24">
-        <div className="mx-auto max-w-[1280px] px-6">
-          <Reveal className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
-              What we do
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold text-brand sm:text-4xl">
-              What we can do for you
-            </h2>
-            <p className="mt-4 text-lg text-slate-600">
-              Pick a service to see exactly what it includes and what you get.
-            </p>
+            </dl>
           </Reveal>
 
-          <ServicesShowcase />
-        </div>
-      </section>
+          {/* meeting photo */}
+          <Reveal as="right" delay={160} className="relative min-h-[240px] lg:min-h-[380px]">
+            <img
+              src={site.introImage}
+              alt="A team in discussion during a workplace strategy session"
+              className="h-full w-full object-cover object-center"
+            />
+          </Reveal>
+        </section>
+      )}
 
-
-      {/* ============ PROCESS — connected timeline ============ */}
-      <section className="bg-white py-16 sm:py-24">
-        <div className="mx-auto max-w-[1280px] px-6">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-accent">
-                How we work
-              </p>
-              <h2 className="mt-4 font-display text-3xl font-bold text-brand sm:text-4xl">
-                Three steps, real momentum
+      {/* ==================== ABOUT ==================== */}
+      <section id="about" className="scroll-mt-24 bg-sand py-section">
+        <div className="mx-auto max-w-shell px-6 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:gap-14">
+            <Reveal as="left">
+              <Eyebrow label="About us" />
+              <h2 className="mt-4 font-display text-fluid-h2 font-bold text-deep">
+                Strengthening your people capacity is{" "}
+                <AccentWord className="text-ember-ink" delay={350}>
+                  our business
+                </AccentWord>
+                .
               </h2>
-            </div>
-            <p className="max-w-sm text-slate-600">
-              A clear path from understanding your business to embedding lasting
-              change, with no guesswork and no jargon.
-            </p>
-          </div>
+              <p className="mt-6 max-w-prose text-fluid-base text-ink/75">
+                {site.name} is a registered human resource consulting service
+                operating out of {site.location}. We partner with our clients to
+                build their human resource and improve business value.
+              </p>
+              <Link
+                to="/contacts"
+                className="group mt-8 inline-flex items-center gap-2 rounded-full bg-deep px-7 py-3.5 text-fluid-sm font-semibold text-white shadow-lg shadow-deep/20 transition-all hover:-translate-y-0.5 hover:bg-deep-800"
+              >
+                Get in touch
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </Reveal>
 
-          <div className="relative mt-12 sm:mt-16">
-            {/* connecting line */}
-            <div className="absolute left-0 right-0 top-7 hidden h-px bg-slate-200 md:block" aria-hidden />
-            <div className="grid gap-10 md:grid-cols-3 md:gap-8">
-              {process.map((p, i) => (
-                <Reveal key={p.step} delay={i * 150} className="relative">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-slate-200 bg-white font-display text-lg font-bold text-brand shadow-sm">
-                    {p.step}
+            <Reveal as="right" delay={120}>
+              <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-deep/5">
+                <div className="relative">
+                  <img
+                    src={director.photo}
+                    alt={director.photoAlt}
+                    className="aspect-[4/5] w-full object-cover object-top sm:aspect-[5/4]"
+                  />
+                </div>
+                <div className="p-7 sm:p-9">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-eyebrow font-semibold uppercase text-ink/70">
+                    Led by
+                  </span>
+                  <span className="rounded-full bg-ember-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-ember-ink">
+                    {director.role}
+                  </span>
+                </div>
+                <p className="mt-4 font-display text-2xl font-bold text-deep">
+                  {director.name}
+                </p>
+                <p className="mt-3 text-fluid-sm text-ink/75">
+                  {director.summary}
+                </p>
+                <ul className="mt-6 space-y-3 border-t border-deep/10 pt-6">
+                  {director.credentials.map((c) => (
+                    <li
+                      key={c}
+                      className="flex items-start gap-3 text-fluid-sm leading-snug text-ink/75"
+                    >
+                      <span
+                        className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-ember"
+                        aria-hidden
+                      />
+                      <span>{c}</span>
+                    </li>
+                  ))}
+                </ul>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== INSIGHTS ==================== */}
+      <section className="bg-sand pb-section pt-6">
+        <div className="mx-auto max-w-shell px-6 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:gap-14">
+            <Reveal>
+              <Eyebrow label={insights.eyebrow} />
+              <h2 className="mt-4 font-display text-fluid-h2 font-bold text-deep">
+                {insights.titleLead}
+                <br />
+                {insights.titleRest}
+              </h2>
+              <p className="mt-5 max-w-xs text-fluid-sm text-ink/75">
+                {insights.body}
+              </p>
+              <Link
+                to="/insights"
+                className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-fluid-sm font-semibold text-deep"
+              >
+                View all insights
+                <span className="text-ember-ink transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </Reveal>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {insights.posts.map((post, i) => (
+                <Reveal
+                  key={post.title}
+                  delay={i * 80}
+                  className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-deep/5 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10"
+                >
+                  <img
+                    src={post.image}
+                    alt={post.imageAlt}
+                    className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="flex flex-1 flex-col p-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-widest text-ink/70">
+                      {post.date}
+                    </p>
+                    <h3 className="mt-2 font-display text-fluid-h3 font-bold text-deep">
+                      {post.title}
+                    </h3>
+                    <Link
+                      to={post.to}
+                      className="mt-auto inline-flex min-h-[44px] items-center pt-5 text-fluid-sm font-semibold text-deep"
+                    >
+                      Read more{" "}
+                      <span className="text-ember-ink transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
+                    </Link>
                   </div>
-                  <h3 className="mt-5 font-display text-2xl font-bold text-brand sm:mt-6">{p.title}</h3>
-                  <p className="mt-3 leading-relaxed text-slate-600">{p.body}</p>
                 </Reveal>
               ))}
             </div>
@@ -265,102 +364,37 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* ============ ABOUT / CTA — branded panel ============ */}
-      <section id="about" className="relative scroll-mt-24 overflow-hidden bg-brand py-16 sm:py-28">
-        {/* concentric ring motif echoing the globe logo */}
-        <div
-          className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full border border-white/10"
+      {/* ==================== CLOSING CTA ==================== */}
+      <section className="relative isolate overflow-hidden">
+        <img
+          src={site.ctaImage}
+          alt=""
           aria-hidden
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
-        <div
-          className="pointer-events-none absolute -right-10 -top-10 h-72 w-72 rounded-full border border-white/10"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -bottom-32 -left-20 h-96 w-96 rounded-full border border-white/10"
-          aria-hidden
-        />
-        <div className="relative mx-auto grid max-w-[1280px] items-stretch gap-10 px-6 sm:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          {/* Left: about copy + CTA card (keeps the column heights balanced) */}
-          <Reveal as="left" className="flex flex-col">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/60">
-              About us
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
-              Strengthening your people capacity is our business
+        <div className="absolute inset-0 -z-10 bg-deep/80" aria-hidden />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-deep/85 via-deep/60 to-ember/40" aria-hidden />
+        <div className="mx-auto flex max-w-shell flex-col gap-8 px-6 py-16 sm:py-20 lg:flex-row lg:items-center lg:justify-between lg:px-10">
+          <Reveal as="left" className="max-w-xl">
+            <Eyebrow label={closingCta.eyebrow} tone="light" />
+            <h2 className="mt-4 font-display text-fluid-h2 font-bold text-white">
+              {closingCta.title}
             </h2>
-            <p className="mt-6 max-w-xl leading-relaxed text-white/80">
-              {site.name} (HRPPI) is a registered human resource consulting service
-              operating out of {site.location}. Our mandate is to partner with our
-              clients to build your human resource and improve your business value.
-            </p>
-
-            <div className="mt-10 rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-8 lg:mt-auto">
-              <p className="font-display text-2xl font-bold text-white">
-                Ready to partner with us?
-              </p>
-              <p className="mt-2 text-white/70">
-                Let's talk about the workforce you want to build.
-              </p>
-              <Link
-                to="/contacts"
-                className="mt-6 inline-block w-full rounded-full bg-white px-8 py-3.5 text-center font-semibold text-brand transition-all hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-xl hover:shadow-black/20 sm:w-auto"
-              >
-                Get in touch
-              </Link>
-            </div>
           </Reveal>
-
-          {/* Right: director credentials — E-E-A-T signal for clients and search/AI engines */}
-          <Reveal as="right" delay={150} className="w-full">
-            <div className="flex h-full flex-col rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur sm:p-8">
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/50">
-                  Led by
-                </p>
-                <span className="rounded-full border border-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent-soft">
-                  {director.role}
-                </span>
-              </div>
-              <p className="mt-3 font-display text-2xl font-bold text-white">
-                {director.name}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/75">
-                {director.summary}
-              </p>
-              <ul className="mt-5 space-y-2.5 border-t border-white/10 pt-5">
-                {director.credentials.map((c) => (
-                  <li key={c} className="flex items-start gap-2.5 text-sm leading-snug text-white/80">
-                    <span
-                      className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-soft"
-                      aria-hidden
-                    />
-                    <span>{c}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <Reveal as="right" delay={120} className="flex flex-col items-start gap-6 lg:items-end">
+            <Link
+              to={closingCta.cta.to}
+              className="group inline-flex min-h-[44px] items-center gap-2 rounded-full bg-ember px-8 py-4 text-fluid-sm font-bold text-ink shadow-xl transition-all hover:-translate-y-0.5 hover:bg-white hover:text-deep"
+            >
+              {closingCta.cta.label}
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+            <ScriptLine tone="light" className="mb-3" delay={300}>
+              {closingCta.script}
+            </ScriptLine>
           </Reveal>
-
-          {/*
-            TODO — RESULTS SECTION (from the site audit):
-            When you have real, client-approved numbers, add a "Results" block here.
-            AI answer engines cite concrete stats. Template:
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl bg-white/10 p-5">
-                <p className="font-display text-3xl font-bold text-white">20%</p>
-                <p className="mt-1 text-sm text-white/70">
-                  Reduction in hiring time for a Kingston logistics firm
-                </p>
-              </div>
-              ...one card per real result...
-            </div>
-
-            Do NOT publish numbers that can't be backed up.
-          */}
         </div>
       </section>
-    </>
+    </div>
   );
 };

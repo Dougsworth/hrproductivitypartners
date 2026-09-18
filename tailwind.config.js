@@ -17,13 +17,75 @@ module.exports = {
           DEFAULT: "#1b6b86",
           soft: "#cae0e8",
         },
+        // --- Official HRPPI tokens (from the asset pack's tokens.css) ---
+        sand: {
+          DEFAULT: "#f8f5ef", // --hrppi-cream
+          50: "#fdfcf9",
+          100: "#f8f5ef",
+          200: "#f0ebe1",
+          300: "#e3dccd",
+        },
+        deep: {
+          DEFAULT: "#063e4a", // --hrppi-deep
+          700: "#063e4a",
+          800: "#05323c",
+          900: "#04262e",
+          teal: "#075d76", // --hrppi-teal
+        },
+        ink: {
+          DEFAULT: "#102f38", // --hrppi-ink — body copy
+        },
+        ember: {
+          // --hrppi-orange. 2.78:1 on cream and 3.03:1 under white text, so
+          // it is a FILL and RULE colour only — never a text colour, and
+          // never with a white label on top.
+          DEFAULT: "#f36b21",
+          600: "#f36b21",
+          700: "#d65a16",
+          100: "#fcede5",
+          // Orange TEXT on a light ground: 4.94:1 on cream. Clears AA.
+          ink: "#b34a10",
+        },
+        tint: {
+          blue: "#e7f3f8",
+          peach: "#fcede5",
+          mint: "#e7f3ec",
+          lilac: "#eeeaf8",
+          cream: "#faf4dd",
+          sky: "#e7f3f8",
+        },
       },
       fontFamily: {
         display: ['"Fraunces"', "ui-serif", "Georgia", "serif"],
         sans: ['"Schibsted Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
+        script: ['"Caveat"', '"Bradley Hand"', "cursive"],
       },
       borderRadius: {
         "4xl": "2rem",
+      },
+      letterSpacing: {
+        eyebrow: "0.28em",
+      },
+      // A 1.25 modular scale, fluid between mobile and desktop. The old jump
+      // from a 67px headline straight to 18px body left nothing in between.
+      fontSize: {
+        eyebrow: ["0.6875rem", { lineHeight: "1", letterSpacing: "0.28em" }],
+        "fluid-sm": ["clamp(0.875rem, 0.84rem + 0.18vw, 0.9375rem)", { lineHeight: "1.6" }],
+        "fluid-base": ["clamp(1rem, 0.96rem + 0.2vw, 1.0625rem)", { lineHeight: "1.65" }],
+        "fluid-lead": ["clamp(1.0625rem, 0.99rem + 0.35vw, 1.1875rem)", { lineHeight: "1.6" }],
+        "fluid-card": ["clamp(1.0625rem, 1.02rem + 0.22vw, 1.125rem)", { lineHeight: "1.3" }],
+        "fluid-h3": ["clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem)", { lineHeight: "1.25" }],
+        "fluid-h2": ["clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem)", { lineHeight: "1.12" }],
+        "fluid-h1": ["clamp(2.5rem, 1.75rem + 3.2vw, 4rem)", { lineHeight: "1.05" }],
+      },
+      maxWidth: {
+        // ~65 characters at fluid-base — the readable measure.
+        prose: "34rem",
+        shell: "82.5rem",
+      },
+      spacing: {
+        // Consistent vertical rhythm between full-width sections.
+        section: "clamp(4rem, 2.5rem + 6vw, 7rem)",
       },
       keyframes: {
         "fade-up": {

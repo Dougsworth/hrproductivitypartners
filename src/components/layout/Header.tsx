@@ -18,24 +18,29 @@ export const Header = () => {
     setOpen(false);
   }, [pathname]);
 
+  const baseLink =
+    "relative inline-flex min-h-[44px] items-center text-fluid-sm font-medium outline-none transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-ember after:transition-all focus-visible:after:w-full";
+
+  const anchorClass = `${baseLink} text-ink/75 hover:text-deep after:w-0 hover:after:w-full`;
+
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `relative text-sm font-medium outline-none transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-brand after:transition-all focus-visible:after:w-full ${
+    `relative text-sm font-medium outline-none transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-ember after:transition-all focus-visible:after:w-full ${
       isActive
-        ? "text-brand after:w-full"
-        : "text-slate-600 hover:text-brand after:w-0 hover:after:w-full"
+        ? "text-deep after:w-full"
+        : "text-ink/75 hover:text-deep after:w-0 hover:after:w-full"
     }`;
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-slate-200 bg-white/95 shadow-md shadow-slate-900/5 backdrop-blur"
-          : "border-b border-slate-100 bg-white"
+          ? "border-b border-deep/10 bg-sand/95 shadow-md shadow-deep/5 backdrop-blur"
+          : "border-b border-transparent bg-sand"
       }`}
     >
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-6 py-3.5 lg:px-10">
         <Link to="/" className="flex items-center gap-3">
-          <span className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-slate-200">
+          <span className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-deep/10">
             <img
               src={site.logo}
               alt={site.shortName}
@@ -44,13 +49,13 @@ export const Header = () => {
           </span>
           <span className="leading-tight">
             {/* Compact wordmark on mobile, full name from sm up */}
-            <span className="block font-display text-lg font-bold text-brand sm:hidden">
+            <span className="block font-display text-lg font-bold text-deep sm:hidden">
               HRPPI
             </span>
-            <span className="hidden font-display text-[15px] font-semibold text-brand sm:block sm:text-base">
+            <span className="hidden font-display text-[15px] font-semibold text-deep sm:block sm:text-base">
               Human Resource Productivity Partners
             </span>
-            <span className="block text-[9px] font-semibold uppercase tracking-[0.3em] text-slate-400 sm:text-[10px] sm:tracking-[0.32em]">
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.3em] text-ink/70 sm:text-[11px] sm:tracking-[0.32em]">
               International
             </span>
           </span>
@@ -58,16 +63,24 @@ export const Header = () => {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-9 md:flex">
-          {nav.map((item) => (
-            <NavLink key={item.to} to={item.to} className={linkClass} end={item.to === "/"}>
-              {item.label}
-            </NavLink>
-          ))}
+          {nav.map((item) =>
+            item.to.includes("#") ? (
+              // In-page anchor: never a "route", so never rendered active.
+              <a key={item.to} href={item.to.replace(/^\//, "")} className={anchorClass}>
+                {item.label}
+              </a>
+            ) : (
+              <NavLink key={item.to} to={item.to} className={linkClass} end={item.to === "/"}>
+                {item.label}
+              </NavLink>
+            ),
+          )}
           <Link
             to="/contacts"
-            className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-lg hover:shadow-brand/30"
+            className="group rounded-full bg-deep px-5 py-3 text-fluid-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-deep-800 hover:shadow-lg hover:shadow-deep/30"
           >
-            Get in touch
+            Let's Talk
+            <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
           </Link>
         </nav>
 
@@ -78,43 +91,56 @@ export const Header = () => {
           onClick={() => setOpen((v) => !v)}
         >
           <span
-            className={`block h-0.5 w-6 bg-brand transition-all ${open ? "translate-y-[7px] rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-deep transition-all ${open ? "translate-y-[7px] rotate-45" : ""}`}
           />
-          <span className={`block h-0.5 w-6 bg-brand transition-all ${open ? "opacity-0" : ""}`} />
+          <span className={`block h-0.5 w-6 bg-deep transition-all ${open ? "opacity-0" : ""}`} />
           <span
-            className={`block h-0.5 w-6 bg-brand transition-all ${open ? "-translate-y-[7px] -rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-deep transition-all ${open ? "-translate-y-[7px] -rotate-45" : ""}`}
           />
         </button>
       </div>
 
       {/* Mobile nav */}
       <div
-        className={`overflow-hidden border-t border-slate-100 transition-[max-height] duration-300 md:hidden ${
-          open ? "max-h-80" : "max-h-0"
+        className={`overflow-hidden border-t border-deep/10 bg-sand transition-[max-height] duration-300 md:hidden ${
+          open ? "max-h-96" : "max-h-0"
         }`}
       >
         <nav className="space-y-1 px-6 py-4">
-          {nav.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === "/"}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `block rounded-lg px-3 py-3 text-base font-medium transition-colors ${
-                  isActive ? "bg-brand-50 text-brand" : "text-slate-600 hover:bg-slate-50 hover:text-brand"
-                }`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
+          {nav.map((item) =>
+            item.to.includes("#") ? (
+              <a
+                key={item.to}
+                href={item.to.replace(/^\//, "")}
+                onClick={() => setOpen(false)}
+                className="block min-h-[44px] rounded-lg px-3 py-3 text-base font-medium text-ink/70 transition-colors hover:bg-white hover:text-deep"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === "/"}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `block min-h-[44px] rounded-lg px-3 py-3 text-base font-medium transition-colors ${
+                    isActive
+                      ? "bg-ember-100 text-deep"
+                      : "text-ink/70 hover:bg-white hover:text-deep"
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ),
+          )}
           <Link
             to="/contacts"
             onClick={() => setOpen(false)}
-            className="mt-2 block rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-white"
+            className="mt-2 block rounded-full bg-deep px-5 py-3 text-center text-sm font-semibold text-white"
           >
-            Get in touch
+            Let's Talk
           </Link>
         </nav>
       </div>

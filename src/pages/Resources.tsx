@@ -127,9 +127,7 @@ export const Resources = () => {
             Book a free intro call and we'll tailor the right approach to your team.
           </p>
           <a
-            href={site.calendly}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contacts"
             className="mt-8 inline-block rounded-full bg-white px-8 py-3.5 font-semibold text-brand transition-all hover:-translate-y-0.5 hover:bg-slate-100"
           >
             Book a free call

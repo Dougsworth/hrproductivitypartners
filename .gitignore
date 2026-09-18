@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Working files — not part of the site
+*.bak
+_to_delete/
+business-development/
