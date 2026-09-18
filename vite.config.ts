@@ -7,7 +7,13 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   publicDir: "./static",
-  base: "./",
+  // Must be absolute. With a relative base the built index.html references
+  // "./assets/index-*.js", which a nested route like /insights/<slug>
+  // resolves to /insights/assets/index-*.js. vercel.json rewrites every
+  // path to index.html, so that returns HTML instead of JS and the page
+  // renders blank. Single-level routes happened to work; the new article
+  // route does not.
+  base: "/",
   css: {
     postcss: {
       plugins: [tailwind()],

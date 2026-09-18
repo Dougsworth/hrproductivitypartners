@@ -261,29 +261,37 @@ export const Home = () => {
             </Reveal>
 
             <Reveal as="right" delay={120}>
-              <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-deep/5">
-                <div className="relative">
+              <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-deep/5 sm:p-9">
+                <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+                  {/* Fixed, modest width: the source is 521px wide, so
+                      rendering at ~176-192px gives ~3x pixel density and
+                      reads sharp. Full-card width was near 1:1 and soft. */}
                   <img
                     src={director.photo}
                     alt={director.photoAlt}
-                    className="aspect-[4/5] w-full object-cover object-top sm:aspect-[5/4]"
+                    width={521}
+                    height={651}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-44 shrink-0 self-center rounded-2xl object-cover object-top shadow-sm ring-1 ring-deep/5 sm:w-40 sm:self-start lg:w-48"
                   />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="text-eyebrow font-semibold uppercase text-ink/70">
+                        Led by
+                      </span>
+                      <span className="rounded-full bg-ember-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-ember-ink">
+                        {director.role}
+                      </span>
+                    </div>
+                    <p className="mt-4 font-display text-2xl font-bold text-deep">
+                      {director.name}
+                    </p>
+                    <p className="mt-3 text-fluid-sm text-ink/75">
+                      {director.summary}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-7 sm:p-9">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-eyebrow font-semibold uppercase text-ink/70">
-                    Led by
-                  </span>
-                  <span className="rounded-full bg-ember-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-ember-ink">
-                    {director.role}
-                  </span>
-                </div>
-                <p className="mt-4 font-display text-2xl font-bold text-deep">
-                  {director.name}
-                </p>
-                <p className="mt-3 text-fluid-sm text-ink/75">
-                  {director.summary}
-                </p>
                 <ul className="mt-6 space-y-3 border-t border-deep/10 pt-6">
                   {director.credentials.map((c) => (
                     <li
@@ -298,7 +306,6 @@ export const Home = () => {
                     </li>
                   ))}
                 </ul>
-                </div>
               </div>
             </Reveal>
           </div>
