@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { services } from "@/data/site";
 import { Reveal } from "@/components/Reveal";
@@ -20,25 +20,52 @@ const TINTS = [
  */
 export const ServicePicker = () => {
   const [active, setActive] = useState(0);
+  const panelRef = useRef<HTMLDivElement>(null);
   const s = services[active];
+
+  /**
+   * On a wide screen the detail panel sits under the cards, in view, so
+   * picking one visibly changes the page. On a phone the panel is a screen
+   * further down: the tap would land, the panel would swap, and nothing the
+   * visitor can see would move. So the panel comes to them.
+   */
+  const choose = (i: number) => {
+    setActive(i);
+    if (window.matchMedia("(min-width: 1024px)").matches) return;
+    window.requestAnimationFrame(() => {
+      panelRef.current?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "start",
+      });
+    });
+  };
 
   return (
     <div className="min-w-0">
+      {/* Five cards will not fit across a phone and are a long stack down
+          one, so they run sideways instead, snapping card to card with the
+          next one peeking in from the right edge. */}
       <div
-        className="grid auto-rows-fr gap-3 grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 xl:gap-4"
+        className="rail -mx-6 flex snap-x snap-mandatory scroll-pl-6 gap-3 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:auto-rows-fr sm:grid-cols-3 sm:overflow-x-visible sm:px-0 sm:pb-0 xl:grid-cols-5 xl:gap-4"
         role="tablist"
         aria-label="Our services"
       >
         {services.map((item, i) => {
           const isActive = i === active;
           return (
-            <Reveal key={item.slug} delay={i * 80} className="h-full">
+            <Reveal
+              key={item.slug}
+              delay={i * 80}
+              className="w-[66%] shrink-0 snap-start sm:h-full sm:w-auto"
+            >
               <button
                 role="tab"
                 aria-selected={isActive}
                 aria-controls="service-detail"
-                onClick={() => setActive(i)}
-                className={`group flex h-full w-full flex-col rounded-2xl p-5 text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:shadow-xl hover:shadow-deep/10 ${
+                onClick={() => choose(i)}
+                className={`group flex h-full w-full flex-col rounded-2xl p-5 text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] hover:-translate-y-1.5 hover:shadow-xl hover:shadow-deep/10 ${
                   TINTS[i % TINTS.length]
                 } ${isActive ? "ring-2 ring-ember ring-offset-2 ring-offset-sand" : ""}`}
               >
@@ -67,13 +94,14 @@ export const ServicePicker = () => {
       <div
         id="service-detail"
         key={active}
+        ref={panelRef}
         role="tabpanel"
         className="mt-6 grid animate-fade-up overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-deep/5 lg:grid-cols-[0.9fr_1.1fr]"
       >
-        <div className="relative min-h-[220px] lg:min-h-full">
+        <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-full">
           <img src={s.image} alt={s.imageAlt} className="h-full w-full object-cover" />
         </div>
-        <div className="p-7 sm:p-10">
+        <div className="p-6 sm:p-10">
           <p className="text-eyebrow font-semibold uppercase text-ember-ink">
             0{active + 1} · What you get
           </p>
@@ -95,6 +123,7 @@ export const ServicePicker = () => {
           </ul>
 
           <Link
+            data-cta
             to="/contacts"
             className="group mt-8 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-deep px-7 py-3.5 text-fluid-sm font-semibold text-white shadow-lg shadow-deep/20 transition-all hover:-translate-y-0.5 hover:bg-deep-800"
           >

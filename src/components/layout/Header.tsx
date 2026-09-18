@@ -66,8 +66,18 @@ export const Header = () => {
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const [pill, setPill] = useState({ left: 0, width: 0, ready: false });
 
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
+  // Pinning the body to open the sheet reports scrollY as 0, which would
+  // otherwise un-condense the header underneath and shift the sheet.
+  const openRef = useRef(open);
+  openRef.current = open;
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      if (openRef.current) return;
+      setScrolled(window.scrollY > 8);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -76,6 +86,35 @@ export const Header = () => {
   useEffect(() => {
     setOpen(false);
   }, [pathname, hash]);
+
+  /**
+   * While the sheet is open the page behind it is pinned at its current
+   * offset rather than left to scroll under your finger, and Escape closes
+   * it. Closing puts you back on the exact line you were reading.
+   */
+  useEffect(() => {
+    if (!open) return;
+
+    const y = window.scrollY;
+    document.body.style.top = `${-y}px`;
+    document.body.classList.add("is-locked");
+    sheetRef.current?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.classList.remove("is-locked");
+      document.body.style.top = "";
+      window.scrollTo(0, y);
+    };
+  }, [open]);
 
   /**
    * Measure the active item and park the ember pill behind it. Re-measured
@@ -104,21 +143,38 @@ export const Header = () => {
       isActive ? "text-deep" : "text-ink/75 hover:text-deep"
     }`;
 
+  // On a phone the bar tightens once you start reading, handing a little
+  // more of a small screen back to the page. The desktop bar is unchanged.
+  const condensed = scrolled && !open;
+
   return (
+    /* The frosted state is dropped while the sheet is open: backdrop-filter
+       would make this element the containing block for the fixed sheet
+       below it. Dropping it also restores the full bar behind the sheet. */
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed inset-x-0 top-0 z-50 pt-[var(--safe-t)] transition-all duration-300 ${
+        condensed
           ? "border-b border-deep/10 bg-sand/95 shadow-md shadow-deep/5 backdrop-blur"
           : "border-b border-transparent bg-sand"
       }`}
     >
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-6 py-3.5 lg:px-10">
+      <div
+        className={`relative z-10 mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-6 transition-[padding] duration-300 lg:px-10 ${
+          condensed ? "py-2 md:py-3.5" : "py-3.5"
+        }`}
+      >
         <Link to="/" className="flex items-center gap-3">
-          <span className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-deep/10">
+          <span
+            className={`grid place-items-center rounded-full ring-1 ring-deep/10 transition-all duration-300 ${
+              condensed ? "h-9 w-9 md:h-11 md:w-11" : "h-11 w-11"
+            }`}
+          >
             <img
               src={site.logo}
               alt={site.shortName}
-              className="h-9 w-9 rounded-full object-contain"
+              className={`rounded-full object-contain transition-all duration-300 ${
+                condensed ? "h-7 w-7 md:h-9 md:w-9" : "h-9 w-9"
+              }`}
             />
           </span>
           <span className="leading-tight">
@@ -129,7 +185,11 @@ export const Header = () => {
             <span className="hidden font-display text-[15px] font-semibold text-deep sm:block sm:text-base">
               Human Resource Productivity Partners
             </span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.3em] text-ink/70 sm:text-[11px] sm:tracking-[0.32em]">
+            <span
+              className={`text-[10px] font-semibold uppercase tracking-[0.3em] text-ink/70 sm:text-[11px] sm:tracking-[0.32em] ${
+                condensed ? "hidden sm:block" : "block"
+              }`}
+            >
               International
             </span>
           </span>
@@ -171,54 +231,98 @@ export const Header = () => {
           </Link>
         </nav>
 
-        {/* Mobile toggle */}
+        {/* Mobile toggle. 44px square: the smallest target a thumb can
+            hit reliably, per the platform guidelines both phones ship. */}
         <button
-          aria-label="Toggle menu"
+          ref={toggleRef}
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+          aria-controls="mobile-menu"
+          className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[5px] rounded-full transition-transform active:scale-90 md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           <span
-            className={`block h-0.5 w-6 bg-deep transition-all ${open ? "translate-y-[7px] rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-deep transition-all duration-300 ${open ? "translate-y-[7px] rotate-45" : ""}`}
           />
-          <span className={`block h-0.5 w-6 bg-deep transition-all ${open ? "opacity-0" : ""}`} />
           <span
-            className={`block h-0.5 w-6 bg-deep transition-all ${open ? "-translate-y-[7px] -rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-deep transition-all duration-300 ${open ? "scale-x-0 opacity-0" : ""}`}
+          />
+          <span
+            className={`block h-0.5 w-6 bg-deep transition-all duration-300 ${open ? "-translate-y-[7px] -rotate-45" : ""}`}
           />
         </button>
       </div>
 
-      {/* Mobile nav */}
-      <div
-        className={`overflow-hidden border-t border-deep/10 bg-sand transition-[max-height] duration-300 md:hidden ${
-          open ? "max-h-96" : "max-h-0"
-        }`}
-      >
-        <nav className="space-y-1 px-6 py-4">
-          {nav.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              onClick={() => setOpen(false)}
-              aria-current={activeTo === item.to ? "page" : undefined}
-              className={`block min-h-[44px] rounded-lg px-3 py-3 text-base font-medium transition-colors ${
-                activeTo === item.to
-                  ? "bg-ember-100 text-deep"
-                  : "text-ink/70 hover:bg-white hover:text-deep"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            to="/contacts"
-            onClick={() => setOpen(false)}
-            className="mt-2 block rounded-full bg-deep px-5 py-3 text-center text-base font-semibold text-white"
+      {/* ---------- Mobile menu ----------
+          A sheet that covers the page rather than an accordion that pushes
+          it down: the view you were on stays exactly where you left it,
+          and the entries arrive in order instead of appearing at once. */}
+      {open && (
+        <div
+          id="mobile-menu"
+          ref={sheetRef}
+          tabIndex={-1}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+          className="sheet-in fixed inset-x-0 bottom-0 top-[var(--header-h)] z-0 flex flex-col overflow-y-auto overscroll-contain border-t border-deep/10 bg-sand outline-none md:hidden"
+        >
+          <nav className="px-6 pt-2">
+            {nav.map((item, i) => {
+              const isActive = activeTo === item.to;
+              return (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  aria-current={isActive ? "page" : undefined}
+                  style={{ animationDelay: `${60 + i * 45}ms` }}
+                  className="sheet-item flex items-center gap-4 border-b border-deep/10 py-5 transition-transform active:scale-[0.98]"
+                >
+                  {/* The ember rule marks where you are — the same mark the
+                      desktop pill makes, in the form a list can use. */}
+                  <span
+                    aria-hidden
+                    className={`h-px shrink-0 transition-all duration-300 ${
+                      isActive ? "w-8 bg-ember" : "w-3 bg-deep/20"
+                    }`}
+                  />
+                  <span
+                    className={`font-display text-[1.6rem] font-bold leading-none ${
+                      isActive ? "text-ember-ink" : "text-deep"
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div
+            className="sheet-item mt-auto px-6 pb-[calc(var(--safe-b)+1.5rem)] pt-10"
+            style={{ animationDelay: `${60 + nav.length * 45}ms` }}
           >
-            Let's Talk
-          </Link>
-        </nav>
-      </div>
+            <p className="mb-8 -rotate-[3deg] font-script text-[1.7rem] font-semibold leading-tight text-deep/70">
+              {site.tagline}
+            </p>
+            <Link
+              to="/contacts"
+              onClick={() => setOpen(false)}
+              className="flex min-h-[52px] items-center justify-center rounded-full bg-ember px-6 text-base font-bold text-ink shadow-lg shadow-ember/25 transition-transform active:scale-[0.98]"
+            >
+              Book a consultation
+            </Link>
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-4 block break-words text-center text-fluid-sm text-ink/70"
+            >
+              {site.email}
+            </a>
+          </div>
+        </div>
+      )}
+
     </header>
   );
 };

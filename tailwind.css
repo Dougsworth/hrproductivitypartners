@@ -3,15 +3,60 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* The status bar or notch at the top, and the home-indicator strip along
+       the bottom of a gesture-navigation phone. Both are zero everywhere
+       else, so they cost nothing on a desktop. */
+    --safe-t: env(safe-area-inset-top, 0px);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+
+    /* Height of the fixed header at rest, plus whatever the device takes off
+       the top of the viewport. Every view that opens under the header clears
+       it with this, rather than a hard-coded 72px a notch then swallows. */
+    --header-h: calc(72px + var(--safe-t));
+
+    /* The paper ground. Photographs dissolve into this, so the value has to
+       be shared rather than eyeballed per gradient. */
+    --paper: #f8f5ef;
+  }
+
   html {
     scroll-behavior: smooth;
+    /* An in-page anchor should land below the fixed header, not behind it. */
+    scroll-padding-top: calc(var(--header-h) + 1rem);
   }
+
+  /* Sections reveal from 2rem off to the left or right, which until they
+     fire leaves the page draggable a thumb's width sideways — on a phone
+     that reads as a broken layout. `clip` rather than `hidden`, so this
+     does not turn the root into a scroll container and break sticky
+     positioning or scroll-padding above. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   body {
     font-family: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
-    color: #1f2d33;
-    background-color: #faf7f2;
+    color: #102f38;
+    background-color: var(--paper);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* Android paints a grey box over anything you touch; the press states
+       in the markup say it better. */
+    -webkit-tap-highlight-color: transparent;
+    /* Stop iOS inflating body copy when the phone is turned sideways. */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* While a sheet is open the page behind it is pinned rather than
+     scrolled, so closing the sheet puts you back exactly where you were. */
+  body.is-locked {
+    position: fixed;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    width: 100%;
   }
   h1,
   h2,
@@ -108,23 +153,102 @@
    and the paper ground. Applied as pseudo-elements so no extra markup.
    ------------------------------------------------------------------ */
 
-/* Left edge of the hero photo dissolves into the cream column. */
-.edge-fade-l::after {
+/* The photograph dissolves into the paper it sits against. Which edge
+   depends on where the paper actually is: on a phone the copy is stacked
+   above the photo, so the TOP edge fades; from lg up the copy sits beside
+   it, so the LEFT edge fades. One class, because it is one idea. */
+.photo-fade::after {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 22%;
+  inset: 0 0 auto 0;
+  height: 30%;
   pointer-events: none;
-  background: linear-gradient(to right, #faf7f2 0%, rgba(250, 247, 242, 0.65) 40%, rgba(250, 247, 242, 0) 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--paper) 0%,
+    rgba(248, 245, 239, 0.6) 45%,
+    rgba(248, 245, 239, 0) 100%
+  );
+}
+
+@media (min-width: 1024px) {
+  .photo-fade::after {
+    inset: 0 auto 0 0;
+    width: 22%;
+    height: auto;
+    background: linear-gradient(
+      to right,
+      var(--paper) 0%,
+      rgba(248, 245, 239, 0.65) 40%,
+      rgba(248, 245, 239, 0) 100%
+    );
+  }
 }
 
 /* Arrow inside a card nudges right on card hover. */
 .card-arrow {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease;
 }
-.group:hover .card-arrow {
-  transform: translateX(4px);
+@media (hover: hover) {
+  .group:hover .card-arrow {
+    transform: translateX(4px);
+  }
 }
+
+/* ------------------------------------------------------------------
+   Rail — the phone's answer to a grid. Cards run sideways under the
+   thumb and snap, and the last one is deliberately allowed to peek in
+   from the right edge so the gesture announces itself without a caption
+   telling you to swipe.
+
+   The layout itself is plain Tailwind (flex on a phone, grid from sm up);
+   this class only carries what Tailwind has no utility for: no scrollbar
+   gutter, momentum scrolling, and a swipe that cannot escape sideways into
+   the browser's back gesture.
+   ------------------------------------------------------------------ */
+.rail {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* ------------------------------------------------------------------
+   Mobile menu. It arrives as a sheet over the page rather than an
+   accordion shoving the page down, so what you were reading stays put
+   behind it, and the entries arrive in order rather than all at once.
+   ------------------------------------------------------------------ */
+.sheet-in {
+  animation: sheet-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.sheet-item {
+  animation: sheet-item 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheet-item {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 
 /* ------------------------------------------------------------------
    Respect the OS setting. Everything below turns motion off globally

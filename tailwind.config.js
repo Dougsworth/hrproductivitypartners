@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx}"],
+  future: {
+    // On a touch screen there is no pointer to leave, so a tapped element
+    // keeps its :hover state until you tap elsewhere — every card the
+    // visitor touches stays lifted and shadowed behind them. This compiles
+    // every hover: utility behind @media (hover: hover) so phones get the
+    // active: states below instead, and desktop is unchanged.
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       colors: {

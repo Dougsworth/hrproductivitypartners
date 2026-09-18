@@ -58,6 +58,20 @@ const paths: Record<string, React.ReactNode> = {
       <path d="M12 3l2.1 5.4L20 9l-4.2 3.6L17 18l-5-3-5 3 1.2-5.4L4 9l5.9-.6L12 3z" />
     </>
   ),
+
+  // mobile action bar
+  mail: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3.5 7 8.5 6 8.5-6" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M3 10h18M8 3v4M16 3v4" />
+    </>
+  ),
 };
 
 export default function Icon({ name, className }: IconProps) {

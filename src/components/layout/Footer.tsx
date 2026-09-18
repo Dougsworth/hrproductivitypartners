@@ -8,8 +8,11 @@ export const Footer = () => {
         className="absolute -left-32 -top-20 -z-10 h-80 w-80 rounded-full bg-ember/10 blur-[120px]"
         aria-hidden
       />
-      <div className="mx-auto grid max-w-[1280px] gap-12 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="lg:col-span-2">
+      {/* Two columns on a phone rather than four stacked blocks: Explore and
+          Contact are short enough to sit side by side, which keeps the end of
+          the page an arm's length rather than a scroll. */}
+      <div className="mx-auto grid max-w-[1280px] grid-cols-2 gap-x-6 gap-y-10 px-6 py-12 sm:gap-12 sm:py-16 lg:grid-cols-4">
+        <div className="col-span-2">
           <div className="flex items-center gap-3">
             <span className="grid h-12 w-12 place-items-center rounded-full bg-white">
               <img
@@ -60,7 +63,8 @@ export const Footer = () => {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1280px] flex-col gap-1 px-6 py-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+        {/* Clears the home-indicator strip on a gesture-navigation phone. */}
+        <div className="mx-auto flex max-w-[1280px] flex-col gap-1 px-6 pb-[calc(var(--safe-b)+1.5rem)] pt-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} Human Resource Productivity Partners,
             International (HRPPI). All rights reserved.

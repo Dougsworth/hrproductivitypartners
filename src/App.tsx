@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MobileDock } from "@/components/MobileDock";
 import { Home } from "@/pages/Home";
 import { Resources } from "@/pages/Resources";
 import { Contact } from "@/pages/Contact";
@@ -109,12 +110,16 @@ const SwappingViews = () => {
 export const App = () => {
   return (
     <BrowserRouter>
-      <div className="flex min-h-screen flex-col">
+      {/* dvh rather than vh: on a phone, vh is measured against the browser
+          chrome's collapsed state, so a 100vh shell overflows by the height
+          of the address bar until you scroll. */}
+      <div className="flex min-h-[100dvh] flex-col">
         <Header />
         <main className="flex-1">
           <SwappingViews />
         </main>
         <Footer />
+        <MobileDock />
       </div>
     </BrowserRouter>
   );

@@ -7,6 +7,11 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
+    // Mirrors the "@" alias in vite.config.ts. Without it the editor sees
+    // every "@/..." import as unresolved, so anything imported through one
+    // is typed `any` and its callbacks report implicit-any errors.
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] },
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",

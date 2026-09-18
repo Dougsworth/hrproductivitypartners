@@ -16,9 +16,9 @@ export const Article = () => {
            Same band, same geometry as every other view: the words change,
            the frame does not. The article's own photograph simply steps
            into the slot the home page keeps for its hero image. */}
-      <header className="shell-hero relative bg-sand pt-[72px]">
+      <header className="shell-hero relative bg-sand pt-[var(--header-h)]">
         <div className="grid items-stretch lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
-          <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:py-14 lg:pl-[max(1.5rem,calc((100vw-82.5rem)/2+2.5rem))] lg:pr-16">
+          <div className="flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:py-14 lg:pl-[max(1.5rem,calc((100vw-82.5rem)/2+2.5rem))] lg:pr-16">
             <Reveal>
               <Link
                 to="/insights"
@@ -51,7 +51,7 @@ export const Article = () => {
             </Reveal>
           </div>
 
-          <div className="edge-fade-l relative min-h-[240px] lg:min-h-[440px]">
+          <div className="photo-fade relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[440px]">
             <img
               src={article.image}
               alt={article.imageAlt}
@@ -62,7 +62,7 @@ export const Article = () => {
       </header>
 
       {/* ---------- body ---------- */}
-      <div className="mx-auto max-w-shell px-6 pb-section pt-14 lg:px-10">
+      <div className="mx-auto max-w-shell px-6 pb-section pt-10 sm:pt-14 lg:px-10">
         {/* Left-aligned to the same column the headline sits in — centring
             the measure made the body look like a different page. */}
         <div className="max-w-3xl">
@@ -115,7 +115,7 @@ export const Article = () => {
           )}
 
           {/* CTA */}
-          <div className="mt-14 rounded-3xl bg-deep p-8 sm:p-10">
+          <div className="mt-14 rounded-3xl bg-deep p-6 sm:p-10">
             <p className="font-display text-fluid-h3 font-bold text-white">
               Want this working in your organization?
             </p>
@@ -124,6 +124,7 @@ export const Article = () => {
               managers actually use.
             </p>
             <Link
+              data-cta
               to="/contacts"
               className="group mt-7 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-ember px-7 py-3.5 text-fluid-sm font-bold text-ink shadow-lg transition-all hover:-translate-y-0.5 hover:bg-white hover:text-deep"
             >
@@ -144,7 +145,7 @@ export const Article = () => {
                 <Reveal key={a.slug} delay={i * 80}>
                   <Link
                     to={`/insights/${a.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-deep/5 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10"
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-deep/5 transition-all active:scale-[0.98] hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10"
                   >
                     <img
                       src={a.image}

@@ -45,8 +45,10 @@ export const Contact = () => {
   };
 
   const label = "mb-1.5 block text-fluid-sm font-semibold text-deep";
+  // text-fluid-base bottoms out at 16px, which is what stops iOS zooming
+  // the whole page in the moment a field takes focus. Don't drop it.
   const field =
-    "w-full rounded-xl border border-deep/15 bg-white px-4 py-3 text-fluid-base text-ink outline-none transition focus:border-deep/40 focus:ring-4 focus:ring-deep/10";
+    "w-full appearance-none rounded-xl border border-deep/15 bg-white px-4 py-3.5 text-fluid-base text-ink outline-none transition focus:border-deep/40 focus:ring-4 focus:ring-deep/10 sm:py-3";
 
   const details = [
     { label: "Director", value: director.name, note: director.role },
@@ -132,7 +134,7 @@ export const Contact = () => {
           <Reveal as="right">
             <form
               onSubmit={onSubmit}
-              className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-deep/5 sm:p-10"
+              className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-deep/5 sm:p-10"
             >
               <p className="font-display text-fluid-h3 font-bold text-deep">
                 Send us a note
@@ -147,10 +149,15 @@ export const Contact = () => {
                     <label htmlFor="c-name" className={label}>
                       Name
                     </label>
+                    {/* autoComplete and enterKeyHint are what turn a phone
+                        keyboard from a wall of letters into something that
+                        offers the answer and says "next" on the go key. */}
                     <input
                       id="c-name"
                       type="text"
                       required
+                      autoComplete="name"
+                      enterKeyHint="next"
                       value={form.name}
                       onChange={update("name")}
                       className={field}
@@ -164,6 +171,8 @@ export const Contact = () => {
                     <input
                       id="c-org"
                       type="text"
+                      autoComplete="organization"
+                      enterKeyHint="next"
                       value={form.organisation}
                       onChange={update("organisation")}
                       className={field}
@@ -180,6 +189,12 @@ export const Contact = () => {
                     id="c-email"
                     type="email"
                     required
+                    autoComplete="email"
+                    inputMode="email"
+                    autoCapitalize="off"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    enterKeyHint="next"
                     value={form.email}
                     onChange={update("email")}
                     className={field}
@@ -191,20 +206,30 @@ export const Contact = () => {
                   <label htmlFor="c-interest" className={label}>
                     What's this about?
                   </label>
-                  <select
-                    id="c-interest"
-                    value={form.interest}
-                    onChange={update("interest")}
-                    className={field}
-                  >
-                    <option value="">Not sure yet</option>
-                    {services.map((s) => (
-                      <option key={s.title} value={s.title}>
-                        {s.title}
-                      </option>
-                    ))}
-                    <option value="Something else">Something else</option>
-                  </select>
+                  {/* appearance-none is what keeps this the same height and
+                      shape as the inputs on iOS, so the chevron is ours. */}
+                  <div className="relative">
+                    <select
+                      id="c-interest"
+                      value={form.interest}
+                      onChange={update("interest")}
+                      className={`${field} cursor-pointer pr-11`}
+                    >
+                      <option value="">Not sure yet</option>
+                      {services.map((s) => (
+                        <option key={s.title} value={s.title}>
+                          {s.title}
+                        </option>
+                      ))}
+                      <option value="Something else">Something else</option>
+                    </select>
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink/50"
+                    >
+                      ▾
+                    </span>
+                  </div>
                 </div>
 
                 <div>
@@ -224,7 +249,7 @@ export const Contact = () => {
 
                 <button
                   type="submit"
-                  className="group inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-ember px-6 py-3.5 text-fluid-sm font-bold text-ink shadow-lg shadow-ember/25 transition-all hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white"
+                  className="group inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-full bg-ember px-6 text-fluid-sm font-bold text-ink shadow-lg shadow-ember/25 transition-all active:scale-[0.98] hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white sm:min-h-[44px] sm:py-3.5"
                 >
                   Send message
                   <span className="transition-transform group-hover:translate-x-1">→</span>

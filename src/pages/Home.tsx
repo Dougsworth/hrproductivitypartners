@@ -29,14 +29,28 @@ const Eyebrow = ({ label, tone = "dark" }: { label: string; tone?: "dark" | "lig
   </div>
 );
 
+/**
+ * The banner. Full-bleed and stacked under the copy on a phone, beside it
+ * from lg up; `photo-fade` dissolves whichever edge meets the paper.
+ */
+const HeroPhoto = ({ className = "" }: { className?: string }) => (
+  <div className={`photo-fade relative overflow-hidden ${className}`}>
+    <img
+      src={site.heroImage}
+      alt="HR consultants working with a client team in a bright Kingston office"
+      className="h-full w-full object-cover object-center"
+    />
+  </div>
+);
+
 export const Home = () => {
   return (
     <div className="bg-sand">
       {/* ==================== HERO ==================== */}
-      <section className="relative bg-sand pt-[72px]">
+      <section className="relative bg-sand pt-[var(--header-h)]">
         <div className="grid items-stretch lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
           {/* copy */}
-          <div className="flex flex-col justify-center px-6 py-12 sm:px-10 lg:py-16 lg:pl-[max(1.5rem,calc((100vw-82.5rem)/2+2.5rem))] lg:pr-16">
+          <div className="flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:py-16 lg:pl-[max(1.5rem,calc((100vw-82.5rem)/2+2.5rem))] lg:pr-16">
             <Reveal>
               <Eyebrow label={hero.eyebrow} />
               <h1 className="mt-5 font-display text-fluid-h1 font-bold tracking-tight text-deep">
@@ -60,26 +74,40 @@ export const Home = () => {
                 ))}
               </ul>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              {/* Full-width buttons on a phone: one thumb, one target,
+                  no reaching across for a 7rem-wide pill. */}
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <Link
+                  data-cta
                   to={hero.primaryCta.to}
-                  className="group inline-flex min-h-[44px] items-center gap-2 rounded-full bg-ember px-7 py-3.5 text-fluid-sm font-bold text-ink shadow-lg shadow-ember/25 transition-all hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white"
+                  className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-ember px-7 text-fluid-sm font-bold text-ink shadow-lg shadow-ember/25 transition-all active:scale-[0.98] hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white sm:min-h-[44px] sm:justify-start sm:py-3.5"
                 >
                   {hero.primaryCta.label}
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </Link>
                 <a
                   href="#services"
-                  className="inline-flex items-center rounded-full border border-deep/20 px-7 py-3.5 text-fluid-sm font-semibold text-deep transition-all hover:-translate-y-0.5 hover:border-deep/40 hover:bg-white"
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-deep/20 px-7 text-fluid-sm font-semibold text-deep transition-all active:scale-[0.98] hover:-translate-y-0.5 hover:border-deep/40 hover:bg-white sm:min-h-[44px] sm:justify-start sm:py-3.5"
                 >
                   {hero.secondaryCta.label}
                 </a>
               </div>
+            </Reveal>
 
-              {/* stat strip */}
-              <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-6">
+            {/* On a phone the banner belongs in the middle of the hero, not
+                stranded at the end of it: bled to both screen edges, with
+                its top dissolving out of the copy above. */}
+            <HeroPhoto className="-mx-6 mt-10 aspect-[4/3] sm:-mx-10 sm:mt-12 lg:hidden" />
+
+            <Reveal delay={80}>
+              {/* stat strip — three even columns divided by hairlines on a
+                  phone, where the desktop's wide flex row would wrap 2 + 1 */}
+              <dl className="mt-10 grid grid-cols-3 divide-x divide-deep/10 sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-6 sm:divide-x-0">
                 {heroStats.map((s) => (
-                  <div key={s.label} className="flex items-center gap-3">
+                  <div
+                    key={s.label}
+                    className="flex flex-col items-center gap-2 px-2 text-center first:pl-0 last:pr-0 sm:flex-row sm:items-center sm:gap-3 sm:px-0 sm:text-left"
+                  >
                     <Icon name={s.icon} className="h-6 w-6 shrink-0 text-deep" />
                     <div className="leading-tight">
                       <dt className="text-fluid-sm font-semibold text-deep">{s.value}</dt>
@@ -95,15 +123,7 @@ export const Home = () => {
             </Reveal>
           </div>
 
-          {/* photo — left edge dissolves into the cream column so the two
-              halves read as one surface rather than two panels butted together */}
-          <div className="edge-fade-l relative min-h-[300px] lg:min-h-[620px]">
-            <img
-              src={site.heroImage}
-              alt="HR consultants working with a client team in a bright Kingston office"
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
+          <HeroPhoto className="hidden lg:block lg:min-h-[620px]" />
         </div>
       </section>
 
@@ -120,7 +140,7 @@ export const Home = () => {
             className="absolute inset-0 -z-10 bg-gradient-to-t from-deep-900/85 via-deep-900/45 to-deep-900/10"
             aria-hidden
           />
-          <Reveal as="left" className="p-8 sm:p-12">
+          <Reveal as="left" className="p-6 sm:p-12">
             <Eyebrow label={approach.eyebrow} tone="light" />
             <h2 className="mt-4 font-display text-fluid-h2 font-bold text-white">
               {approach.titleLead}
@@ -132,14 +152,17 @@ export const Home = () => {
           </Reveal>
         </div>
 
-        {/* right: three pillars on deep teal */}
-        <div className="bg-deep px-8 py-12 sm:px-12 sm:py-16">
-          <div className="grid gap-10 sm:grid-cols-3 sm:gap-0">
+        {/* right: three pillars on deep teal. Three centred blocks stacked
+            down a phone is most of a screen of scrolling for nine words, so
+            on mobile they read as a divided list instead — icon, then the
+            line it belongs to. */}
+        <div className="bg-deep px-6 py-10 sm:px-12 sm:py-16">
+          <div className="grid divide-y divide-white/15 sm:grid-cols-3 sm:divide-y-0">
             {approach.points.map((p, i) => (
               <Reveal
                 key={p.title}
                 delay={i * 80}
-                className={`text-center sm:px-6 ${
+                className={`flex items-start gap-4 py-5 first:pt-0 last:pb-0 sm:block sm:px-6 sm:py-0 sm:text-center ${
                   i > 0 ? "sm:border-l sm:border-white/15" : ""
                 }`}
               >
@@ -147,12 +170,14 @@ export const Home = () => {
                   src={p.art}
                   alt=""
                   aria-hidden
-                  className="mx-auto h-12 w-12 [filter:brightness(0)_invert(1)]"
+                  className="h-10 w-10 shrink-0 [filter:brightness(0)_invert(1)] sm:mx-auto sm:h-12 sm:w-12"
                 />
-                <p className="mt-4 font-display text-fluid-h3 font-bold text-white">
-                  {p.title}
-                </p>
-                <p className="mt-2 text-fluid-sm text-white/70">{p.body}</p>
+                <div className="min-w-0">
+                  <p className="font-display text-fluid-h3 font-bold text-white sm:mt-4">
+                    {p.title}
+                  </p>
+                  <p className="mt-1 text-fluid-sm text-white/70 sm:mt-2">{p.body}</p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -190,7 +215,7 @@ export const Home = () => {
               className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
             />
             <div className="absolute inset-0 -z-10 bg-deep-900/70" aria-hidden />
-            <figure className="p-8 sm:p-10">
+            <figure className="p-6 sm:p-10">
               <span className="block h-px w-8 bg-ember" aria-hidden />
               <blockquote className="mt-5 max-w-[15rem] font-display text-2xl font-bold leading-[1.25] text-white">
                 &ldquo;{results.quote}&rdquo;
@@ -200,30 +225,38 @@ export const Home = () => {
           </Reveal>
 
           {/* stats */}
-          <Reveal delay={80} className="bg-deep px-8 py-12 sm:px-12 sm:py-16">
+          <Reveal delay={80} className="bg-deep px-6 py-10 sm:px-12 sm:py-16">
             <Eyebrow label={results.eyebrow} tone="light" />
             <h2 className="mt-4 font-display text-fluid-h2 font-bold text-white">
               Stronger people.
               <br />
               Stronger businesses.
             </h2>
-            <dl className="mt-10 grid grid-cols-3 gap-0">
+            <dl className="mt-8 grid grid-cols-3 gap-0 sm:mt-10">
               {results.stats.map((s, i) => (
                 <div
                   key={s.label}
-                  className={`px-3 first:pl-0 ${i > 0 ? "border-l border-white/15" : ""}`}
+                  className={`px-2.5 first:pl-0 sm:px-3 ${i > 0 ? "border-l border-white/15" : ""}`}
                 >
-                  <dt className="font-display text-4xl font-bold leading-none text-white sm:text-5xl">
+                  <dt className="font-display text-[2rem] font-bold leading-none text-white sm:text-5xl">
                     {s.value}
                   </dt>
-                  <dd className="mt-3 text-fluid-sm leading-snug text-white/70">{s.label}</dd>
+                  <dd className="mt-2.5 text-fluid-sm leading-snug text-white/70 sm:mt-3">
+                    {s.label}
+                  </dd>
                 </div>
               ))}
             </dl>
           </Reveal>
 
-          {/* meeting photo */}
-          <Reveal as="right" delay={160} className="relative min-h-[240px] lg:min-h-[380px]">
+          {/* Meeting photo. Held back until lg: on a phone this band already
+              opens on a full-width photograph, and a second one directly
+              under it is a screen of scrolling that says nothing new. */}
+          <Reveal
+            as="right"
+            delay={160}
+            className="relative hidden lg:block lg:min-h-[380px]"
+          >
             <img
               src={site.introImage}
               alt="A team in discussion during a workplace strategy session"
@@ -252,6 +285,7 @@ export const Home = () => {
                 build their human resource and improve business value.
               </p>
               <Link
+                data-cta
                 to="/contacts"
                 className="group mt-8 inline-flex items-center gap-2 rounded-full bg-deep px-7 py-3.5 text-fluid-sm font-semibold text-white shadow-lg shadow-deep/20 transition-all hover:-translate-y-0.5 hover:bg-deep-800"
               >
@@ -335,35 +369,41 @@ export const Home = () => {
               </Link>
             </Reveal>
 
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {/* On a phone these run sideways under the thumb rather than
+                down the page, with the third card left peeking past the
+                right edge so the swipe needs no caption. The whole card is
+                the link — a 90px "Read more" is not a tap target. */}
+            <div className="rail -mx-6 flex snap-x snap-mandatory scroll-pl-6 gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-x-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
               {insights.posts.map((post, i) => (
                 <Reveal
                   key={post.title}
                   delay={i * 80}
-                  className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-deep/5 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10"
+                  className="w-[78%] shrink-0 snap-start sm:w-auto"
                 >
-                  <img
-                    src={post.image}
-                    alt={post.imageAlt}
-                    className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="flex flex-1 flex-col p-5">
-                    <p className="text-[11px] font-semibold uppercase tracking-widest text-ink/70">
-                      {post.date}
-                    </p>
-                    <h3 className="mt-2 font-display text-fluid-h3 font-bold text-deep">
-                      {post.title}
-                    </h3>
-                    <Link
-                      to={post.to}
-                      className="mt-auto inline-flex min-h-[44px] items-center pt-5 text-fluid-sm font-semibold text-deep"
-                    >
-                      Read more{" "}
-                      <span className="text-ember-ink transition-transform group-hover:translate-x-1">
-                        →
+                  <Link
+                    to={post.to}
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-deep/5 transition-all active:scale-[0.98] hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10"
+                  >
+                    <img
+                      src={post.image}
+                      alt={post.imageAlt}
+                      className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="flex flex-1 flex-col p-5">
+                      <p className="text-[11px] font-semibold uppercase tracking-widest text-ink/70">
+                        {post.date}
+                      </p>
+                      <h3 className="mt-2 font-display text-fluid-h3 font-bold text-deep">
+                        {post.title}
+                      </h3>
+                      <span className="mt-auto inline-flex min-h-[44px] items-center pt-5 text-fluid-sm font-semibold text-deep">
+                        Read more{" "}
+                        <span className="text-ember-ink transition-transform group-hover:translate-x-1">
+                          →
+                        </span>
                       </span>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </Reveal>
               ))}
             </div>
@@ -390,6 +430,7 @@ export const Home = () => {
           </Reveal>
           <Reveal as="right" delay={120} className="flex flex-col items-start gap-6 lg:items-end">
             <Link
+              data-cta
               to={closingCta.cta.to}
               className="group inline-flex min-h-[44px] items-center gap-2 rounded-full bg-ember px-8 py-4 text-fluid-sm font-bold text-ink shadow-xl transition-all hover:-translate-y-0.5 hover:bg-white hover:text-deep"
             >

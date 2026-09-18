@@ -30,9 +30,9 @@ export const Insights = () => {
           <Reveal>
             <Link
               to={`/insights/${lead.slug}`}
-              className="group grid overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-deep/5 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10 lg:grid-cols-[1.05fr_1fr]"
+              className="group grid overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-deep/5 transition-all active:scale-[0.99] hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10 lg:grid-cols-[1.05fr_1fr]"
             >
-              <div className="relative min-h-[240px] overflow-hidden lg:min-h-[340px]">
+              <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[340px]">
                 <img
                   src={lead.image}
                   alt={lead.imageAlt}
@@ -42,7 +42,7 @@ export const Insights = () => {
                   Latest
                 </span>
               </div>
-              <div className="flex flex-col justify-center p-7 sm:p-10">
+              <div className="flex flex-col justify-center p-6 sm:p-10">
                 <div className="flex items-center gap-2">
                   <time dateTime={lead.iso} className="text-eyebrow font-semibold uppercase text-ink/70">
                     {lead.date}
@@ -74,13 +74,13 @@ export const Insights = () => {
             <Reveal key={a.slug} delay={i * 90} className="h-full">
               <Link
                 to={`/insights/${a.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-deep/5 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-deep/5 transition-all active:scale-[0.98] hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10"
               >
                 <div className="overflow-hidden">
                   <img
                     src={a.image}
                     alt={a.imageAlt}
-                    className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="h-44 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-48"
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
@@ -112,7 +112,7 @@ export const Insights = () => {
         {/* Keeps the conversion path open without sending anyone to a
             different-looking page. */}
         <Reveal>
-          <div className="mt-14 flex flex-col items-start justify-between gap-6 rounded-3xl bg-deep px-7 py-9 sm:flex-row sm:items-center sm:px-10">
+          <div className="mt-14 flex flex-col items-start justify-between gap-6 rounded-3xl bg-deep px-6 py-8 sm:flex-row sm:items-center sm:px-10 sm:py-9">
             <div>
               <p className="font-display text-fluid-h3 font-bold text-white">
                 Want this thinking applied to your organisation?
@@ -122,8 +122,9 @@ export const Insights = () => {
               </p>
             </div>
             <Link
+              data-cta
               to="/contacts"
-              className="group inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-ember px-7 py-3.5 text-fluid-sm font-bold text-ink transition-all hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white"
+              className="group inline-flex min-h-[52px] w-full shrink-0 items-center justify-center gap-2 rounded-full bg-ember px-7 text-fluid-sm font-bold text-ink transition-all active:scale-[0.98] hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white sm:min-h-[44px] sm:w-auto sm:py-3.5"
             >
               Book a conversation
               <span className="transition-transform group-hover:translate-x-1">→</span>
