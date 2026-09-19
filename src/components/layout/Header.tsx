@@ -3,12 +3,45 @@ import { Link, useLocation } from "react-router-dom";
 import { nav, site } from "@/data/site";
 
 /**
- * Sections on the home page that a nav item can point at, listed in DOM
- * order. The scroll-spy walks this list and keeps the last one whose top
- * edge has passed the reading line, so the nav indicator tracks the page
- * as you scroll rather than only when you click.
+ * Sections on the home page that a nav item can point at, in DOM order.
+ * Only these two are anchors; the bands between and after them — the
+ * results panel, the insights row, the closing call to action — belong to
+ * no nav entry, and the spy below says so rather than leaving the previous
+ * one lit.
  */
 const HOME_SECTIONS = ["services", "about"];
+
+/** Where the fixed header stops and the page a visitor is reading begins. */
+const readingTop = () =>
+  document.querySelector("header")?.getBoundingClientRect().bottom ?? 72;
+
+/**
+ * The section a visitor is actually looking at, or null between sections.
+ *
+ * Measured by probing a single point a third of the way down the readable
+ * area and asking which section covers it. The alternative — remembering
+ * the last section whose top edge went by — never lets go, so "Services"
+ * stayed lit through the results band underneath it and "About" through
+ * everything to the footer, which is the opposite of what a marker is for.
+ */
+const spyHomeSection = (): string | null => {
+  const top = readingTop();
+  const probe = top + (window.innerHeight - top) / 3;
+
+  for (const id of HOME_SECTIONS) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const r = el.getBoundingClientRect();
+    if (r.top <= probe && r.bottom > probe) return `/#${id}`;
+  }
+
+  // Above the first section is the hero, which is Home. Past the last one
+  // there is nothing to mark, and the indicator fades out rather than
+  // pointing at a section the visitor left two screens ago.
+  const first = document.getElementById(HOME_SECTIONS[0]);
+  if (first && first.getBoundingClientRect().top > probe) return "/";
+  return null;
+};
 
 /**
  * Which nav entry should read as "current". On the home page this is driven
@@ -24,28 +57,29 @@ const useActiveNav = () => {
       setSection(null);
       return;
     }
-    const onScroll = () => {
-      // The "reading line" sits just below the fixed header.
-      const line = window.scrollY + 160;
-      let current: string | null = null;
-      for (const id of HOME_SECTIONS) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top + window.scrollY <= line) {
-          current = id;
-        }
-      }
-      setSection(current);
+
+    let frame = 0;
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => setSection(spyHomeSection()));
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+
+    schedule();
+    // Photographs landing move every section under them, so measure again
+    // once the page has settled.
+    const settle = window.setTimeout(schedule, 400);
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+      window.clearTimeout(settle);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
     };
   }, [pathname]);
 
-  if (pathname === "/") return section ? `/#${section}` : "/";
+  if (pathname === "/") return section;
 
   // Longest matching route wins, so /insights/some-article → /insights.
   const match = nav
@@ -138,9 +172,15 @@ export const Header = () => {
     return () => window.removeEventListener("resize", measure);
   }, [activeTo]);
 
+  // Hover used to land on the same text-deep as the current item, so
+  // pointing at About while Services was current read as two current items.
+  // Hovering now gets a plain grey wash; the ember pill stays the one mark
+  // that means "you are here".
   const itemClass = (isActive: boolean) =>
-    `relative z-10 inline-flex min-h-[44px] items-center rounded-full px-4 text-fluid-sm font-medium outline-none transition-colors duration-300 ${
-      isActive ? "text-deep" : "text-ink/75 hover:text-deep"
+    `relative z-10 inline-flex min-h-[44px] items-center rounded-full px-4 text-fluid-sm outline-none transition-colors duration-300 ${
+      isActive
+        ? "font-semibold text-deep"
+        : "font-medium text-ink/75 hover:bg-deep/[0.06] hover:text-ink"
     }`;
 
   // On a phone the bar tightens once you start reading, handing a little
