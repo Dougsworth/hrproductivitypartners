@@ -9,12 +9,13 @@ import {
 } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { MobileDock } from "@/components/MobileDock";
 import { Home } from "@/pages/Home";
 import { Resources } from "@/pages/Resources";
 import { Contact } from "@/pages/Contact";
 import { Article } from "@/pages/Article";
 import { Insights } from "@/pages/Insights";
+import { Services } from "@/pages/Services";
+import "@/styles/shell.css";
 
 /** How long the outgoing view takes to clear. Matches .view-leave in CSS. */
 const EXIT_MS = 190;
@@ -24,6 +25,7 @@ const routeTitle = (pathname: string) => {
   if (pathname === "/") return "Home";
   if (pathname.startsWith("/insights/")) return "Article";
   if (pathname.startsWith("/insights")) return "Insights";
+  if (pathname.startsWith("/services")) return "Services";
   if (pathname.startsWith("/contacts")) return "Contact";
   if (pathname.startsWith("/resources")) return "Resources";
   return "Page";
@@ -98,7 +100,7 @@ const SwappingViews = () => {
           <Route path="/resources" element={<Resources />} />
           <Route path="/insights" element={<Insights />} />
           <Route path="/insights/:slug" element={<Article />} />
-          <Route path="/services" element={<Navigate to="/#services" replace />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/contacts" element={<Contact />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
@@ -119,7 +121,6 @@ export const App = () => {
           <SwappingViews />
         </main>
         <Footer />
-        <MobileDock />
       </div>
     </BrowserRouter>
   );

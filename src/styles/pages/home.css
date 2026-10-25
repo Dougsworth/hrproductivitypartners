@@ -1,0 +1,112 @@
+/* Generated from the approved 2026 design. Scoped to .pg-home. */
+.pg-home{margin:0;background:#FAF8F4}
+.pg-home a{color:#063E4A}
+.pg-home a:hover{color:#0B5B6B}
+.pg-home a:focus-visible{outline:2px solid #063E4A;outline-offset:3px}
+.pg-home .navlink{color:#3E4F53;text-decoration:none;background:linear-gradient(#B34A10,#B34A10) left bottom/0 1px no-repeat;padding-bottom:3px;transition:background-size .35s cubic-bezier(.2,.7,.1,1),color .2s}
+.pg-home .navlink:hover{color:#063E4A;background-size:100% 1px}
+.pg-home .btn{color:#FFFFFF;text-decoration:none;transition:background .25s}
+.pg-home .btn:hover{color:#FFFFFF;background:#0B5B6B !important}
+.pg-home .btnlight{transition:background .25s}
+.pg-home .btnlight:hover{background:#EDE6DA !important}
+.pg-home .textlink{color:#063E4A;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;transition:text-underline-offset .25s,color .25s}
+.pg-home .textlink:hover{text-underline-offset:8px;color:#B34A10}
+.pg-home .hero-img{aspect-ratio:21/10}
+.pg-home .intro{position:sticky;top:48px}
+@keyframes home-panelUp{from{transform:scaleY(0)}to{transform:none}}
+.pg-home .panel{transform-origin:bottom;animation:home-panelUp 1s cubic-bezier(.7,0,.2,1) .35s both}
+.pg-home .people{animation:home-fadeUp 1.1s cubic-bezier(.2,.7,.1,1) .75s both}
+.pg-home .mark{animation:home-fadeUp 1s cubic-bezier(.2,.7,.1,1) 1s both}
+@container (max-width: 520px){.pg-home .fullname{display:none !important}}
+.pg-home .herogrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:center}
+@media (max-width:820px){.pg-home .herogrid{grid-template-columns:minmax(0,1fr);gap:48px}}
+@media (max-width:760px){.pg-home .navlinks, .pg-home .tagline{display:none !important}
+.pg-home .hero-img{aspect-ratio:4/3}
+.pg-home .intro{position:static}}
+@keyframes home-rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes home-fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes home-unveil{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes home-settle{from{transform:scale(1.1)}to{transform:scale(1)}}
+.pg-home .line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.pg-home .line>span{display:block;animation:home-rise 1.1s cubic-bezier(.2,.7,.1,1) both}
+.pg-home .l2>span{animation-delay:.12s}
+.pg-home .fade{animation:home-fadeUp .9s cubic-bezier(.2,.7,.1,1) both}
+.pg-home .d1{animation-delay:.4s}
+.pg-home .d2{animation-delay:.55s}
+.pg-home .d3{animation-delay:.9s}
+@keyframes home-draw{to{stroke-dashoffset:0}}
+.pg-home .drawn path{stroke-dasharray:1;stroke-dashoffset:1;animation:home-draw 1.1s cubic-bezier(.6,0,.2,1) 1s both}
+.pg-home .drawn.late path{animation-delay:1.4s}
+.pg-home .note{font-family:Caveat,cursive;color:#B34A10;line-height:1.1}
+.pg-home .heroimg{animation:home-unveil 1.4s cubic-bezier(.7,0,.2,1) .45s both}
+.pg-home .heroimg img{animation:home-settle 2.4s cubic-bezier(.2,.7,.1,1) .45s both}
+.pg-home .svc{position:relative;transition:padding-left .45s cubic-bezier(.2,.7,.1,1)}
+.pg-home .svc::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:#B34A10;transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.2,.7,.1,1)}
+.pg-home .svc:hover{padding-left:10px}
+.pg-home .svc:hover::before{transform:scaleX(1)}
+.pg-home .svc h3{transition:color .3s}
+.pg-home .svc:hover h3{color:#B34A10 !important}
+.pg-home .svc svg{transition:transform .45s cubic-bezier(.2,.7,.1,1)}
+.pg-home .svc:hover svg{transform:rotate(-8deg) scale(1.08)}
+.pg-home .card .ph{overflow:hidden}
+.pg-home .card img{transition:transform 1s cubic-bezier(.2,.7,.1,1)}
+.pg-home .card:hover img{transform:scale(1.04)}
+.pg-home .card .t{transition:color .25s}
+.pg-home .card:hover .t{color:#B34A10}
+@supports (animation-timeline: view()){.pg-home .unveil{animation:home-unveil linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+.pg-home .grow{animation:home-growx linear both;animation-timeline:view();animation-range:entry 10% cover 40%;transform-origin:left}
+@keyframes home-growx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.pg-home .drift img{animation:home-drift linear both;animation-timeline:view()}
+@keyframes home-drift{from{transform:translateY(-5%) scale(1.12)}to{transform:translateY(5%) scale(1.12)}}}
+@media (max-width:760px){.pg-home .offset{margin-top:0 !important}}
+@media (prefers-reduced-motion: reduce){.pg-home *, .pg-home *::before, .pg-home *::after{animation:none !important;transition:none !important}
+.pg-home .drawn path{stroke-dashoffset:0}}
+.pg-home .slot{perspective:600px;clip-path:inset(0 -0.3em -0.4em -0.3em)}
+.pg-home .sizer{visibility:hidden}
+.pg-home .prism{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:50% 50% -.5em;animation:home-prism 12s cubic-bezier(.7,0,.2,1) 2s infinite}
+.pg-home .face{position:absolute;left:0;top:0;width:100%;height:1.04em;line-height:1.02;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 50% -.5em}
+.pg-home .f0{transform:rotateX(0deg)}
+.pg-home .f1{transform:rotateX(-90deg)}
+.pg-home .f2{transform:rotateX(-180deg)}
+.pg-home .f3{transform:rotateX(-270deg)}
+@keyframes home-prism{0%,20%{transform:rotateX(0deg)}25%,45%{transform:rotateX(90deg)}50%,70%{transform:rotateX(180deg)}75%,95%{transform:rotateX(270deg)}100%{transform:rotateX(360deg)}}
+.pg-home .svc svg{transition:transform .7s cubic-bezier(.2,.7,.1,1) !important}
+.pg-home .svc:hover svg{transform:rotateY(360deg) !important}
+.pg-home .flip{perspective:1200px}
+.pg-home .flipper{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.6,0,.2,1)}
+.pg-home .card:hover .flipper, .pg-home .card:focus-visible .flipper{transform:rotateY(180deg)}
+.pg-home .side{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.pg-home .back{transform:rotateY(180deg);background:#063E4A;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between}
+.pg-home .card img{transition:none !important}
+.pg-home .card:hover img{transform:none !important}
+@supports (animation-timeline: view()){.pg-home .tip{transform-origin:50% 100%;animation:home-tip linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+@keyframes home-tip{from{transform:perspective(500px) rotateX(-85deg);opacity:0}to{transform:none;opacity:1}}
+.pg-home .w{animation:home-lit linear both;animation-timeline:view()}
+@keyframes home-lit{from{opacity:.14}to{opacity:1}}}
+@media (prefers-reduced-motion: reduce){.pg-home .prism{animation:none !important}
+.pg-home .flipper{transition:none !important}}
+@media (max-width:760px){.pg-home .mnav{display:flex !important}
+.pg-home .sec{padding-top:64px !important;padding-bottom:64px !important}
+.pg-home [style*="font-size: 52px"]{font-size:38px !important}
+.pg-home [style*="font-size: 44px"]{font-size:36px !important}
+.pg-home [style*="font-size: 40px"]{font-size:32px !important}
+.pg-home header .btn{padding:9px 14px !important;font-size:14px !important;min-height:40px !important}}
+@media (max-width:820px){.pg-home .herotext{display:contents}
+.pg-home .herogrid{gap:22px !important;padding-top:48px !important}
+.pg-home .herogrid h1{order:1;font-size:44px !important}
+.pg-home .herogrid > figure{order:2;margin:8px 0 4px !important}
+.pg-home .herotext > p{order:3;margin-top:0 !important;font-size:18px !important}
+.pg-home .herotext > .note{order:4;margin-top:6px !important}
+.pg-home .herotext > div:last-child{order:5}
+.pg-home .pair{flex-wrap:nowrap !important;gap:12px !important}
+.pg-home .pair > figure{flex:1 1 0 !important;min-width:0 !important}
+.pg-home .pair > figure:first-child{flex:1.6 1 0 !important}
+.pg-home .pair .offset{margin-top:36px !important}
+.pg-home .pair figcaption{display:none}
+.pg-home #about figure{max-width:78% !important}
+.pg-home #about blockquote{margin-bottom:56px !important}
+.pg-home #insights .card{display:grid !important;grid-template-columns:128px minmax(0,1fr);column-gap:16px;align-items:start}
+.pg-home #insights .card .flip{grid-row:1 / span 2;margin-bottom:0 !important}
+.pg-home #insights .card .t{font-size:20px !important}
+.pg-home #insights [style*="gap: 48px 40px"]{gap:28px !important}
+.pg-home .intro .unveil{display:none}}

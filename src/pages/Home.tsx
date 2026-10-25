@@ -1,448 +1,191 @@
 import { Link } from "react-router-dom";
-import {
-  site,
-  hero,
-  heroStats,
-  approach,
-  results,
-  insights,
-  closingCta,
-  director,
-} from "@/data/site";
-import { Reveal } from "@/components/Reveal";
-import { AccentWord } from "@/components/AccentWord";
-import { ScriptLine } from "@/components/ScriptLine";
-import { ServicePicker } from "@/components/ServicePicker";
-import Icon from "@/components/Icon";
+import "@/styles/pages/home.css";
 
-/** Small ember rule + uppercase label used above every section heading. */
-const Eyebrow = ({ label, tone = "dark" }: { label: string; tone?: "dark" | "light" }) => (
-  <div className="flex items-center gap-3">
-    <span className="h-px w-8 shrink-0 bg-ember" aria-hidden />
-    <span
-      className={`text-eyebrow font-semibold uppercase ${
-        tone === "light" ? "text-white/70" : "text-ink/75"
-      }`}
-    >
-      {label}
-    </span>
-  </div>
-);
-
-/**
- * The banner. Full-bleed and stacked under the copy on a phone, beside it
- * from lg up; `photo-fade` dissolves whichever edge meets the paper.
- */
-const HeroPhoto = ({ className = "" }: { className?: string }) => (
-  <div className={`photo-fade relative overflow-hidden ${className}`}>
-    <img
-      src={site.heroImage}
-      alt="HR consultants working with a client team in a bright Kingston office"
-      className="h-full w-full object-cover object-center"
-    />
-  </div>
-);
-
+/** Home page. */
 export const Home = () => {
   return (
-    <div className="bg-sand">
-      {/* ==================== HERO ==================== */}
-      <section className="relative bg-sand pt-[var(--header-h)]">
-        <div className="grid items-stretch lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
-          {/* copy */}
-          <div className="flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:py-16 lg:pl-[max(1.5rem,calc((100vw-82.5rem)/2+2.5rem))] lg:pr-16">
-            <Reveal>
-              <Eyebrow label={hero.eyebrow} />
-              <h1 className="mt-5 font-display text-fluid-h1 font-bold tracking-tight text-deep">
-                {hero.titleLead}{" "}
-                <AccentWord className="text-ember-ink" delay={550}>
-                  {hero.titleAccent}
-                </AccentWord>
-                .
-              </h1>
-              <p className="mt-6 max-w-prose text-fluid-lead text-ink/75">
-                {hero.subtitle}
-              </p>
-              {/* A visitor should be able to name what we sell within one
-                  screen. The headline sets the tone; this line does the work. */}
-              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
-                {hero.offers.map((o) => (
-                  <li key={o} className="flex items-center gap-2 text-fluid-sm text-ink/75">
-                    <span className="h-1.5 w-1.5 rounded-full bg-ember" aria-hidden />
-                    {o}
-                  </li>
-                ))}
-              </ul>
+    <div className="pg-home" style={{ fontFamily: "'Schibsted Grotesk', system-ui, sans-serif", color: "#0E2F37", background: "#FAF8F4", fontSize: "17px", lineHeight: "1.6", WebkitFontSmoothing: "antialiased", fontFeatureSettings: "'kern' 1", overflowX: "hidden" }}>
+        {/* Header */}
 
-              {/* Full-width buttons on a phone: one thumb, one target,
-                  no reaching across for a 7rem-wide pill. */}
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <Link
-                  data-cta
-                  to={hero.primaryCta.to}
-                  className="group inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-ember px-7 text-fluid-sm font-bold text-ink shadow-lg shadow-ember/25 transition-all active:scale-[0.98] hover:-translate-y-0.5 hover:bg-ember-700 hover:text-white sm:min-h-[44px] sm:justify-start sm:py-3.5"
-                >
-                  {hero.primaryCta.label}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-                <a
-                  href="#services"
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-deep/20 px-7 text-fluid-sm font-semibold text-deep transition-all active:scale-[0.98] hover:-translate-y-0.5 hover:border-deep/40 hover:bg-white sm:min-h-[44px] sm:justify-start sm:py-3.5"
-                >
-                  {hero.secondaryCta.label}
-                </a>
-              </div>
-            </Reveal>
-
-            {/* On a phone the banner belongs in the middle of the hero, not
-                stranded at the end of it: bled to both screen edges, with
-                its top dissolving out of the copy above. */}
-            <HeroPhoto className="-mx-6 mt-10 aspect-[4/3] sm:-mx-10 sm:mt-12 lg:hidden" />
-
-            <Reveal delay={80}>
-              {/* stat strip — three even columns divided by hairlines on a
-                  phone, where the desktop's wide flex row would wrap 2 + 1 */}
-              <dl className="mt-10 grid grid-cols-3 divide-x divide-deep/10 sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-6 sm:divide-x-0">
-                {heroStats.map((s) => (
-                  <div
-                    key={s.label}
-                    className="flex flex-col items-center gap-2 px-2 text-center first:pl-0 last:pr-0 sm:flex-row sm:items-center sm:gap-3 sm:px-0 sm:text-left"
-                  >
-                    <Icon name={s.icon} className="h-6 w-6 shrink-0 text-deep" />
-                    <div className="leading-tight">
-                      <dt className="text-fluid-sm font-semibold text-deep">{s.value}</dt>
-                      <dd className="text-fluid-sm text-ink/75">{s.label}</dd>
-                    </div>
-                  </div>
-                ))}
-              </dl>
-
-              <ScriptLine className="mb-4 mt-12" delay={900}>
-                {hero.script}
-              </ScriptLine>
-            </Reveal>
-          </div>
-
-          <HeroPhoto className="hidden lg:block lg:min-h-[620px]" />
-        </div>
-      </section>
-
-      {/* ==================== APPROACH BAND ==================== */}
-      <section className="grid lg:grid-cols-2">
-        {/* left: coastline + headline */}
-        <div className="relative isolate flex min-h-[260px] items-end overflow-hidden lg:min-h-[340px]">
-          <img
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80"
-            alt="Caribbean coastline with hills meeting the sea"
-            className="absolute inset-0 -z-20 h-full w-full object-cover"
-          />
-          <div
-            className="absolute inset-0 -z-10 bg-gradient-to-t from-deep-900/85 via-deep-900/45 to-deep-900/10"
-            aria-hidden
-          />
-          <Reveal as="left" className="p-6 sm:p-12">
-            <Eyebrow label={approach.eyebrow} tone="light" />
-            <h2 className="mt-4 font-display text-fluid-h2 font-bold text-white">
-              {approach.titleLead}
-              <br />
-              <AccentWord className="text-ember" delay={300}>
-                {approach.titleAccent}
-              </AccentWord>
-            </h2>
-          </Reveal>
-        </div>
-
-        {/* right: three pillars on deep teal. Three centred blocks stacked
-            down a phone is most of a screen of scrolling for nine words, so
-            on mobile they read as a divided list instead — icon, then the
-            line it belongs to. */}
-        <div className="bg-deep px-6 py-10 sm:px-12 sm:py-16">
-          <div className="grid divide-y divide-white/15 sm:grid-cols-3 sm:divide-y-0">
-            {approach.points.map((p, i) => (
-              <Reveal
-                key={p.title}
-                delay={i * 80}
-                className={`flex items-start gap-4 py-5 first:pt-0 last:pb-0 sm:block sm:px-6 sm:py-0 sm:text-center ${
-                  i > 0 ? "sm:border-l sm:border-white/15" : ""
-                }`}
-              >
-                <img
-                  src={p.art}
-                  alt=""
-                  aria-hidden
-                  className="h-10 w-10 shrink-0 [filter:brightness(0)_invert(1)] sm:mx-auto sm:h-12 sm:w-12"
-                />
-                <div className="min-w-0">
-                  <p className="font-display text-fluid-h3 font-bold text-white sm:mt-4">
-                    {p.title}
-                  </p>
-                  <p className="mt-1 text-fluid-sm text-white/70 sm:mt-2">{p.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SERVICES ==================== */}
-      <section id="services" className="scroll-mt-24 bg-sand py-section">
-        <div className="mx-auto max-w-shell px-6 lg:px-10">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-12">
-            <Reveal className="min-w-0">
-              <Eyebrow label="Our services" />
-              <h2 className="mt-4 font-display text-fluid-h2 font-bold text-deep">
-                What can we help you solve?
-              </h2>
-              <p className="mt-5 max-w-xs text-fluid-sm text-ink/75">
-                Five ways we work with Caribbean organizations. Pick one to see
-                exactly what it includes.
-              </p>
-            </Reveal>
-
-            <ServicePicker />
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== RESULTS ==================== */}
-      {results.show && (
-        <section className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)_minmax(0,0.9fr)]">
-          {/* pull quote over portrait */}
-          <Reveal as="left" className="relative isolate flex min-h-[280px] items-center overflow-hidden lg:min-h-[380px]">
-            <img
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80"
-              alt="An HR leader smiling during a client conversation"
-              className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-            />
-            <div className="absolute inset-0 -z-10 bg-deep-900/70" aria-hidden />
-            <figure className="p-6 sm:p-10">
-              <span className="block h-px w-8 bg-ember" aria-hidden />
-              <blockquote className="mt-5 max-w-[15rem] font-display text-2xl font-bold leading-[1.25] text-white">
-                &ldquo;{results.quote}&rdquo;
-              </blockquote>
-              <span className="mt-5 block h-px w-8 bg-ember" aria-hidden />
-            </figure>
-          </Reveal>
-
-          {/* stats */}
-          <Reveal delay={80} className="bg-deep px-6 py-10 sm:px-12 sm:py-16">
-            <Eyebrow label={results.eyebrow} tone="light" />
-            <h2 className="mt-4 font-display text-fluid-h2 font-bold text-white">
-              Stronger people.
-              <br />
-              Stronger businesses.
-            </h2>
-            <dl className="mt-8 grid grid-cols-3 gap-0 sm:mt-10">
-              {results.stats.map((s, i) => (
-                <div
-                  key={s.label}
-                  className={`px-2.5 first:pl-0 sm:px-3 ${i > 0 ? "border-l border-white/15" : ""}`}
-                >
-                  <dt className="font-display text-[2rem] font-bold leading-none text-white sm:text-5xl">
-                    {s.value}
-                  </dt>
-                  <dd className="mt-2.5 text-fluid-sm leading-snug text-white/70 sm:mt-3">
-                    {s.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-
-          {/* Meeting photo. Held back until lg: on a phone this band already
-              opens on a full-width photograph, and a second one directly
-              under it is a screen of scrolling that says nothing new. */}
-          <Reveal
-            as="right"
-            delay={160}
-            className="relative hidden lg:block lg:min-h-[380px]"
-          >
-            <img
-              src={site.introImage}
-              alt="A team in discussion during a workplace strategy session"
-              className="h-full w-full object-cover object-center"
-            />
-          </Reveal>
-        </section>
-      )}
-
-      {/* ==================== ABOUT ==================== */}
-      <section id="about" className="scroll-mt-24 bg-sand py-section">
-        <div className="mx-auto max-w-shell px-6 lg:px-10">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:gap-14">
-            <Reveal as="left">
-              <Eyebrow label="About us" />
-              <h2 className="mt-4 font-display text-fluid-h2 font-bold text-deep">
-                Strengthening your people capacity is{" "}
-                <AccentWord className="text-ember-ink" delay={350}>
-                  our business
-                </AccentWord>
-                .
-              </h2>
-              <p className="mt-6 max-w-prose text-fluid-base text-ink/75">
-                {site.name} is a registered human resource consulting service
-                operating out of {site.location}. We partner with our clients to
-                build their human resource and improve business value.
-              </p>
-              <Link
-                data-cta
-                to="/contacts"
-                className="group mt-8 inline-flex items-center gap-2 rounded-full bg-deep px-7 py-3.5 text-fluid-sm font-semibold text-white shadow-lg shadow-deep/20 transition-all hover:-translate-y-0.5 hover:bg-deep-800"
-              >
-                Get in touch
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </Reveal>
-
-            <Reveal as="right" delay={120}>
-              <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-deep/5 sm:p-9">
-                <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-                  {/* Fixed, modest width: the source is 521px wide, so
-                      rendering at ~176-192px gives ~3x pixel density and
-                      reads sharp. Full-card width was near 1:1 and soft. */}
-                  <img
-                    src={director.photo}
-                    alt={director.photoAlt}
-                    width={521}
-                    height={651}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-44 shrink-0 self-center rounded-2xl object-cover object-top shadow-sm ring-1 ring-deep/5 sm:w-40 sm:self-start lg:w-48"
-                  />
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-eyebrow font-semibold uppercase text-ink/70">
-                        Led by
-                      </span>
-                      <span className="rounded-full bg-ember-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-ember-ink">
-                        {director.role}
-                      </span>
-                    </div>
-                    <p className="mt-4 font-display text-2xl font-bold text-deep">
-                      {director.name}
-                    </p>
-                    <p className="mt-3 text-fluid-sm text-ink/75">
-                      {director.summary}
-                    </p>
-                  </div>
-                </div>
-                <ul className="mt-6 space-y-3 border-t border-deep/10 pt-6">
-                  {director.credentials.map((c) => (
-                    <li
-                      key={c}
-                      className="flex items-start gap-3 text-fluid-sm leading-snug text-ink/75"
-                    >
-                      <span
-                        className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-ember"
-                        aria-hidden
-                      />
-                      <span>{c}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== INSIGHTS ==================== */}
-      <section className="bg-sand pb-section pt-6">
-        <div className="mx-auto max-w-shell px-6 lg:px-10">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:gap-14">
-            <Reveal>
-              <Eyebrow label={insights.eyebrow} />
-              <h2 className="mt-4 font-display text-fluid-h2 font-bold text-deep">
-                {insights.titleLead}
-                <br />
-                {insights.titleRest}
-              </h2>
-              <p className="mt-5 max-w-xs text-fluid-sm text-ink/75">
-                {insights.body}
-              </p>
-              <Link
-                to="/insights"
-                className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-fluid-sm font-semibold text-deep"
-              >
-                View all insights
-                <span className="text-ember-ink transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </Reveal>
-
-            {/* On a phone these run sideways under the thumb rather than
-                down the page, with the third card left peeking past the
-                right edge so the swipe needs no caption. The whole card is
-                the link — a 90px "Read more" is not a tap target. */}
-            <div className="rail -mx-6 flex snap-x snap-mandatory scroll-pl-6 gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-x-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
-              {insights.posts.map((post, i) => (
-                <Reveal
-                  key={post.title}
-                  delay={i * 80}
-                  className="w-[78%] shrink-0 snap-start sm:w-auto"
-                >
-                  <Link
-                    to={post.to}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-deep/5 transition-all active:scale-[0.98] hover:-translate-y-1 hover:shadow-xl hover:shadow-deep/10"
-                  >
-                    <img
-                      src={post.image}
-                      alt={post.imageAlt}
-                      className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="flex flex-1 flex-col p-5">
-                      <p className="text-[11px] font-semibold uppercase tracking-widest text-ink/70">
-                        {post.date}
-                      </p>
-                      <h3 className="mt-2 font-display text-fluid-h3 font-bold text-deep">
-                        {post.title}
-                      </h3>
-                      <span className="mt-auto inline-flex min-h-[44px] items-center pt-5 text-fluid-sm font-semibold text-deep">
-                        Read more{" "}
-                        <span className="text-ember-ink transition-transform group-hover:translate-x-1">
-                          →
-                        </span>
-                      </span>
-                    </div>
-                  </Link>
-                </Reveal>
-              ))}
+        {/* Hero */}
+        <section id="top" className="herogrid" style={{ maxWidth: "1200px", margin: "0 auto", padding: "88px 24px 24px", boxSizing: "border-box" }}>
+          <div className="herotext" style={{ minWidth: "0" }}>
+            <h1 aria-label="Build a workplace people thrive in" style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(44px, 5.6vw, 80px)", lineHeight: "1.02", letterSpacing: "-0.025em", color: "#063E4A", fontVariationSettings: "'opsz' 144" }}>
+              <span className="line"><span>Build a workplace</span></span>
+              <span className="line l2"><span>people <em className="slot" style={{ fontStyle: "italic", color: "#B34A10", position: "relative", whiteSpace: "nowrap", display: "inline-block", verticalAlign: "top" }}><span className="sizer" aria-hidden="true">belong in.</span><span className="prism"><span className="face f0" aria-hidden="true">thrive in.</span><span className="face f1" aria-hidden="true">grow in.</span><span className="face f2" aria-hidden="true">belong in.</span><span className="face f3" aria-hidden="true">stay in.</span></span><svg className="drawn" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true" style={{ position: "absolute", left: "0.04em", bottom: "-0.1em", width: "96%", height: "0.24em", overflow: "visible" }}><path pathLength="1" d="M4 16C70 7 150 5 296 11" fill="none" stroke="#B34A10" strokeWidth="2.5" strokeLinecap="round" vectorEffect="non-scaling-stroke"></path></svg></em></span></span>
+            </h1>
+            <p className="fade d1" style={{ margin: "32px 0 0", maxWidth: "30em", fontSize: "19px", lineHeight: "1.55", color: "#3E4F53" }}>HR consulting from Kingston for organizations across Jamaica and the Caribbean. We strengthen your people, systems and leadership so the business performs and good people stay.</p>
+            <div className="note fade d3" style={{ display: "flex", alignItems: "flex-end", gap: "4px", margin: "28px 0 4px 20px", fontSize: "27px", transform: "rotate(-2deg)" }}>
+              <svg className="drawn late" width="38" height="32" viewBox="0 0 40 34" fill="none" stroke="#B34A10" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginBottom: "-16px", flex: "none" }}><path pathLength="1" d="M37 5C22 3 9 10 6 29"></path><path pathLength="1" d="M1 23l5 7 6-5"></path></svg>
+              <span style={{ paddingBottom: "6px" }}>We make your people our business.</span>
+            </div>
+            <div className="fade d2" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "28px" }}>
+              <Link className="btn" to="/contacts" style={{ background: "#063E4A", padding: "15px 26px", borderRadius: "3px", fontSize: "16px", fontWeight: "500", minHeight: "48px", boxSizing: "border-box", display: "inline-flex", alignItems: "center" }}>Book a consultation</Link>
+              <a className="textlink" href="#services" style={{ fontSize: "16px" }}>See our services</a>
             </div>
           </div>
-        </div>
-      </section>
+          <figure style={{ margin: "0", minWidth: "0" }}>
+            <img className="people" src="/assets/hrppi/team-banner-cutout.webp" alt="The HRPPI team smiling beside the HRPPI sign" width="1400" height="940" style={{ display: "block", width: "100%", height: "auto" }} />
+            <figcaption className="fade d2" style={{ marginTop: "12px", fontSize: "14px", color: "#5A686B" }}>Stronger people. Brighter Caribbean.</figcaption>
+          </figure>
+        </section>
 
-      {/* ==================== CLOSING CTA ==================== */}
-      <section className="relative isolate overflow-hidden">
-        <img
-          src={site.ctaImage}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 -z-10 bg-deep/80" aria-hidden />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-deep/85 via-deep/60 to-ember/40" aria-hidden />
-        <div className="mx-auto flex max-w-shell flex-col gap-8 px-6 py-16 sm:py-20 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-          <Reveal as="left" className="max-w-xl">
-            <Eyebrow label={closingCta.eyebrow} tone="light" />
-            <h2 className="mt-4 font-display text-fluid-h2 font-bold text-white">
-              {closingCta.title}
-            </h2>
-          </Reveal>
-          <Reveal as="right" delay={120} className="flex flex-col items-start gap-6 lg:items-end">
-            <Link
-              data-cta
-              to={closingCta.cta.to}
-              className="group inline-flex min-h-[44px] items-center gap-2 rounded-full bg-ember px-8 py-4 text-fluid-sm font-bold text-ink shadow-xl transition-all hover:-translate-y-0.5 hover:bg-white hover:text-deep"
-            >
-              {closingCta.cta.label}
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-            <ScriptLine tone="light" className="mb-3" delay={300}>
-              {closingCta.script}
-            </ScriptLine>
-          </Reveal>
-        </div>
-      </section>
+        {/* Why HRPPI */}
+        <section className="sec" aria-label="Why HRPPI" style={{ maxWidth: "1200px", margin: "0 auto", padding: "104px 24px 88px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "40px 56px" }}>
+            <div style={{ paddingTop: "22px", position: "relative" }}>
+              <div className="grow" style={{ position: "absolute", top: "0", left: "0", right: "0", height: "1px", background: "#063E4A" }}></div>
+              <h2 style={{ margin: "0 0 10px", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", fontWeight: "400", lineHeight: "1.2", color: "#063E4A" }} className="tip">Rooted in the Caribbean</h2>
+              <p style={{ margin: "0", color: "#4A5A5E" }}>More than 20 years advising organizations across the region, from family businesses to government ministries.</p>
+            </div>
+            <div style={{ paddingTop: "22px", position: "relative" }}>
+              <div className="grow" style={{ position: "absolute", top: "0", left: "0", right: "0", height: "1px", background: "#063E4A" }}></div>
+              <h2 style={{ margin: "0 0 10px", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", fontWeight: "400", lineHeight: "1.2", color: "#063E4A" }} className="tip">Informed by global practice</h2>
+              <p style={{ margin: "0", color: "#4A5A5E" }}>International standards and research, applied to the realities of how work gets done here.</p>
+            </div>
+            <div style={{ paddingTop: "22px", position: "relative" }}>
+              <div className="grow" style={{ position: "absolute", top: "0", left: "0", right: "0", height: "1px", background: "#063E4A" }}></div>
+              <h2 style={{ margin: "0 0 10px", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", fontWeight: "400", lineHeight: "1.2", color: "#063E4A" }} className="tip">Led by our CEO</h2>
+              <p style={{ margin: "0", color: "#4A5A5E" }}>Every engagement is led personally by Shirley Bartley. You work with the person who does the work.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Photo pair */}
+        <section aria-label="HRPPI at work" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px 128px" }}>
+          <div className="pair" style={{ display: "flex", flexWrap: "wrap", gap: "24px", alignItems: "flex-start" }}>
+            <figure style={{ margin: "0", flex: "7 1 460px" }}>
+              <div className="unveil drift" style={{ aspectRatio: "3 / 2", overflow: "hidden", background: "#E9E4DA" }}>
+                <img src="/assets/hrppi/workshop.jpg" alt="A facilitator leading a workshop with a team around a table" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <figcaption style={{ marginTop: "12px", fontSize: "14px", color: "#5A686B" }}>Leadership workshop</figcaption>
+            </figure>
+            <figure className="offset" style={{ margin: "96px 0 0", flex: "4 1 260px" }}>
+              <div className="unveil drift" style={{ aspectRatio: "4 / 5", overflow: "hidden", background: "#E9E4DA" }}>
+                <img src="/assets/hrppi/leader.jpg" alt="A confident professional woman in an office" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+            </figure>
+          </div>
+        </section>
+
+        {/* Services */}
+        <section id="services" style={{ background: "#FFFFFF", borderTop: "1px solid #E2DDD3", borderBottom: "1px solid #E2DDD3" }}>
+          <div className="sec" style={{ maxWidth: "1200px", margin: "0 auto", padding: "112px 24px", display: "flex", flexWrap: "wrap", gap: "48px 96px", alignItems: "flex-start" }}>
+            <div className="intro" style={{ flex: "1 1 280px", maxWidth: "360px" }}>
+              <h2 style={{ margin: "0 0 20px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "52px", lineHeight: "1.05", letterSpacing: "-0.02em", color: "#063E4A" }}>How we help</h2>
+              <p style={{ margin: "0 0 28px", color: "#4A5A5E" }}>Five areas of practice. Each engagement is shaped around the size, sector and goals of your organization.</p>
+              <div className="unveil" style={{ aspectRatio: "4 / 3", overflow: "hidden", marginBottom: "28px", background: "#E9E4DA" }}>
+                <img src="/assets/hrppi/handshake.jpg" alt="Two colleagues shaking hands across a desk" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <Link className="textlink" to="/services" style={{ fontSize: "16px" }}>See every service in detail</Link>
+            </div>
+            <div style={{ flex: "999 1 520px", minWidth: "0" }}>
+              <div className="svc" style={{ borderTop: "1px solid #CFC8BB", padding: "30px 0", display: "flex", flexWrap: "wrap", gap: "10px 40px" }}>
+                <div style={{ flex: "1 1 240px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                  <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: "none", marginTop: "3px" }}><rect x="3" y="4" width="22" height="15" rx="2"></rect><path d="M9 24h10M14 19v5M8 10h6M8 14h10"></path></svg>
+                  <h3 style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "400", fontSize: "25px", lineHeight: "1.25", color: "#063E4A" }}>HR systems and technology</h3>
+                </div>
+                <p style={{ margin: "0", flex: "1.4 1 300px", color: "#4A5A5E" }}>We select and implement HR software so hiring, payroll, performance reviews and training run from one place.</p>
+              </div>
+              <div className="svc" style={{ borderTop: "1px solid #CFC8BB", padding: "30px 0", display: "flex", flexWrap: "wrap", gap: "10px 40px" }}>
+                <div style={{ flex: "1 1 240px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                  <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: "none", marginTop: "3px" }}><path d="M3 24h6v-6h6v-6h6V6h4"></path><path d="M21 3h4v4"></path></svg>
+                  <h3 style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "400", fontSize: "25px", lineHeight: "1.25", color: "#063E4A" }}>Training and leadership development</h3>
+                </div>
+                <p style={{ margin: "0", flex: "1.4 1 300px", color: "#4A5A5E" }}>Programmes that build skills across your teams and prepare managers to lead with confidence.</p>
+              </div>
+              <div className="svc" style={{ borderTop: "1px solid #CFC8BB", padding: "30px 0", display: "flex", flexWrap: "wrap", gap: "10px 40px" }}>
+                <div style={{ flex: "1 1 240px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                  <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: "none", marginTop: "3px" }}><path d="M5 12a9.5 9.5 0 0 1 17-4"></path><path d="M22 3v5h-5"></path><path d="M23 16a9.5 9.5 0 0 1-17 4"></path><path d="M6 25v-5h5"></path></svg>
+                  <h3 style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "400", fontSize: "25px", lineHeight: "1.25", color: "#063E4A" }}>Organizational change</h3>
+                </div>
+                <p style={{ margin: "0", flex: "1.4 1 300px", color: "#4A5A5E" }}>Guidance through restructuring, mergers and new ways of working, with clear communication at every stage.</p>
+              </div>
+              <div className="svc" style={{ borderTop: "1px solid #CFC8BB", padding: "30px 0", display: "flex", flexWrap: "wrap", gap: "10px 40px" }}>
+                <div style={{ flex: "1 1 240px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                  <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: "none", marginTop: "3px" }}><path d="M14 23.5S4.5 18 4.5 11A5 5 0 0 1 14 8.5 5 5 0 0 1 23.5 11c0 7-9.5 12.5-9.5 12.5z"></path></svg>
+                  <h3 style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "400", fontSize: "25px", lineHeight: "1.25", color: "#063E4A" }}>Employee engagement and retention</h3>
+                </div>
+                <p style={{ margin: "0", flex: "1.4 1 300px", color: "#4A5A5E" }}>Practical measures that help people feel valued, do their best work and choose to stay.</p>
+              </div>
+              <div className="svc" style={{ borderTop: "1px solid #CFC8BB", borderBottom: "1px solid #CFC8BB", padding: "30px 0", display: "flex", flexWrap: "wrap", gap: "10px 40px" }}>
+                <div style={{ flex: "1 1 240px", display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                  <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: "none", marginTop: "3px" }}><circle cx="9" cy="10" r="3.5"></circle><circle cx="19" cy="10" r="3.5"></circle><path d="M2.5 23c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5M12.5 23c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"></path></svg>
+                  <h3 style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "400", fontSize: "25px", lineHeight: "1.25", color: "#063E4A" }}>Culture and values</h3>
+                </div>
+                <p style={{ margin: "0", flex: "1.4 1 300px", color: "#4A5A5E" }}>We help you define how your organization works and make it visible in everyday decisions.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About / Leadership */}
+        <section className="sec" id="about" style={{ maxWidth: "1200px", margin: "0 auto", padding: "128px 24px 120px" }}>
+          <blockquote style={{ margin: "0 0 96px", maxWidth: "900px", fontFamily: "Fraunces, Georgia, serif", fontStyle: "italic", fontWeight: "300", fontSize: "clamp(32px, 4.4vw, 58px)", lineHeight: "1.12", letterSpacing: "-0.015em", color: "#063E4A", textIndent: "-0.42em" }} aria-label="Investing in people is the smartest business move of all."><span className="w" style={{ animationRange: "cover 12% cover 20%" }}>“Investing</span> <span className="w" style={{ animationRange: "cover 16% cover 24%" }}>in</span> <span className="w" style={{ animationRange: "cover 20% cover 28%" }}>people</span> <span className="w" style={{ animationRange: "cover 24% cover 32%" }}>is</span> <span className="w" style={{ animationRange: "cover 28% cover 36%" }}>the</span> <span className="w" style={{ animationRange: "cover 32% cover 40%" }}>smartest</span> <span className="w" style={{ animationRange: "cover 36% cover 44%" }}>business</span> <span className="w" style={{ animationRange: "cover 40% cover 48%" }}>move</span> <span className="w" style={{ animationRange: "cover 44% cover 52%" }}>of</span> <span className="w" style={{ animationRange: "cover 48% cover 56%" }}>all.”</span></blockquote>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "48px 96px", alignItems: "flex-start" }}>
+            <figure style={{ margin: "0", flex: "1 1 280px", maxWidth: "420px" }}>
+              <div className="unveil" style={{ aspectRatio: "4 / 5", overflow: "hidden", background: "#EDEDED" }}>
+                <img src="/assets/hrppi/shirley-bartley.jpg" alt="Shirley Bartley, CEO of HRPPI" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
+              </div>
+              <figcaption style={{ marginTop: "14px", fontSize: "14px", color: "#5A686B" }}>Shirley Bartley, CEO</figcaption>
+            </figure>
+            <div style={{ flex: "999 1 420px", minWidth: "0", maxWidth: "640px" }}>
+              <h2 style={{ margin: "0 0 28px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "52px", lineHeight: "1.05", letterSpacing: "-0.02em", color: "#063E4A" }}>Every engagement, led by Shirley</h2>
+              <p style={{ margin: "0 0 20px", fontSize: "18px", color: "#3E4F53" }}>Human Resource Productivity Partners, International is a registered HR consulting practice based in Kingston. We partner with organizations to build their people capability and the business value that follows.</p>
+              <p style={{ margin: "0 0 40px", color: "#4A5A5E" }}>Shirley brings decades of senior corporate and government experience and an internationally accredited background in organizational communication.</p>
+              <ul style={{ listStyle: "none", margin: "0", padding: "0", fontSize: "16px", color: "#3E4F53" }}>
+                <li style={{ borderTop: "1px solid #E2DDD3", padding: "14px 0" }}>Accredited Business Communicator (ABC), IABC, among the first Jamaicans to hold the designation</li>
+                <li style={{ borderTop: "1px solid #E2DDD3", padding: "14px 0" }}>MBA, Business Management; graduate of CARIMAC, University of the West Indies</li>
+                <li style={{ borderTop: "1px solid #E2DDD3", padding: "14px 0" }}>Former senior internal communications manager, Scotiabank</li>
+                <li style={{ borderTop: "1px solid #E2DDD3", borderBottom: "1px solid #E2DDD3", padding: "14px 0" }}>Ten years as Director of Public Relations, Ministry of National Security and Justice</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Insights */}
+        <section id="insights" style={{ borderTop: "1px solid #E2DDD3" }}>
+          <div className="sec" style={{ maxWidth: "1200px", margin: "0 auto", padding: "112px 24px" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", justifyContent: "space-between", gap: "16px", marginBottom: "44px" }}>
+              <h2 style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "52px", lineHeight: "1.05", letterSpacing: "-0.02em", color: "#063E4A" }}>Insights</h2>
+              <Link className="textlink" to="/insights" style={{ fontSize: "16px" }}>View all insights</Link>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "48px 40px" }}>
+              <Link className="card" to="/insights/future-of-work-caribbean" style={{ textDecoration: "none", color: "#0E2F37", display: "block" }}>
+                <div className="flip" style={{ aspectRatio: "3 / 2", marginBottom: "20px" }}><div className="flipper"><div className="side front"><img src="/assets/305fca0a91a3332e30d5d66832dd1957_392x261.jpg" alt="" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} /></div><div className="side back"><p style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "21px", lineHeight: "1.3", color: "#FFFFFF" }}>Jamaica's outsourcing sector shed roughly 12,000 jobs in two years. The cause is productivity, not automation.</p><span style={{ fontSize: "14px", color: "#F2B48A" }}>Read the piece</span></div></div></div>
+                <span style={{ display: "block", fontSize: "14px", color: "#5A686B", marginBottom: "8px" }}>28 August 2026</span>
+                <span className="t" style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", lineHeight: "1.25", color: "#063E4A" }}>The future of work in the Caribbean</span>
+              </Link>
+              <Link className="card" to="/insights/boost-employee-engagement" style={{ textDecoration: "none", color: "#0E2F37", display: "block" }}>
+                <div className="flip" style={{ aspectRatio: "3 / 2", marginBottom: "20px" }}><div className="flipper"><div className="side front"><img src="/assets/2c555ad8375e98a3229a69057a87b7d4_378x252.jpg" alt="" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} /></div><div className="side back"><p style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "21px", lineHeight: "1.3", color: "#FFFFFF" }}>Engagement is the everyday experience of being well managed. Five changes that move it, none needing a budget.</p><span style={{ fontSize: "14px", color: "#F2B48A" }}>Read the piece</span></div></div></div>
+                <span style={{ display: "block", fontSize: "14px", color: "#5A686B", marginBottom: "8px" }}>16 August 2026</span>
+                <span className="t" style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", lineHeight: "1.25", color: "#063E4A" }}>Five ways to strengthen employee engagement</span>
+              </Link>
+              <Link className="card" to="/insights/hr-automation-guide-smbs" style={{ textDecoration: "none", color: "#0E2F37", display: "block" }}>
+                <div className="flip" style={{ aspectRatio: "3 / 2", marginBottom: "20px" }}><div className="flipper"><div className="side front"><img src="/assets/2a474ae2cafb1b462795c8138c8a50c4_392x261.jpg" alt="" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} /></div><div className="side back"><p style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "21px", lineHeight: "1.3", color: "#FFFFFF" }}>Move HR off spreadsheets without buying something you will not use. A four month sequence that works.</p><span style={{ fontSize: "14px", color: "#F2B48A" }}>Read the piece</span></div></div></div>
+                <span style={{ display: "block", fontSize: "14px", color: "#5A686B", marginBottom: "8px" }}>2 August 2026</span>
+                <span className="t" style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", lineHeight: "1.25", color: "#063E4A" }}>HR automation: a practical guide for small and medium businesses</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" style={{ background: "#063E4A", color: "#E8EFEF" }}>
+          <div className="sec" style={{ maxWidth: "1200px", margin: "0 auto", padding: "128px 24px 112px" }}>
+            <p className="note" style={{ margin: "0 0 18px", fontSize: "32px", color: "#F2B48A", transform: "rotate(-2deg)", transformOrigin: "left" }}>Let's build what's next</p>
+            <h2 style={{ margin: "0 0 56px", maxWidth: "14ch", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(44px, 6.4vw, 88px)", lineHeight: "1", letterSpacing: "-0.025em", color: "#FFFFFF" }}>Tell us what you are <em style={{ fontStyle: "italic", color: "#F2B48A" }}>working on.</em></h2>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "32px 64px", alignItems: "flex-end", justifyContent: "space-between", borderTop: "1px solid rgba(232, 239, 239, 0.25)", paddingTop: "28px" }}>
+              <p style={{ margin: "0", maxWidth: "30em", fontSize: "18px", color: "#C9D8DA" }}>Every enquiry is read by Shirley and answered within one business day. If we are not the right fit, we will say so.</p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "20px 28px", alignItems: "center" }}>
+                <Link className="btnlight" to="/contacts" style={{ background: "#FFFFFF", color: "#063E4A", textDecoration: "none", padding: "15px 26px", borderRadius: "3px", fontSize: "16px", fontWeight: "500", minHeight: "48px", boxSizing: "border-box", display: "inline-flex", alignItems: "center" }}>Book a consultation</Link>
+                <a href="mailto:Hrproductivitypartner@gmail.com" style={{ color: "#FFFFFF", fontSize: "16px", textDecoration: "underline", textUnderlineOffset: "5px", textDecorationThickness: "1px" }}>Hrproductivitypartner@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
     </div>
   );
 };
