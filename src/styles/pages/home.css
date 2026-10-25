@@ -21,11 +21,11 @@
 .pg-home .textlink:hover{text-decoration-color:#B34A10}
 .pg-home .note{font-family:Caveat,cursive;color:#B34A10;line-height:1.05}
 .pg-home .hero{position:relative}
-.pg-home .hero-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;align-items:end;padding-top:72px}
-.pg-home .hero-copy{padding-bottom:96px;min-width:0}
-.pg-home .hero-art{position:relative;min-width:0}
-.pg-home .hero-art img{display:block;width:100%;height:auto}
-.pg-home .hero-note{position:absolute;left:4%;bottom:15%;display:flex;align-items:flex-start;gap:6px;font-size:26px;transform:rotate(-4deg)}
+.pg-home .hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:56px;align-items:stretch;padding-top:80px;padding-bottom:88px}
+.pg-home .hero-copy{display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.pg-home .hero-art{position:relative;min-width:0;min-height:380px;overflow:hidden;border-radius:4px 44% 4px 4px / 4px 34% 4px 4px;background:linear-gradient(180deg,#F1E6D8 0%,#E8D8C3 100%)}
+.pg-home .hero-art img{position:absolute;left:0;bottom:0;display:block;width:100%;height:auto}
+.pg-home .hero-note{position:absolute;left:5%;bottom:9%;display:flex;align-items:flex-start;gap:6px;font-size:26px;transform:rotate(-4deg)}
 .pg-home .slot{perspective:600px;clip-path:inset(0 -0.3em -0.4em -0.3em)}
 .pg-home .sizer{visibility:hidden}
 .pg-home .prism{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:50% 50% -.5em;animation:hm-prism 12s cubic-bezier(.7,0,.2,1) 2s infinite}
@@ -109,15 +109,13 @@
 @media (max-width:900px){.pg-home .wrap{padding-left:20px;padding-right:20px}
 .pg-home .navlinks, .pg-home .tagline, .pg-home .hdr .btn, .pg-home-dock .hdr .btn{display:none !important}
 .pg-home .mnav{display:flex !important}
-.pg-home .hero-grid{grid-template-columns:minmax(0,1fr);gap:0;padding-top:32px}
-.pg-home .hero-copy{padding-bottom:20px}
+.pg-home .hero-grid{grid-template-columns:minmax(0,1fr);gap:0;padding-top:32px;padding-bottom:48px}
+.pg-home .hero-art{display:none}
 .pg-home .hero-copy h1{font-size:clamp(42px,11.4vw,52px) !important;line-height:1 !important}
 .pg-home .hero-copy .eyebrow{font-size:10.5px;margin-bottom:16px}
 .pg-home .hero-copy p:not(.eyebrow){font-size:16.5px !important;margin:20px 0 24px !important}
 .pg-home .stack{flex-direction:column;align-items:stretch}
 .pg-home .stack .btn, .pg-home-dock .stack .btn{width:100%;min-height:54px;font-size:16px}
-.pg-home .hero-art{margin:0 -20px}
-.pg-home .hero-note{font-size:19px;left:5%;bottom:13%}
 .pg-home .band-grid{grid-template-columns:minmax(0,1fr);gap:36px;padding-top:56px;padding-bottom:64px}
 .pg-home .band .btn, .pg-home-dock .band .btn{width:100%;min-height:54px}
 .pg-home .why li{grid-template-columns:minmax(0,1fr);padding:20px 0}
