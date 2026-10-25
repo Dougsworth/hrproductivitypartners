@@ -10,22 +10,23 @@ export const Home = () => {
   {/* Hero */}
   <section id="top" className="hero">
     <svg className="drawn" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true" style={{ position: "absolute", inset: "0", width: "100%", height: "100%", pointerEvents: "none", zIndex: "0" }}><path pathLength="1" d="M520 640C600 520 590 400 690 320S900 220 960 130 1060 0 1140 -30" fill="none" stroke="#D7B89A" strokeWidth="1.2" vectorEffect="non-scaling-stroke"></path><path pathLength="1" d="M580 640C660 540 660 430 760 350S960 250 1020 160" fill="none" stroke="#E6D3C0" strokeWidth="1" vectorEffect="non-scaling-stroke"></path></svg>
+    <div className="wrap hero-grid">
     <div className="hero-copy">
       <p className="eyebrow fade d0">People. Organizations. Caribbean. Global.</p>
       <h1 aria-label="Build a workplace people thrive in" style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(44px, 4.6vw, 68px)", lineHeight: "1.02", letterSpacing: "-0.025em", color: "#063E4A" }}>
         <span className="line"><span>Build a workplace</span></span>
         <span className="line l2"><span>people <em className="slot" style={{ fontStyle: "italic", color: "#B34A10", position: "relative", whiteSpace: "nowrap", display: "inline-block", verticalAlign: "top" }}><span className="sizer" aria-hidden="true">belong in.</span><span className="prism"><span className="face f0" aria-hidden="true">thrive in.</span><span className="face f1" aria-hidden="true">grow in.</span><span className="face f2" aria-hidden="true">belong in.</span><span className="face f3" aria-hidden="true">stay in.</span></span><svg className="drawn" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true" style={{ position: "absolute", left: "0.04em", bottom: "-0.1em", width: "96%", height: "0.24em", overflow: "visible" }}><path pathLength="1" d="M4 16C70 7 150 5 296 11" fill="none" stroke="#B34A10" strokeWidth="2.5" strokeLinecap="round" vectorEffect="non-scaling-stroke"></path></svg></em></span></span>
       </h1>
-      <p className="fade d1" style={{ margin: "28px 0 32px", maxWidth: "30em", fontSize: "17px", lineHeight: "1.6", color: "#3E4F53" }}>HR consulting from Kingston for organizations across Jamaica and the Caribbean. We strengthen your people, systems and leadership so the business performs and good people stay.</p>
+      <p className="fade d1" style={{ margin: "26px 0 30px", maxWidth: "30em", fontSize: "17px", lineHeight: "1.6", color: "#3E4F53" }}>HR consulting from Kingston for organizations across Jamaica and the Caribbean. We strengthen your people, systems and leadership so the business performs and good people stay.</p>
       <div className="fade d2 stack" style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
         <Link className="btn btn-dark" to="/contacts">Book a consultation<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
         <Link className="btn btn-line" to="/services">See our services</Link>
       </div>
     </div>
     <div className="hero-art">
-      <div className="hero-arch" aria-hidden="true"></div>
       <div className="hero-img"><img src="/assets/hrppi/team-banner-cutout.webp" alt="The HRPPI team smiling beside the HRPPI sign" width="1400" height="940" /></div>
       <div className="hero-card">Stronger people.<br />Brighter Caribbean.<i></i></div>
+    </div>
     </div>
   </section>
 
@@ -49,29 +50,35 @@ export const Home = () => {
 
   {/* How we help */}
   <section id="services" className="wrap help">
-    <div className="rev">
-      <p className="eyebrow">Practical solutions. Lasting impact.</p>
-      <h2 className="h2big" style={{ margin: "0 0 18px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "54px", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#063E4A" }}>How we help</h2>
-      <p style={{ margin: "0 0 32px", maxWidth: "24em", fontSize: "17px", color: "#3E4F53" }}>From strategy to implementation, we support organizations at every stage of their people journey.</p>
-      <div className="uv" style={{ aspectRatio: "4 / 3", overflow: "hidden", borderRadius: "4px", background: "#E9E1D4" }}>
-        <img src="/assets/hrppi/consult-notes.jpg" alt="Two people taking notes in a meeting over coffee" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+    <div className="help-head">
+      <div className="help-text rev">
+        <div>
+          <p className="eyebrow">Practical solutions. Lasting impact.</p>
+          <h2 className="h2big" style={{ margin: "0 0 18px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "54px", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#063E4A" }}>How we help</h2>
+          <p style={{ margin: "0", maxWidth: "26em", fontSize: "17px", color: "#3E4F53" }}>From strategy to implementation, we support organizations at every stage of their people journey, with one partner from the first conversation to the results.</p>
+        </div>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: "10px", margin: "0 0 0 4px" }}>
+          <p className="note" style={{ margin: "0", fontSize: "24px", transform: "rotate(-3deg)", transformOrigin: "left" }}>Better people practices.<br />Stronger organizations.</p>
+          <svg width="70" height="34" viewBox="0 0 70 34" fill="none" stroke="#B34A10" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" style={{ marginBottom: "14px", flex: "none" }}><path d="M2 30C20 30 40 22 66 4"></path></svg>
+        </div>
       </div>
-      <div style={{ display: "flex", alignItems: "flex-end", gap: "10px", margin: "16px 0 0 6px" }}>
-        <p className="note" style={{ margin: "0", fontSize: "24px", transform: "rotate(-3deg)", transformOrigin: "left" }}>Better people practices.<br />Stronger organizations.</p>
-        <svg width="70" height="34" viewBox="0 0 70 34" fill="none" stroke="#B34A10" strokeWidth="1.2" strokeLinecap="round" aria-hidden="true" style={{ marginBottom: "14px", flex: "none" }}><path d="M2 30C20 30 40 22 66 4"></path></svg>
+      <div className="help-img uv">
+        <img src="/assets/hrppi/consult-notes.jpg" alt="Two people taking notes in a meeting over coffee" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
       </div>
     </div>
-    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+    <div className="svc-grid">
       <Link className="svc-card rev" to="/services#systems"><span className="tile" style={{ background: "#0A3B44" }}><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="14" cy="14" r="3.6"></circle><path d="M14 3.5v3M14 21.5v3M3.5 14h3M21.5 14h3M6.6 6.6l2.1 2.1M19.3 19.3l2.1 2.1M6.6 21.4l2.1-2.1M19.3 8.7l2.1-2.1"></path></svg></span><span><span style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "20px", lineHeight: "1.25", color: "#063E4A" }}>HR systems and technology</span><span style={{ display: "block", marginTop: "4px", fontSize: "14px", lineHeight: "1.5", color: "#5A686B" }}>We select and implement HR software so hiring, payroll, reviews and reporting run from one place.</span></span><svg className="arrow" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
       <Link className="svc-card rev" to="/services#training"><span className="tile" style={{ background: "#B5562A" }}><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 11l12-6 12 6-12 6z"></path><path d="M7 13.5V19c2 2 4.5 3 7 3s5-1 7-3v-5.5M26 11v7"></path></svg></span><span><span style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "20px", lineHeight: "1.25", color: "#063E4A" }}>Training and leadership development</span><span style={{ display: "block", marginTop: "4px", fontSize: "14px", lineHeight: "1.5", color: "#5A686B" }}>Programmes that build skills across your teams and prepare managers to lead with confidence.</span></span><svg className="arrow" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
       <Link className="svc-card rev" to="/services#change"><span className="tile" style={{ background: "#F6E7DA" }}><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B5562A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 23V16M11 23V11M17 23V14M23 23V6"></path></svg></span><span><span style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "20px", lineHeight: "1.25", color: "#063E4A" }}>Organizational change</span><span style={{ display: "block", marginTop: "4px", fontSize: "14px", lineHeight: "1.5", color: "#5A686B" }}>Guidance through restructuring, mergers and new ways of working, with clear communication at every stage.</span></span><svg className="arrow" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
       <Link className="svc-card rev" to="/services#engagement"><span className="tile" style={{ background: "#0A3B44" }}><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="10" r="3.5"></circle><circle cx="19" cy="10" r="3.5"></circle><path d="M2.5 23c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5M12.5 23c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"></path></svg></span><span><span style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "20px", lineHeight: "1.25", color: "#063E4A" }}>Employee engagement and retention</span><span style={{ display: "block", marginTop: "4px", fontSize: "14px", lineHeight: "1.5", color: "#5A686B" }}>Practical strategies that help people feel valued, do their best work and choose to stay.</span></span><svg className="arrow" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
       <Link className="svc-card rev" to="/services#culture"><span className="tile" style={{ background: "#B5562A" }}><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 21h8M11 24.5h6M14 3a7 7 0 0 0-4 12.7c.7.6 1 1.4 1 2.3v.5h6V18c0-.9.4-1.7 1-2.3A7 7 0 0 0 14 3z"></path></svg></span><span><span style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "20px", lineHeight: "1.25", color: "#063E4A" }}>Culture and values</span><span style={{ display: "block", marginTop: "4px", fontSize: "14px", lineHeight: "1.5", color: "#5A686B" }}>We help you define and embed your values and make them real in everyday decisions.</span></span><svg className="arrow" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
+      <Link className="svc-card ask rev" to="/contacts"><span><span style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "20px", lineHeight: "1.25", color: "#FFFFFF" }}>Not sure which fits?</span><span style={{ display: "block", marginTop: "4px", fontSize: "14px", lineHeight: "1.5", color: "#C9D8DA" }}>Tell us the problem and Shirley will point you to the right place, honestly.</span></span><svg className="arrow" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="#E7B48F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
     </div>
   </section>
 
   {/* Leadership */}
   <section id="about" className="lead">
+    <div className="wrap lead-grid">
     <div className="lead-art">
       <div className="lead-img uv"><img src="/assets/hrppi/shirley-bartley.jpg" alt="Shirley Bartley, CEO of HRPPI" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 12%" }} /></div>
       <div className="lead-cap"><strong style={{ fontWeight: "600" }}>Shirley Bartley, CEO</strong><br /><span style={{ color: "#5A686B" }}>HRPPI</span></div>
@@ -83,6 +90,7 @@ export const Home = () => {
       <p style={{ margin: "0 0 16px", maxWidth: "34em", color: "#3E4F53" }}>Human Resource Productivity Partners, International is a registered HR consulting practice based in Kingston. We partner with organizations to build stronger, more capable and more human centred workplaces.</p>
       <p style={{ margin: "0 0 32px", maxWidth: "34em", color: "#3E4F53" }}>Shirley is an Accredited Business Communicator (IABC), among the first Jamaicans to hold the designation, with an MBA and senior roles at Scotiabank and the Ministry of National Security and Justice behind every project.</p>
       <Link className="btn btn-line" to="/contacts">Talk to Shirley<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
+    </div>
     </div>
   </section>
 
