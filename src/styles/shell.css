@@ -220,9 +220,15 @@ body {
   .site-btn svg {
     display: none;
   }
+  .site-header__inner {
+    padding: 14px 20px;
+  }
+  .site-mnav {
+    padding: 0 20px;
+  }
   .site-btn {
-    padding: 9px 14px;
-    font-size: 14px;
+    padding: 8px 14px;
+    font-size: 13.5px;
     min-height: 40px;
   }
 }

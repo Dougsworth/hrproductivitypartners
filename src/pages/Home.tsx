@@ -9,7 +9,7 @@ export const Home = () => {
 
   {/* Hero */}
   <section id="top" className="hero">
-    <svg className="drawn" viewBox="0 0 1440 660" preserveAspectRatio="none" aria-hidden="true" style={{ position: "absolute", inset: "0", width: "100%", height: "100%", pointerEvents: "none", zIndex: "0" }}><path pathLength="1" d="M560 680C640 540 600 400 720 320S960 230 1010 140 1100 10 1180 -20" fill="none" stroke="#D7B89A" strokeWidth="1.2" vectorEffect="non-scaling-stroke"></path><path pathLength="1" d="M620 680C700 560 690 440 800 360S1000 260 1060 170" fill="none" stroke="#E6D3C0" strokeWidth="1" vectorEffect="non-scaling-stroke"></path></svg>
+    <svg className="drawn" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true" style={{ position: "absolute", inset: "0", width: "100%", height: "100%", pointerEvents: "none", zIndex: "0" }}><path pathLength="1" d="M520 640C600 520 590 400 690 320S900 220 960 130 1060 0 1140 -30" fill="none" stroke="#D7B89A" strokeWidth="1.2" vectorEffect="non-scaling-stroke"></path><path pathLength="1" d="M580 640C660 540 660 430 760 350S960 250 1020 160" fill="none" stroke="#E6D3C0" strokeWidth="1" vectorEffect="non-scaling-stroke"></path></svg>
     <div className="hero-copy">
       <p className="eyebrow fade d0">People. Organizations. Caribbean. Global.</p>
       <h1 aria-label="Build a workplace people thrive in" style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(44px, 4.6vw, 68px)", lineHeight: "1.02", letterSpacing: "-0.025em", color: "#063E4A" }}>
@@ -17,19 +17,14 @@ export const Home = () => {
         <span className="line l2"><span>people <em className="slot" style={{ fontStyle: "italic", color: "#B34A10", position: "relative", whiteSpace: "nowrap", display: "inline-block", verticalAlign: "top" }}><span className="sizer" aria-hidden="true">belong in.</span><span className="prism"><span className="face f0" aria-hidden="true">thrive in.</span><span className="face f1" aria-hidden="true">grow in.</span><span className="face f2" aria-hidden="true">belong in.</span><span className="face f3" aria-hidden="true">stay in.</span></span><svg className="drawn" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true" style={{ position: "absolute", left: "0.04em", bottom: "-0.1em", width: "96%", height: "0.24em", overflow: "visible" }}><path pathLength="1" d="M4 16C70 7 150 5 296 11" fill="none" stroke="#B34A10" strokeWidth="2.5" strokeLinecap="round" vectorEffect="non-scaling-stroke"></path></svg></em></span></span>
       </h1>
       <p className="fade d1" style={{ margin: "28px 0 32px", maxWidth: "30em", fontSize: "17px", lineHeight: "1.6", color: "#3E4F53" }}>HR consulting from Kingston for organizations across Jamaica and the Caribbean. We strengthen your people, systems and leadership so the business performs and good people stay.</p>
-      <div className="fade d2" style={{ display: "flex", flexWrap: "wrap", gap: "14px" }}>
+      <div className="fade d2 stack" style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
         <Link className="btn btn-dark" to="/contacts">Book a consultation<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
         <Link className="btn btn-line" to="/services">See our services</Link>
       </div>
-      <div className="offers fade d3">
-        <div><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="14" cy="8" r="3.5"></circle><circle cx="6.5" cy="12" r="2.6"></circle><circle cx="21.5" cy="12" r="2.6"></circle><path d="M8 24c0-3.6 2.7-6.5 6-6.5s6 2.9 6 6.5M2 22c0-2.6 2-4.6 4.5-4.6M26 22c0-2.6-2-4.6-4.5-4.6"></path></svg>People<br />strategy</div>
-        <div><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="14" cy="14" r="3.5"></circle><path d="M14 3v3M14 22v3M3 14h3M22 14h3M6.2 6.2l2.1 2.1M19.7 19.7l2.1 2.1M6.2 21.8l2.1-2.1M19.7 8.3l2.1-2.1"></path></svg>Organizational<br />effectiveness</div>
-        <div><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 24h6v-6h6v-6h6V6h4"></path><path d="M21 3h4v4"></path></svg>Training and<br />leadership</div>
-        <div><svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#B34A10" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="22" height="15" rx="2"></rect><path d="M9 24h10M14 19v5M8 10h6M8 14h10"></path></svg>HR systems and<br />technology</div>
-      </div>
     </div>
     <div className="hero-art">
-      <div className="hero-img"><img src="/assets/hrppi/team-arms.jpg" alt="Four HRPPI colleagues smiling with arms folded" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "35% 20%" }} /></div>
+      <div className="hero-arch" aria-hidden="true"></div>
+      <div className="hero-img"><img src="/assets/hrppi/team-banner-cutout.webp" alt="The HRPPI team smiling beside the HRPPI sign" width="1400" height="940" /></div>
       <div className="hero-card">Stronger people.<br />Brighter Caribbean.<i></i></div>
     </div>
   </section>
@@ -93,7 +88,7 @@ export const Home = () => {
 
   {/* Insights */}
   <section id="insights" className="wrap sec" style={{ paddingTop: "104px", paddingBottom: "112px" }}>
-    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "20px 48px", marginBottom: "44px" }}>
+    <div className="ins-head" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "20px 48px", marginBottom: "44px" }}>
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", gap: "12px 48px" }}>
         <div>
           <p className="eyebrow">Ideas. Resources. Perspectives.</p>
@@ -108,6 +103,7 @@ export const Home = () => {
       <Link className="ins-card rev" to="/insights/boost-employee-engagement"><div className="ph"><div><img src="/assets/2c555ad8375e98a3229a69057a87b7d4_378x252.jpg" alt="" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} /></div><span className="tag">Leadership</span></div><div style={{ padding: "30px 22px 22px", display: "flex", flexDirection: "column", flex: "1" }}><span style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "21px", lineHeight: "1.25", color: "#063E4A" }}>Five ways to boost employee engagement</span><span style={{ display: "block", margin: "10px 0 18px", fontSize: "14px", color: "#5A686B" }}>Practical steps that make a real difference, most of which need no budget.</span><span className="more">Read more<svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></span></div></Link>
       <Link className="ins-card rev" to="/insights/hr-automation-guide-smbs"><div className="ph"><div><img src="/assets/2a474ae2cafb1b462795c8138c8a50c4_392x261.jpg" alt="" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} /></div><span className="tag">HR technology</span></div><div style={{ padding: "30px 22px 22px", display: "flex", flexDirection: "column", flex: "1" }}><span style={{ display: "block", fontFamily: "Fraunces, Georgia, serif", fontSize: "21px", lineHeight: "1.25", color: "#063E4A" }}>HR automation: a practical guide for small and medium businesses</span><span style={{ display: "block", margin: "10px 0 18px", fontSize: "14px", color: "#5A686B" }}>How the right tools save time and improve decision making.</span><span className="more">Read more<svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></span></div></Link>
     </div>
+    <div className="swipe"><span>Swipe for more</span><Link to="/insights">View all insights</Link></div>
   </section>
 
   {/* Call to action */}
