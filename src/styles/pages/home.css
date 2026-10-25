@@ -117,3 +117,5 @@
 .pg-home .why .whyhead{position:static}}
 @media (max-width:760px){.pg-home section[aria-label="Why HRPPI"]{margin-top:56px !important}
 .pg-home section[aria-label="HRPPI at work"]{padding-top:56px !important}}
+.pg-home .ctabg{-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.55) 45%,#000 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.55) 45%,#000 100%);opacity:.85}
+@media (max-width:760px){.pg-home .ctabg{width:100% !important;opacity:.35}}

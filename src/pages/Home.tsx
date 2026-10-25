@@ -71,7 +71,7 @@ export const Home = () => {
             </figure>
             <figure className="offset" style={{ margin: "96px 0 0", flex: "4 1 260px" }}>
               <div className="unveil drift" style={{ aspectRatio: "4 / 5", overflow: "hidden", background: "#E9E4DA" }}>
-                <img src="/assets/hrppi/leader.jpg" alt="A confident professional woman in an office" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/assets/hrppi/team-arms.jpg" alt="Four HRPPI colleagues smiling with arms folded" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "30% top" }} />
               </div>
             </figure>
           </div>
@@ -83,9 +83,10 @@ export const Home = () => {
             <div className="intro" style={{ flex: "1 1 280px", maxWidth: "360px" }}>
               <h2 style={{ margin: "0 0 20px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "52px", lineHeight: "1.05", letterSpacing: "-0.02em", color: "#063E4A" }}>How we help</h2>
               <p style={{ margin: "0 0 28px", color: "#4A5A5E" }}>Five areas of practice. Each engagement is shaped around the size, sector and goals of your organization.</p>
-              <div className="unveil" style={{ aspectRatio: "4 / 3", overflow: "hidden", marginBottom: "28px", background: "#E9E4DA" }}>
-                <img src="/assets/hrppi/handshake.jpg" alt="Two colleagues shaking hands across a desk" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+              <div className="unveil" style={{ aspectRatio: "4 / 3", overflow: "hidden", marginBottom: "14px", background: "#E9E4DA" }}>
+                <img src="/assets/hrppi/consult-notes.jpg" alt="Two people taking notes in a meeting over coffee" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
+              <p className="note helpnote" style={{ margin: "0 0 28px 6px", fontSize: "25px", transform: "rotate(-2deg)", transformOrigin: "left" }}>Better people practices.<br />Stronger organizations.</p>
               <Link className="textlink" to="/services" style={{ fontSize: "16px" }}>See every service in detail</Link>
             </div>
             <div style={{ flex: "999 1 520px", minWidth: "0" }}>
@@ -133,7 +134,7 @@ export const Home = () => {
           <blockquote style={{ margin: "0 0 96px", maxWidth: "900px", fontFamily: "Fraunces, Georgia, serif", fontStyle: "italic", fontWeight: "300", fontSize: "clamp(32px, 4.4vw, 58px)", lineHeight: "1.12", letterSpacing: "-0.015em", color: "#063E4A", textIndent: "-0.42em" }} aria-label="Investing in people is the smartest business move of all."><span className="w" style={{ animationRange: "cover 12% cover 20%" }}>“Investing</span> <span className="w" style={{ animationRange: "cover 16% cover 24%" }}>in</span> <span className="w" style={{ animationRange: "cover 20% cover 28%" }}>people</span> <span className="w" style={{ animationRange: "cover 24% cover 32%" }}>is</span> <span className="w" style={{ animationRange: "cover 28% cover 36%" }}>the</span> <span className="w" style={{ animationRange: "cover 32% cover 40%" }}>smartest</span> <span className="w" style={{ animationRange: "cover 36% cover 44%" }}>business</span> <span className="w" style={{ animationRange: "cover 40% cover 48%" }}>move</span> <span className="w" style={{ animationRange: "cover 44% cover 52%" }}>of</span> <span className="w" style={{ animationRange: "cover 48% cover 56%" }}>all.”</span></blockquote>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "48px 96px", alignItems: "flex-start" }}>
             <figure style={{ margin: "0", flex: "1 1 280px", maxWidth: "420px" }}>
-              <div className="unveil" style={{ aspectRatio: "4 / 5", overflow: "hidden", background: "#EDEDED" }}>
+              <div className="unveil" style={{ aspectRatio: "4 / 5", overflow: "hidden", background: "#EDEDED", borderRadius: "50% 50% 0 0 / 40% 40% 0 0" }}>
                 <img src="/assets/hrppi/shirley-bartley.jpg" alt="Shirley Bartley, CEO of HRPPI" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
               </div>
               <figcaption style={{ marginTop: "14px", fontSize: "14px", color: "#5A686B" }}>Shirley Bartley, CEO</figcaption>
@@ -180,8 +181,9 @@ export const Home = () => {
         </section>
 
         {/* Contact */}
-        <section id="contact" style={{ background: "#063E4A", color: "#E8EFEF" }}>
-          <div className="sec" style={{ maxWidth: "1200px", margin: "0 auto", padding: "128px 24px 112px" }}>
+        <section id="contact" style={{ background: "#063E4A", color: "#E8EFEF", position: "relative", overflow: "hidden" }}>
+          <div className="ctabg" aria-hidden="true" style={{ position: "absolute", top: "0", right: "0", bottom: "0", width: "62%" }}><img src="/assets/hrppi/cta-landscape.jpg" alt="" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "60% 60%" }} /></div>
+          <div className="sec" style={{ maxWidth: "1200px", margin: "0 auto", padding: "128px 24px 112px", position: "relative" }}>
             <p className="note" style={{ margin: "0 0 18px", fontSize: "32px", color: "#F2B48A", transform: "rotate(-2deg)", transformOrigin: "left" }}>Let's build what's next</p>
             <h2 style={{ margin: "0 0 56px", maxWidth: "14ch", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(44px, 6.4vw, 88px)", lineHeight: "1", letterSpacing: "-0.025em", color: "#FFFFFF" }}>Tell us what you are <em style={{ fontStyle: "italic", color: "#F2B48A" }}>working on.</em></h2>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "32px 64px", alignItems: "flex-end", justifyContent: "space-between", borderTop: "1px solid rgba(232, 239, 239, 0.25)", paddingTop: "28px" }}>
