@@ -36,14 +36,13 @@ export const Home = () => {
     <div className="wrap band-grid">
       <div>
         <p className="eyebrow light">Local expertise. Global perspective.</p>
-        <h2 className="h2big" style={{ margin: "0 0 24px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(40px, 4.6vw, 62px)", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#FFFFFF" }}>Caribbean organizations. <em style={{ fontStyle: "italic", color: "#E7B48F" }}>Global possibilities.</em></h2>
-        <p className="desk" style={{ margin: "0 0 32px", maxWidth: "26em", color: "#C9D8DA" }}>Rooted here, informed by global practice.</p>
-        <a className="btn btn-white desk" href="#about">About HRPPI</a>
+        <h2 className="h2big" style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(40px, 4.6vw, 62px)", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#FFFFFF" }}>Caribbean organizations. <em style={{ fontStyle: "italic", color: "#E7B48F" }}>Global possibilities.</em></h2>
+        
       </div>
-      <ul className="why">
-        <li><h3>Rooted in the Caribbean</h3><p>20+ years across the region.</p></li>
-        <li><h3>Informed by global practice</h3><p>International standards, local reality.</p></li>
-        <li><h3>Led by our CEO</h3><p>Shirley runs every engagement.</p></li>
+      <ul className="proof">
+        <li><span className="fig">20+</span><span className="lab">years advising organizations across the Caribbean</span></li>
+        <li><span className="fig">IABC</span><span className="lab">Accredited Business Communicator, among the first in Jamaica</span></li>
+        <li><span className="fig">10 yrs</span><span className="lab">leading public relations at the Ministry of National Security and Justice</span></li>
       </ul>
     </div>
   </section>
@@ -54,8 +53,8 @@ export const Home = () => {
       <div className="help-text">
         <div>
           <p className="eyebrow desk">Practical solutions. Lasting impact.</p>
-          <h2 className="h2big" style={{ margin: "0 0 18px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "54px", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#063E4A" }}>What do you need help with?</h2>
-          <p className="desk" style={{ margin: "0", maxWidth: "26em", fontSize: "17px", color: "#3E4F53" }}>One partner, from the first conversation to the results.</p>
+          <h2 className="h2big" style={{ margin: "0 0 18px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "54px", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#063E4A" }}>Sound familiar?</h2>
+          <p className="desk" style={{ margin: "0", maxWidth: "26em", fontSize: "17px", color: "#3E4F53" }}>Pick the one that fits. Each opens what we do about it.</p>
         </div>
         <p className="note" style={{ margin: "0", fontSize: "25px", transform: "rotate(-3deg)", transformOrigin: "left" }}>Better people practices.<br />Stronger organizations.</p>
       </div>
@@ -65,14 +64,14 @@ export const Home = () => {
     </div>
 
     <div className="svc-list">
-      <Link className="svc-row" to="/services#systems"><span className="t">HR systems and technology</span><span className="d">Hiring, payroll and reviews in one place.</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
-      <Link className="svc-row" to="/services#training"><span className="t">Training and leadership</span><span className="d">Managers who lead with confidence.</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
-      <Link className="svc-row" to="/services#change"><span className="t">Organizational change</span><span className="d">Restructures and mergers, handled clearly.</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
-      <Link className="svc-row" to="/services#engagement"><span className="t">Engagement and retention</span><span className="d">Keep your best people.</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
-      <Link className="svc-row" to="/services#culture"><span className="t">Culture and values</span><span className="d">Values people actually live by.</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
+      <Link className="svc-row" to="/services#systems"><span className="t">Our HR still runs on spreadsheets.</span><span className="d">HR systems and technology</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
+      <Link className="svc-row" to="/services#training"><span className="t">Our managers were never taught to lead.</span><span className="d">Training and leadership</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
+      <Link className="svc-row" to="/services#change"><span className="t">We are restructuring and people are anxious.</span><span className="d">Organizational change</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
+      <Link className="svc-row" to="/services#engagement"><span className="t">Good people keep leaving.</span><span className="d">Engagement and retention</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
+      <Link className="svc-row" to="/services#culture"><span className="t">Our values are just words on a wall.</span><span className="d">Culture and values</span><svg className="arrow" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="#B34A10" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></Link>
     </div>
 
-    <p className="unsure"><span>Not sure?</span><Link className="textlink" to="/contacts">Ask Shirley</Link></p>
+    <p className="unsure"><span>Something else?</span><Link className="textlink" to="/contacts">Tell Shirley</Link></p>
   </section>
 
   {/* Leadership */}
@@ -128,7 +127,7 @@ export const Home = () => {
   </section>
       {/* The phone booking bar lives on <body> so page transitions can't break its fixed position. */}
       {createPortal(<div className="pg-home-dock"><div className="dock" role="region" aria-label="Quick contact">
-    <Link className="btn btn-white" to="/contacts">Book a consultation</Link>
+    <Link className="btn btn-white" to="/contacts">Let's talk</Link>
     <a className="mail" href="mailto:Hrproductivitypartner@gmail.com" aria-label="Email HRPPI"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5l8.5 6.5 8.5-6.5"></path></svg></a>
   </div></div>, document.body)}
     </div>
