@@ -31,28 +31,37 @@ export const Home = () => {
         </section>
 
         {/* Why HRPPI */}
-        <section className="sec" aria-label="Why HRPPI" style={{ maxWidth: "1200px", margin: "0 auto", padding: "104px 24px 88px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "40px 56px" }}>
-            <div style={{ paddingTop: "22px", position: "relative" }}>
-              <div className="grow" style={{ position: "absolute", top: "0", left: "0", right: "0", height: "1px", background: "#063E4A" }}></div>
-              <h2 style={{ margin: "0 0 10px", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", fontWeight: "400", lineHeight: "1.2", color: "#063E4A" }} className="tip">Rooted in the Caribbean</h2>
-              <p style={{ margin: "0", color: "#4A5A5E" }}>More than 20 years advising organizations across the region, from family businesses to government ministries.</p>
-            </div>
-            <div style={{ paddingTop: "22px", position: "relative" }}>
-              <div className="grow" style={{ position: "absolute", top: "0", left: "0", right: "0", height: "1px", background: "#063E4A" }}></div>
-              <h2 style={{ margin: "0 0 10px", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", fontWeight: "400", lineHeight: "1.2", color: "#063E4A" }} className="tip">Informed by global practice</h2>
-              <p style={{ margin: "0", color: "#4A5A5E" }}>International standards and research, applied to the realities of how work gets done here.</p>
-            </div>
-            <div style={{ paddingTop: "22px", position: "relative" }}>
-              <div className="grow" style={{ position: "absolute", top: "0", left: "0", right: "0", height: "1px", background: "#063E4A" }}></div>
-              <h2 style={{ margin: "0 0 10px", fontFamily: "Fraunces, Georgia, serif", fontSize: "24px", fontWeight: "400", lineHeight: "1.2", color: "#063E4A" }} className="tip">Led by our CEO</h2>
-              <p style={{ margin: "0", color: "#4A5A5E" }}>Every engagement is led personally by Shirley Bartley. You work with the person who does the work.</p>
+        <section aria-label="Why HRPPI" style={{ background: "#063E4A", color: "#E8EFEF", marginTop: "96px" }}>
+          <div className="sec why" style={{ maxWidth: "1200px", margin: "0 auto", padding: "112px 24px", display: "grid", gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.1fr)", gap: "56px 96px", alignItems: "start" }}>
+            <h2 className="whyhead" style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(40px, 5vw, 68px)", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#FFFFFF" }}>Caribbean organizations. <em style={{ fontStyle: "italic", color: "#F2B48A" }}>Global possibilities.</em></h2>
+            <div>
+              <div className="whyrow" style={{ display: "flex", gap: "20px", alignItems: "flex-start", padding: "28px 0", borderTop: "1px solid rgba(232, 239, 239, 0.22)" }}>
+                <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#F2B48A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: "none", marginTop: "4px" }}><path d="M14 25s-8-7.2-8-13a8 8 0 0 1 16 0c0 5.8-8 13-8 13z"></path><circle cx="14" cy="12" r="3"></circle></svg>
+                <div>
+                  <h3 className="tip" style={{ margin: "0 0 8px", fontFamily: "Fraunces, Georgia, serif", fontSize: "26px", fontWeight: "400", lineHeight: "1.2", color: "#FFFFFF" }}>Rooted in the Caribbean</h3>
+                  <p style={{ margin: "0", color: "#C9D8DA", maxWidth: "30em" }}>More than 20 years advising organizations across the region, from family businesses to government ministries.</p>
+                </div>
+              </div>
+              <div className="whyrow" style={{ display: "flex", gap: "20px", alignItems: "flex-start", padding: "28px 0", borderTop: "1px solid rgba(232, 239, 239, 0.22)" }}>
+                <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#F2B48A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: "none", marginTop: "4px" }}><circle cx="14" cy="14" r="10.5"></circle><path d="M3.5 14h21M14 3.5c3 3 4.5 6.5 4.5 10.5S17 21.5 14 24.5M14 3.5c-3 3-4.5 6.5-4.5 10.5S11 21.5 14 24.5"></path></svg>
+                <div>
+                  <h3 className="tip" style={{ margin: "0 0 8px", fontFamily: "Fraunces, Georgia, serif", fontSize: "26px", fontWeight: "400", lineHeight: "1.2", color: "#FFFFFF" }}>Informed by global practice</h3>
+                  <p style={{ margin: "0", color: "#C9D8DA", maxWidth: "30em" }}>International standards and research, applied to the realities of how work gets done here.</p>
+                </div>
+              </div>
+              <div className="whyrow" style={{ display: "flex", gap: "20px", alignItems: "flex-start", padding: "28px 0", borderTop: "1px solid rgba(232, 239, 239, 0.22)", borderBottom: "1px solid rgba(232, 239, 239, 0.22)" }}>
+                <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#F2B48A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: "none", marginTop: "4px" }}><circle cx="14" cy="9" r="4.5"></circle><path d="M5 25c0-5 4-9 9-9s9 4 9 9"></path></svg>
+                <div>
+                  <h3 className="tip" style={{ margin: "0 0 8px", fontFamily: "Fraunces, Georgia, serif", fontSize: "26px", fontWeight: "400", lineHeight: "1.2", color: "#FFFFFF" }}>Led by our CEO</h3>
+                  <p style={{ margin: "0", color: "#C9D8DA", maxWidth: "30em" }}>Every engagement is led personally by Shirley Bartley. You work with the person who does the work.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Photo pair */}
-        <section aria-label="HRPPI at work" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px 128px" }}>
+        <section aria-label="HRPPI at work" style={{ maxWidth: "1200px", margin: "0 auto", padding: "112px 24px 128px" }}>
           <div className="pair" style={{ display: "flex", flexWrap: "wrap", gap: "24px", alignItems: "flex-start" }}>
             <figure style={{ margin: "0", flex: "7 1 460px" }}>
               <div className="unveil drift" style={{ aspectRatio: "3 / 2", overflow: "hidden", background: "#E9E4DA" }}>
