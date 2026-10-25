@@ -28,7 +28,7 @@ export const Header = () => {
             <img src={site.logo} alt="" width={40} height={40} />
             <span className="site-brand__text">
               <span className="site-brand__name">HRPPI</span>
-              <span className="site-brand__tag">{site.name}</span>
+              <span className="site-brand__tag">Human Resource Productivity<br />Partners, International</span>
             </span>
           </Link>
           <nav aria-label="Main" className="site-nav">
@@ -46,6 +46,7 @@ export const Header = () => {
             </div>
             <Link to="/contacts" className="site-btn">
               Book a consultation
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" /></svg>
             </Link>
           </nav>
         </div>
