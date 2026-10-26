@@ -12,7 +12,6 @@ export const Home = () => {
   <section id="top" className="hero">
     <div className="wrap hero-grid">
       <div className="hero-copy">
-        <p className="eyebrow fade d0">People. Organizations. Caribbean. Global.</p>
         <h1 aria-label="Build a workplace people thrive in" style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(44px, 4.6vw, 68px)", lineHeight: "1.02", letterSpacing: "-0.025em", color: "#063E4A" }}>
           <span className="line"><span>Build a workplace</span></span>
           <span className="line l2"><span>people <em className="slot" style={{ fontStyle: "italic", color: "#B34A10", position: "relative", whiteSpace: "nowrap", display: "inline-block", verticalAlign: "top" }}><span className="sizer" aria-hidden="true">belong in.</span><span className="prism"><span className="face f0" aria-hidden="true">thrive in.</span><span className="face f1" aria-hidden="true">grow in.</span><span className="face f2" aria-hidden="true">belong in.</span><span className="face f3" aria-hidden="true">stay in.</span></span><svg className="drawn" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true" style={{ position: "absolute", left: "0.04em", bottom: "-0.1em", width: "96%", height: "0.24em", overflow: "visible" }}><path pathLength="1" d="M4 16C70 7 150 5 296 11" fill="none" stroke="#B34A10" strokeWidth="2.5" strokeLinecap="round" vectorEffect="non-scaling-stroke"></path></svg></em></span></span>
@@ -35,14 +34,13 @@ export const Home = () => {
   <section id="about-hrppi" className="band">
     <div className="wrap band-grid">
       <div>
-        <p className="eyebrow light">Local expertise. Global perspective.</p>
         <h2 className="h2big" style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(40px, 4.6vw, 62px)", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#FFFFFF" }}>Caribbean organizations. <em style={{ fontStyle: "italic", color: "#E7B48F" }}>Global possibilities.</em></h2>
         
       </div>
       <ul className="proof">
-        <li><span className="fig">20+</span><span className="lab">years advising organizations across the Caribbean</span></li>
-        <li><span className="fig">IABC</span><span className="lab">Accredited Business Communicator, among the first in Jamaica</span></li>
-        <li><span className="fig">10 yrs</span><span className="lab">leading public relations at the Ministry of National Security and Justice</span></li>
+        <li><span className="fig">20+ years</span><span className="lab">advising organizations across the Caribbean</span></li>
+        <li><span className="fig">IABC accredited</span><span className="lab">among the first Jamaicans to earn it</span></li>
+        <li><span className="fig">10 years</span><span className="lab">leading public relations for the Ministry of National Security and Justice</span></li>
       </ul>
     </div>
   </section>
@@ -52,11 +50,9 @@ export const Home = () => {
     <div className="help-head">
       <div className="help-text">
         <div>
-          <p className="eyebrow desk">Practical solutions. Lasting impact.</p>
           <h2 className="h2big" style={{ margin: "0 0 18px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "54px", lineHeight: "1.04", letterSpacing: "-0.02em", color: "#063E4A" }}>Sound familiar?</h2>
           <p className="desk" style={{ margin: "0", maxWidth: "26em", fontSize: "17px", color: "#3E4F53" }}>Pick the one that fits. Each opens what we do about it.</p>
         </div>
-        <p className="note" style={{ margin: "0", fontSize: "25px", transform: "rotate(-3deg)", transformOrigin: "left" }}>Better people practices.<br />Stronger organizations.</p>
       </div>
       <div className="help-img uv">
         <img src="/assets/hrppi/consult-notes.jpg" alt="Two people taking notes in a meeting over coffee" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
@@ -79,11 +75,9 @@ export const Home = () => {
     <div className="wrap lead-grid">
       <div className="lead-art uv">
         <img src="/assets/hrppi/shirley-bartley.jpg" alt="Shirley Bartley, CEO of HRPPI" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 12%" }} />
-        <div className="lead-cap"><strong style={{ fontWeight: "600" }}>Shirley Bartley</strong><br /><span style={{ color: "#5A686B" }}>CEO, HRPPI</span></div>
         <p className="lead-mq" aria-hidden="true">“Investing in people is the smartest business move of all.”<span>Shirley Bartley, CEO</span></p>
       </div>
       <div className="lead-copy">
-        <p className="eyebrow">Our leadership</p>
         <blockquote aria-label="Investing in people is the smartest business move of all." style={{ margin: "0 0 28px", fontFamily: "Fraunces, Georgia, serif", fontStyle: "italic", fontWeight: "300", fontSize: "clamp(30px, 3.4vw, 46px)", lineHeight: "1.12", letterSpacing: "-0.015em", color: "#063E4A", textIndent: "-0.42em" }}><span className="w" style={{ animationRange: "cover 12% cover 20%" }}>“Investing</span> <span className="w" style={{ animationRange: "cover 16% cover 24%" }}>in</span> <span className="w" style={{ animationRange: "cover 20% cover 28%" }}>people</span> <span className="w" style={{ animationRange: "cover 24% cover 32%" }}>is</span> <span className="w" style={{ animationRange: "cover 28% cover 36%" }}>the</span> <span className="w" style={{ animationRange: "cover 32% cover 40%" }}>smartest</span> <span className="w" style={{ animationRange: "cover 36% cover 44%" }}>business</span> <span className="w" style={{ animationRange: "cover 40% cover 48%" }}>move</span> <span className="w" style={{ animationRange: "cover 44% cover 52%" }}>of</span> <span className="w" style={{ animationRange: "cover 48% cover 56%" }}>all.”</span></blockquote>
         <h2 style={{ margin: "0 0 20px", fontFamily: "Fraunces, Georgia, serif", fontWeight: "400", fontSize: "32px", lineHeight: "1.15", color: "#063E4A" }}>Every engagement, led by Shirley Bartley.</h2>
         <p style={{ margin: "0 0 32px", maxWidth: "32em", color: "#3E4F53" }}>Former internal communications manager at Scotiabank and ten years as Director of Public Relations at the Ministry of National Security and Justice. IABC accredited, MBA.</p>
@@ -96,7 +90,6 @@ export const Home = () => {
   <section id="insights" className="wrap sec" style={{ paddingTop: "104px", paddingBottom: "112px" }}>
     <div className="ins-head" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "20px 48px", marginBottom: "48px" }}>
       <div>
-        <p className="eyebrow">Ideas. Resources. Perspectives.</p>
         <h2 className="h2big" style={{ margin: "0", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "54px", lineHeight: "1", letterSpacing: "-0.02em", color: "#063E4A" }}>Insights</h2>
         
       </div>
@@ -114,7 +107,6 @@ export const Home = () => {
   <section id="contact" className="cta">
     <div className="cta-bg" aria-hidden="true"><img src="/assets/hrppi/cta-landscape.jpg" alt="" style={{ display: "block", width: "100%", height: "100%", objectFit: "cover", objectPosition: "70% 60%" }} /></div>
     <div className="wrap sec" style={{ position: "relative", paddingTop: "104px", paddingBottom: "96px" }}>
-      <p className="eyebrow light">Let's build what's next.</p>
       <h2 className="h2big" style={{ margin: "0 0 22px", maxWidth: "13ch", fontFamily: "Fraunces, Georgia, serif", fontWeight: "300", fontSize: "clamp(42px, 5.4vw, 72px)", lineHeight: "1.02", letterSpacing: "-0.025em", color: "#FFFFFF" }}>Tell us what you are <em style={{ fontStyle: "italic", color: "#E7B48F" }}>working on.</em></h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "24px 64px", alignItems: "flex-end", justifyContent: "space-between" }}>
         <p style={{ margin: "0", maxWidth: "30em", color: "#C9D8DA" }}>Shirley reads every enquiry and replies within one business day.</p>
