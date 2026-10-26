@@ -10,6 +10,10 @@ export type Article = {
   standfirst: string;
   image: string;
   imageAlt: string;
+  /** Small image for lists and "keep reading". */
+  thumb: string;
+  /** One line lifted into the margin as a pull quote. */
+  pull?: string;
   /** Section heading + paragraphs. Lists render as bullets. */
   body: Array<{ heading?: string; paras?: string[]; list?: string[] }>;
   sources?: Array<{ label: string; url: string }>;
@@ -24,8 +28,10 @@ export const articles: Article[] = [
     readingTime: "6 min read",
     standfirst:
       "Jamaica's outsourcing sector shed roughly 12,000 jobs in two years, and the industry's own leadership points at productivity rather than automation. That diagnosis should change how Caribbean employers plan their workforce.",
-    image: `${ASSETS}/084932ea58bb34c01f9084a3e2a27d08.jpg`,
+    image: `${ASSETS}/hrppi/leader.jpg`,
     imageAlt: "A Jamaican professional standing in a modern open-plan office",
+    thumb: `${ASSETS}/305fca0a91a3332e30d5d66832dd1957_392x261.jpg`,
+    pull: "Automation is something you adapt to. Productivity is something you manage.",
     body: [
       {
         paras: [
@@ -115,8 +121,10 @@ export const articles: Article[] = [
     readingTime: "5 min read",
     standfirst:
       "Engagement is not a survey score or a staff party. It is the everyday experience of being well managed. Here are five changes that move it, none of which need a budget.",
-    image: `${ASSETS}/intro-meeting.png`,
-    imageAlt: "Colleagues collaborating around a laptop in a bright office",
+    image: `${ASSETS}/hrppi/workshop.jpg`,
+    imageAlt: "A facilitator leading a workshop with a team around a table",
+    thumb: `${ASSETS}/2c555ad8375e98a3229a69057a87b7d4_378x252.jpg`,
+    pull: "People do not disengage from companies. They disengage from one manager.",
     body: [
       {
         paras: [
@@ -183,8 +191,10 @@ export const articles: Article[] = [
     readingTime: "7 min read",
     standfirst:
       "Most small and mid-sized employers run HR on spreadsheets, a shared inbox and one person's memory. Here is how to move off that without buying something you will not use.",
-    image: `${ASSETS}/1af8af7a40d7bb692ce8c1235b93a211.jpg`,
-    imageAlt: "A tidy desk with a laptop, notebook and plants",
+    image: `${ASSETS}/hrppi/handshake.jpg`,
+    imageAlt: "Two colleagues shaking hands across a desk",
+    thumb: `${ASSETS}/2a474ae2cafb1b462795c8138c8a50c4_392x261.jpg`,
+    pull: "Software does not fix an unclear process; it encodes it.",
     body: [
       {
         paras: [
